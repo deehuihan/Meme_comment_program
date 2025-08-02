@@ -1,0 +1,396 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Microsoft JhengHei', 'PMingLiU', 'Arial', sans-serif;
+}
+
+body {
+    background: #f0f2f5;
+    color: #1c1e21;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 添加背景裝飾 */
+body::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(24,119,242,0.05) 0.125rem, transparent 0.125rem);
+    background-size: 1.875rem 1.875rem;
+    animation: float 20s ease-in-out infinite;
+    z-index: 0;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-1.25rem) rotate(180deg); }
+}
+
+.user-id-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.user-id-modal {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    padding: 30px;
+    border-radius: 15px;
+    width: 400px;
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.1),
+        0 0 0 1px rgba(24, 119, 242, 0.1);
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+.user-id-modal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(24, 119, 242, 0.02);
+    border-radius: 15px;
+    z-index: -1;
+}
+
+.user-id-modal h2 {
+    margin-top: 0;
+    color: #1877f2;
+    margin-bottom: 25px;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.user-id-modal input {
+    width: 100%;
+    padding: 12px 16px;
+    margin: 12px 0;
+    border: 2px solid rgba(24, 119, 242, 0.2);
+    border-radius: 8px;
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.user-id-modal input:focus {
+    outline: none;
+    border-color: #1877f2;
+    box-shadow: 0 0 0 3px rgba(24, 119, 242, 0.1);
+    transform: translateY(-1px);
+}
+
+.user-id-modal button {
+    background: #1877f2;
+    color: white;
+    border: none;
+    padding: 14px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 16px;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 
+        0 8px 32px rgba(24, 119, 242, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.user-id-modal button:hover {
+    background: #166fe5;
+    transform: translateY(-1px);
+    box-shadow: 
+        0 16px 40px rgba(24, 119, 242, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.error-message {
+    color: #f03e3e;
+    margin-top: 8px;
+    font-size: 12px;
+    text-align: left;
+    padding: 4px;
+}
+
+.error-message.show {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+.page-selection {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 25px 30px;
+    width: 90%;
+    max-width: 700px;
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.1),
+        0 0 0 1px rgba(24, 119, 242, 0.1);
+    text-align: center;
+    display: none;
+    position: relative;
+    z-index: 10;
+    transform: translateY(0);
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.page-selection::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(24, 119, 242, 0.02);
+    border-radius: 24px;
+    z-index: -1;
+}
+
+.selection-title {
+    color: #1877f2;
+    margin-bottom: 15px;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    text-shadow: none;
+    position: relative;
+}
+
+.selection-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: #1877f2;
+    border-radius: 2px;
+}
+
+.welcome-text {
+    margin-bottom: 12px; /* 從 1.5rem/4vw/3.125rem 減少到 0.75rem/2vw/1.5rem */
+    margin-top: 8px; /* 從 1rem/3vw/1.875rem 減少到 0.5rem/1.5vw/1rem */
+    font-size: 14px;
+    color: #4a5568;
+    line-height: 1.5;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 400;
+    opacity: 0.9;
+}
+
+.selection-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* 從 0.75rem/3vw/1.5rem 減少到 0.5rem/2vw/1rem */
+    margin-top: 6px; /* 從 0.5rem/2vw/1.25rem 減少到 0.25rem/1vw/0.75rem */
+}
+
+.selection-button {
+    padding: 10px 24px; /* 減少垂直padding: 從 0.75rem/4vw/1.5rem 到 0.5rem/3vw/1rem */
+    border-radius: 10px;
+    border: none;
+    font-size: 15px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    letter-spacing: 0.3px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.selection-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+}
+
+.selection-button:hover::before {
+    left: 100%;
+}
+
+.selection-button i {
+    margin-right: 10px;
+    font-size: 16px;
+    transition: transform 0.3s ease;
+}
+
+.selection-button:hover i {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.receiver-btn {
+    background: #1877f2;
+    color: white;
+    box-shadow: 
+        0 8px 32px rgba(24, 119, 242, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.receiver-btn:hover {
+    background: #166fe5;
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 
+        0 16px 40px rgba(24, 119, 242, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.sender-btn {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    color: white;
+    box-shadow: 
+        0 8px 32px rgba(17, 153, 142, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.sender-btn:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 
+        0 16px 40px rgba(17, 153, 142, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* User actions and logout button styles */
+.user-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px; /* 從 1.5rem/4vw/2.5rem 減少到 0.75rem/2vw/1.5rem */
+    padding-top: 8px; /* 從 1rem/3vw/1.875rem 減少到 0.5rem/1.5vw/1rem */
+    border-top: 1px solid rgba(24, 119, 242, 0.2);
+    position: relative;
+}
+
+.user-actions::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 1px;
+    background: #1877f2;
+}
+
+.logout-button {
+    background: rgba(255, 255, 255, 0.8);
+    color: #4a5568;
+    border: 1px solid rgba(102, 126, 234, 0.3);
+    padding: 8px 15px;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    font-weight: 500;
+    backdrop-filter: blur(10px);
+}
+
+.logout-button:hover {
+    background: rgba(102, 126, 234, 0.1);
+    border-color: rgba(102, 126, 234, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+}
+
+.logout-button i {
+    margin-right: 6px;
+    font-size: 14px;
+    transition: transform 0.3s ease;
+}
+
+.logout-button:hover i {
+    transform: rotate(-10deg);
+}
+
+/* Logout dialog styles */
+.logout-dialog-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.logout-dialog {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.logout-dialog h3 {
+    margin-top: 0;
+    color: #1877f2;
+}
+
+.logout-dialog-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.logout-dialog-buttons button {
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
+
+.cancel-button {
+    background-color: #e4e6eb;
+    color: #050505;
+}
+
+.confirm-button {
+    background-color: #1877f2;
+    color: white;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

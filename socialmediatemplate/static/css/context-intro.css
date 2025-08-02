@@ -1,0 +1,206 @@
+/* 情境說明頁面樣式 */
+.context-intro {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 40px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    line-height: 1.6;
+    border: 1px solid rgba(24, 119, 242, 0.1);
+}
+
+.intro-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #1877f2;
+}
+
+.intro-header h2 {
+    color: #1877f2;
+    font-size: 28px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.intro-header p {
+    color: #65676b;
+    font-size: 16px;
+    margin: 0;
+}
+
+.intro-content {
+    margin-bottom: 40px;
+}
+
+.scenario-description h3 {
+    color: #1c1e21;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.scenario-description p {
+    color: #65676b;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.scenario-description h4 {
+    color: #1877f2;
+    font-size: 18px;
+    margin: 25px 0 15px 0;
+}
+
+.scenario-description ul,
+.scenario-description ol {
+    color: #65676b;
+    padding-left: 25px;
+}
+
+.scenario-description li {
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+
+.scenario-description li strong {
+    color: #1c1e21;
+}
+
+.instruction-notes {
+    background: #e3f2fd;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid #1877f2;
+    margin-top: 25px;
+}
+
+.instruction-notes p {
+    margin: 0;
+    color: #1565c0;
+    font-weight: 500;
+}
+
+.start-viewing-btn,
+.start-posting-btn,
+.start-experiment-btn {
+    background: #1877f2;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+    min-width: 200px;
+}
+
+.start-viewing-btn:hover,
+.start-posting-btn:hover,
+.start-experiment-btn:hover {
+    background: #166fe5;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(24, 119, 242, 0.3);
+}
+
+.experiment-intro {
+    text-align: center;
+}
+
+.experiment-intro h3 {
+    color: #1877f2;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.experiment-intro ol {
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+}
+
+.experiment-intro li {
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+.experiment-intro li strong {
+    color: #1877f2;
+    font-size: 16px;
+}
+
+.experiment-notes {
+    background: #f0f2f5;
+    padding: 25px;
+    border-radius: 8px;
+    margin: 30px 0;
+    text-align: left;
+}
+
+.experiment-notes h4 {
+    color: #1c1e21;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.experiment-notes ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.experiment-notes li {
+    margin-bottom: 8px;
+    color: #65676b;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .context-intro {
+        margin: 20px;
+        padding: 25px;
+    }
+    
+    .intro-header h2 {
+        font-size: 24px;
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .intro-header p {
+        font-size: 14px;
+    }
+    
+    .scenario-description h3 {
+        font-size: 18px;
+    }
+    
+    .scenario-description p,
+    .scenario-description li {
+        font-size: 14px;
+    }
+    
+    .start-viewing-btn,
+    .start-posting-btn,
+    .start-experiment-btn {
+        width: 100%;
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+    
+    .experiment-intro h3 {
+        font-size: 20px;
+    }
+    
+    .experiment-intro ol {
+        padding-left: 20px;
+    }
+}

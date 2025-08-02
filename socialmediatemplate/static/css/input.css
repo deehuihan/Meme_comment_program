@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Microsoft JhengHei', 'PMingLiU', 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f0f2f5;
+    color: #1c1e21;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.login-form {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+}
+
+.logo-section {
+    margin-bottom: 30px;
+}
+
+.logo-section h1 {
+    color: #1877f2;
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.logo-section p {
+    color: #606770;
+    font-size: 16px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.input-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #65676b;
+}
+
+input {
+    width: 100%;
+    padding: 14px 16px 14px 40px;
+    font-size: 16px;
+    border: 1px solid #dddfe2;
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+input:focus {
+    border-color: #1877f2;
+    box-shadow: 0 0 0 2px rgba(24, 119, 242, 0.2);
+}
+
+button {
+    width: 100%;
+    background-color: #1877f2;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    padding: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #166fe5;
+}
+
+.error-message {
+    color: #e53935;
+    text-align: left;
+    font-size: 13px;
+    margin-bottom: 15px;
+    min-height: 20px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.error-message.show {
+    opacity: 1;
+}
+
+.privacy-note {
+    margin-top: 25px;
+    font-size: 13px;
+    color: #65676b;
+}
+
+.privacy-note i {
+    color: #1877f2;
+    margin-right: 5px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 576px) {
+    .login-form {
+        padding: 20px;
+    }
+}

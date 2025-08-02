@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>測驗結果</title>
+    <link rel="stylesheet" href="/static/css/summary.css">
+    <link rel="stylesheet" href="/static/css/share_result.css">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+    </head>
+<body>
+
+    <div class="result-container">
+        <h1>🎉 遊戲結果 </h1>
+        <!-- <div class="personality-image-container">
+            <img class="personality-image" src="/static/picture/{{personality_animal}}.png">
+        </div> -->
+        <div class="personality-result">
+            <h2>結果分析: <span id="personalityType" class="highlight-personality">{{personality_description}}</span></h2>
+        </div>
+        
+        <div class="performance-summary">
+            <div class="emotion-legend">
+                <div class="legend-item active" data-filter="all">
+                    <span class="color-swatch all"></span>
+                    <span class="legend-text">全部</span>
+                </div>
+                {% if user_percentages is defined %}
+                <div class="legend-item" data-filter="輕蔑">
+                    <span class="color-swatch contempt"></span>
+                    <span class="legend-text">輕蔑 {{ user_percentages['輕蔑'] }}%</span>
+                </div>
+                <div class="legend-item" data-filter="憤怒">
+                    <span class="color-swatch anger"></span>
+                    <span class="legend-text">憤怒 {{ user_percentages['憤怒'] }}%</span>
+                </div>
+                <div class="legend-item" data-filter="厭惡">
+                    <span class="color-swatch disgust"></span>
+                    <span class="legend-text">厭惡 {{ user_percentages['厭惡'] }}%</span>
+                </div>
+                <div class="legend-item" data-filter="其他">
+                    <span class="color-swatch other"></span>
+                    <span class="legend-text">其他 {{ user_percentages['其他'] }}%</span>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        
+        <div class="analysis-table">
+            {% if all_items|length > 0 %}
+            <div class="image-grid">
+                {% for item in all_items %}
+                <div class="image-item" data-emotion="{{ item.choice }}">
+                    <span class="image-number">{{ loop.index }}</span>
+                    <div class="image-thumbnail-container">
+                        <img src="/summary/images/{{ item.image }}" alt="迷因" class="thumbnail">
+                        <div class="emotion-overlay emotion-{{ item.choice|emotion_class }}"></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+                <p class="no-data">目前沒有可供分析的圖片數據。</p>
+            {% endif %}
+        </div>
+        
+        <div class="footer">
+            <div class="invitation-section">
+                <div class="invitation-text">
+                    <h3>點擊下方按鈕即可開始遊戲</h3>
+                </div>
+            
+                
+                <button class="play-button" onclick="window.location.href='/'">
+                    <span class="play-icon">🎮</span> 開始遊戲
+                </button>
+            </div>
+        </div>
+        
+    </div>
+
+    <script>
+        // Filter images by emotion
+        document.querySelectorAll('.legend-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const filter = this.getAttribute('data-filter');
+                
+                // Remove active class from all legend items
+                document.querySelectorAll('.legend-item').forEach(el => {
+                    el.classList.remove('active');
+                });
+                
+                // Add active class to clicked item
+                this.classList.add('active');
+                
+                // Filter the image grid
+                const imageItems = document.querySelectorAll('.image-item');
+                imageItems.forEach(img => {
+                    if (filter === 'all' || img.getAttribute('data-emotion') === filter) {
+                        img.style.display = '';
+                    } else {
+                        img.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+
+    {% if error_message %}
+    <div class="error-message">
+        {{ error_message }}
+    </div>
+    {% endif %}
+</body>
+</html>

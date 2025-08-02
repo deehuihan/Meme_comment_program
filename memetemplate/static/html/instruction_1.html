@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Instruction part 1</title>
+    <link rel="stylesheet" href="/static/css/instruction_1.css">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+</head>
+<body>
+    <div class="instruction-container">
+        <h1>🕹️ 操作說明</h1>
+        <div class="instruction-content">
+
+        <p> ⌨️ 遊戲中每一題皆會仿照社群媒體的互動畫面，上方是新聞貼文，下方則是以迷因圖片呈現的網友留言。您的任務是：請依直覺判斷<strong>留言者</strong>透過迷因圖片想表達的情緒是什麼。</p>
+        <p>  我們提供三種情緒選項，選出您覺得最貼近的就好！ 
+            <ul>
+                <li>⬆️ 上方向鍵：輕蔑（蔑視，鄙視，輕視）</li>
+                <li>⬅️ 左方向鍵：憤怒（怒火）</li>
+                <li>➡️ 右方向鍵：厭惡（憎惡，反感）</li>
+                <li>⬇️ 下方向鍵：其他（無法選擇或與上述情緒不符）</li>
+                <li>空白鍵：確認選擇</li>
+            </ul>
+        </p>
+<!--         
+
+        <p>👇 來看看遊戲的真實操作畫面</p>
+        <p>如果您覺得 <strong>網友 A</strong> 想表達的情緒更貼近「輕蔑」，請按 ⬆️ 上方向鍵，再按空白鍵完成送出。</p>
+
+        <img src="/static/example.png" alt="示例圖片" class="example-image">
+         -->
+        </div>
+        <button id="start-practice-button" onclick="window.location.href='/instruction2'" class="next-button">我知道了</button>
+    </div>
+    <script src="{{ url_for('static', filename='js/instruction.js') }}"></script>
+    <script>
+        document.addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                document.getElementById('start-practice-button').click();
+            }
+        });
+    </script>
+</body>
+</html>

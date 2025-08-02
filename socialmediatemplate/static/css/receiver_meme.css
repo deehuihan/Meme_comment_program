@@ -1,0 +1,102 @@
+/* Receiver page meme-specific styles */
+
+/* User D comment style with meme-text toggle */
+.user-d-comment .comment-toggle-container {
+    position: relative;
+    width: 100%;
+    min-height: 180px; /* 確保容器有足夠高度 */
+}
+
+.user-d-comment .meme-view,
+.user-d-comment .text-view {
+    transition: all 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transform: translateY(10px);
+}
+
+.user-d-comment .meme-view.active,
+.user-d-comment .text-view.active {
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+    transform: translateY(0);
+}
+
+/* Meme image styling */
+.user-d-comment .meme-image {
+
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    object-fit: contain; /* 確保完整顯示迷因圖全貌 */
+    background-color: #f8f9fa; /* 添加背景色填充空白區域 */
+    /* 增強圖片清晰度 */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+
+.user-d-comment .meme-image:hover:not(.loading-meme) {
+    transform: scale(1.03);
+}
+
+/* Toggle button styling */
+.toggle-view-btn {
+    margin-top: 8px;
+    padding: 6px 12px;
+    background-color: #1877f2;
+    color: white;
+    border: none;
+    border-radius: 16px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.toggle-view-btn:hover {
+    background-color: #166fe5;
+}
+
+/* Meme loading styles */
+.loading-meme {
+    opacity: 0.5;
+    background-color: #f0f2f5;
+    border: 2px dashed #bdbdbd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 150px;
+}
+
+.loading-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+    color: #666;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 4px 8px;
+    border-radius: 4px;
+    z-index: 1;
+}
+
+/* Hide loading text when meme is loaded */
+.meme-image:not(.loading-meme) + .loading-text {
+    display: none;
+}
+
+/* Text view styling */
+.user-d-comment .text-view p {
+    font-size: 14px;
+    color: #050505;
+    margin: 0;
+    padding: 10px;
+    background-color: #f0f2f5;
+    border-radius: 8px;
+    border-left: 3px solid #1877f2;
+}

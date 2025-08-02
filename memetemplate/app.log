@@ -1,0 +1,543 @@
+2025-04-08 11:55:08,124 - INFO - Starting expired user folders cleanup thread
+2025-04-08 11:55:09,152 - INFO - Starting expired user folders cleanup thread
+2025-04-08 11:55:22,583 - INFO - Starting expired user folders cleanup thread
+2025-04-08 11:57:52,951 - INFO - Starting expired user folders cleanup thread
+2025-04-08 11:57:53,567 - INFO - Removed expired session: 345f16cd-3d37-4cd2-85d0-4b2c5789b3bc
+2025-04-08 11:57:53,759 - INFO - Removed expired session: d6f1b7b2-1f2e-4deb-a066-23032b04eb1e
+2025-04-08 11:57:53,821 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://140.113.214.158:5000
+2025-04-08 11:57:53,822 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-08 11:57:54,630 - INFO - 118.166.77.13 - - [08/Apr/2025 11:57:54] "GET / HTTP/1.1" 200 -
+2025-04-08 11:57:54,667 - INFO - 118.166.77.13 - - [08/Apr/2025 11:57:54] "[36mGET /static/css/introduction.css HTTP/1.1[0m" 304 -
+2025-04-08 11:57:54,899 - INFO - 118.166.77.13 - - [08/Apr/2025 11:57:54] "[36mGET /static/favicon.png HTTP/1.1[0m" 304 -
+2025-04-08 11:58:04,696 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:04] "GET /terms HTTP/1.1" 200 -
+2025-04-08 11:58:04,732 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:04] "[36mGET /static/css/terms.css HTTP/1.1[0m" 304 -
+2025-04-08 11:58:12,459 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:12] "POST /instruction1 HTTP/1.1" 200 -
+2025-04-08 11:58:12,491 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:12] "[36mGET /static/css/instruction_1.css HTTP/1.1[0m" 304 -
+2025-04-08 11:58:12,505 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:12] "[36mGET /static/js/instruction.js HTTP/1.1[0m" 304 -
+2025-04-08 11:58:12,506 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:12] "[36mGET /static/example.png HTTP/1.1[0m" 304 -
+2025-04-08 11:58:16,135 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:16] "GET /instruction2 HTTP/1.1" 200 -
+2025-04-08 11:58:16,166 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:16] "[36mGET /static/css/instruction_2.css HTTP/1.1[0m" 304 -
+2025-04-08 11:58:16,178 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:16] "[36mGET /static/js/instruction.js HTTP/1.1[0m" 304 -
+2025-04-08 11:58:20,724 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:20] "POST /instruction1 HTTP/1.1" 200 -
+2025-04-08 11:58:20,761 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:20] "[36mGET /static/css/instruction_1.css HTTP/1.1[0m" 304 -
+2025-04-08 11:58:20,774 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:20] "[36mGET /static/example.png HTTP/1.1[0m" 304 -
+2025-04-08 11:58:20,774 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:20] "[36mGET /static/js/instruction.js HTTP/1.1[0m" 304 -
+2025-04-08 11:58:22,989 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:22] "POST /instruction1 HTTP/1.1" 200 -
+2025-04-08 11:58:23,019 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:23] "[36mGET /static/css/instruction_1.css HTTP/1.1[0m" 304 -
+2025-04-08 11:58:23,032 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:23] "[36mGET /static/js/instruction.js HTTP/1.1[0m" 304 -
+2025-04-08 11:58:23,033 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:23] "[36mGET /static/example.png HTTP/1.1[0m" 304 -
+2025-04-08 11:58:23,066 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:23] "[36mGET /static/favicon.png HTTP/1.1[0m" 304 -
+2025-04-08 11:58:25,689 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:25] "GET /instruction2 HTTP/1.1" 200 -
+2025-04-08 11:58:25,721 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:25] "[36mGET /static/css/instruction_2.css HTTP/1.1[0m" 304 -
+2025-04-08 11:58:25,733 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:25] "[36mGET /static/js/instruction.js HTTP/1.1[0m" 304 -
+2025-04-08 11:58:27,272 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:27] "GET /instruction2 HTTP/1.1" 200 -
+2025-04-08 11:58:27,302 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:27] "[36mGET /static/css/instruction_2.css HTTP/1.1[0m" 304 -
+2025-04-08 11:58:27,314 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:27] "[36mGET /static/js/instruction.js HTTP/1.1[0m" 304 -
+2025-04-08 11:58:27,352 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:27] "[36mGET /static/favicon.png HTTP/1.1[0m" 304 -
+2025-04-08 11:58:31,169 - INFO - Secure session created for user_20250408_115826_7506331313
+2025-04-08 11:58:31,186 - INFO - Selected Afraid-To-Ask-Andy_47.png from Afraid-To-Ask-Andy, renamed to Afraid-To-Ask-Andy.png
+2025-04-08 11:58:31,197 - INFO - Selected Always-Has-Been_63.png from Always-Has-Been, renamed to Always-Has-Been.png
+2025-04-08 11:58:31,201 - INFO - Selected Always-you-three_82.png from Always-you-three, renamed to Always-you-three.png
+2025-04-08 11:58:31,212 - INFO - Selected Angry-Baby_14.png from Angry-Baby, renamed to Angry-Baby.png
+2025-04-08 11:58:31,215 - INFO - Selected Archer_50.png from Archer, renamed to Archer.png
+2025-04-08 11:58:31,226 - INFO - Selected Arthur-Fist_85.png from Arthur-Fist, renamed to Arthur-Fist.png
+2025-04-08 11:58:31,237 - INFO - Selected Batman-Slapping-Robin_73.png from Batman-Slapping-Robin, renamed to Batman-Slapping-Robin.png
+2025-04-08 11:58:31,250 - INFO - Selected Black-guy-hiding-behind-tree_44.png from Black-guy-hiding-behind-tree, renamed to Black-guy-hiding-behind-tree.png
+2025-04-08 11:58:31,254 - INFO - Selected Charlie-Day_19.png from Charlie-Day, renamed to Charlie-Day.png
+2025-04-08 11:58:31,257 - INFO - Selected Chill-guy_40.png from Chill-guy, renamed to Chill-guy.png
+2025-04-08 11:58:31,269 - INFO - Selected Confused-Gandalf_31.png from Confused-Gandalf, renamed to Confused-Gandalf.png
+2025-04-08 11:58:31,281 - INFO - Selected Dave-chappelle_6.png from Dave-chappelle, renamed to Dave-chappelle.png
+2025-04-08 11:58:31,291 - INFO - Selected Dinkleberg_28.png from Dinkleberg, renamed to Dinkleberg.png
+2025-04-08 11:58:31,303 - INFO - Selected Disappointed-Man_9.png from Disappointed-Man, renamed to Disappointed-Man.png
+2025-04-08 11:58:31,314 - INFO - Selected Disaster-Girl_45.png from Disaster-Girl, renamed to Disaster-Girl.png
+2025-04-08 11:58:31,326 - INFO - Selected DJ-Pauly-D_37.png from DJ-Pauly-D, renamed to DJ-Pauly-D.png
+2025-04-08 11:58:31,337 - INFO - Selected Drake-NoYes_52.png from Drake-NoYes, renamed to Drake-NoYes.png
+2025-04-08 11:58:31,348 - INFO - Selected For-the-better-right-blank_91.png from For-the-better-right-blank, renamed to For-the-better-right-blank.png
+2025-04-08 11:58:31,358 - INFO - Selected Futurama-Fry_83.png from Futurama-Fry, renamed to Futurama-Fry.png
+2025-04-08 11:58:31,369 - INFO - Selected Gru-Gun_69.png from Gru-Gun, renamed to Gru-Gun.png
+2025-04-08 11:58:31,380 - INFO - Selected Happy--Shock_61.png from Happy--Shock, renamed to Happy--Shock.png
+2025-04-08 11:58:31,391 - INFO - Selected Hide-the-Pain-Harold_92.png from Hide-the-Pain-Harold, renamed to Hide-the-Pain-Harold.png
+2025-04-08 11:58:31,403 - INFO - Selected Hold-fart_39.png from Hold-fart, renamed to Hold-fart.png
+2025-04-08 11:58:31,415 - INFO - Selected I-am-once-again-asking_97.png from I-am-once-again-asking, renamed to I-am-once-again-asking.png
+2025-04-08 11:58:31,426 - INFO - Selected Ill-Have-You-Know-Spongebob_68.png from Ill-Have-You-Know-Spongebob, renamed to Ill-Have-You-Know-Spongebob.png
+2025-04-08 11:58:31,441 - INFO - Selected Im-The-Captain-Now_55.png from Im-The-Captain-Now, renamed to Im-The-Captain-Now.png
+2025-04-08 11:58:31,452 - INFO - Selected Kevin-Hart_98.png from Kevin-Hart, renamed to Kevin-Hart.png
+2025-04-08 11:58:31,461 - INFO - Selected Khan_53.png from Khan, renamed to Khan.png
+2025-04-08 11:58:31,473 - INFO - Selected Laughing-wolf_17.png from Laughing-wolf, renamed to Laughing-wolf.png
+2025-04-08 11:58:31,476 - INFO - Selected Leonardo-Dicaprio-Wolf-Of-Wall-Street_38.png from Leonardo-Dicaprio-Wolf-Of-Wall-Street, renamed to Leonardo-Dicaprio-Wolf-Of-Wall-Street.png
+2025-04-08 11:58:31,488 - INFO - Selected Math-ladyConfused-lady_90.png from Math-ladyConfused-lady, renamed to Math-ladyConfused-lady.png
+2025-04-08 11:58:31,500 - INFO - Selected Mocking-Spongebob_71.png from Mocking-Spongebob, renamed to Mocking-Spongebob.png
+2025-04-08 11:58:31,511 - INFO - Selected Moe-throws-Barney_8.png from Moe-throws-Barney, renamed to Moe-throws-Barney.png
+2025-04-08 11:58:31,523 - INFO - Selected Monkey-Puppet_36.png from Monkey-Puppet, renamed to Monkey-Puppet.png
+2025-04-08 11:58:31,536 - INFO - Selected Mr-incredible-mad_7.png from Mr-incredible-mad, renamed to Mr-incredible-mad.png
+2025-04-08 11:58:31,551 - INFO - Selected Mr-McMahon-reaction_18.png from Mr-McMahon-reaction, renamed to Mr-McMahon-reaction.png
+2025-04-08 11:58:31,563 - INFO - Selected Nuclear-Explosion_21.png from Nuclear-Explosion, renamed to Nuclear-Explosion.png
+2025-04-08 11:58:31,575 - INFO - Selected Obi-Wan-Kenobi_25.png from Obi-Wan-Kenobi, renamed to Obi-Wan-Kenobi.png
+2025-04-08 11:58:31,586 - INFO - Selected Persian-Cat-Room-Guardian_3.png from Persian-Cat-Room-Guardian, renamed to Persian-Cat-Room-Guardian.png
+2025-04-08 11:58:31,596 - INFO - Selected Picard-Wtf_76.png from Picard-Wtf, renamed to Picard-Wtf.png
+2025-04-08 11:58:31,606 - INFO - Selected Put-It-Somewhere-Else-Patrick_26.png from Put-It-Somewhere-Else-Patrick, renamed to Put-It-Somewhere-Else-Patrick.png
+2025-04-08 11:58:31,616 - INFO - Selected Scooby-doo-mask-reveal_33.png from Scooby-doo-mask-reveal, renamed to Scooby-doo-mask-reveal.png
+2025-04-08 11:58:31,626 - INFO - Selected Smudge-the-cat_5.png from Smudge-the-cat, renamed to Smudge-the-cat.png
+2025-04-08 11:58:31,636 - INFO - Selected Spiderman-Hospital_70.png from Spiderman-Hospital, renamed to Spiderman-Hospital.png
+2025-04-08 11:58:31,639 - INFO - Selected Spongebob-Yelling_29.png from Spongebob-Yelling, renamed to Spongebob-Yelling.png
+2025-04-08 11:58:31,650 - INFO - Selected Surprised-Pikachu_93.png from Surprised-Pikachu, renamed to Surprised-Pikachu.png
+2025-04-08 11:58:31,654 - INFO - Selected Table-Flip-Guy_49.png from Table-Flip-Guy, renamed to Table-Flip-Guy.png
+2025-04-08 11:58:31,666 - INFO - Selected Thats-a-paddlin_59.png from Thats-a-paddlin, renamed to Thats-a-paddlin.png
+2025-04-08 11:58:31,677 - INFO - Selected Well-Yes-But-Actually-No_10.png from Well-Yes-But-Actually-No, renamed to Well-Yes-But-Actually-No.png
+2025-04-08 11:58:31,687 - INFO - Selected You-The-Real-MVP_78.png from You-The-Real-MVP, renamed to You-The-Real-MVP.png
+2025-04-08 11:58:31,688 - INFO - Found 4 attention check images
+2025-04-08 11:58:31,688 - INFO - Will insert 2 attention check images, interval about 20 images
+2025-04-08 11:58:31,688 - INFO - Attention check images will be inserted at positions: [22, 44]
+2025-04-08 11:58:31,690 - INFO - Inserted attention check image at position 22: attention_check_Others.png
+2025-04-08 11:58:31,691 - INFO - Inserted attention check image at position 44: attention_check_Anger.png
+2025-04-08 11:58:31,691 - INFO - Final image list length: 52
+2025-04-08 11:58:31,878 - INFO - User info saved for user_20250408_115826_7506331313
+2025-04-08 11:58:31,879 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:31] "[32mPOST /instruction2 HTTP/1.1[0m" 302 -
+2025-04-08 11:58:32,085 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:32] "GET /practice HTTP/1.1" 200 -
+2025-04-08 11:58:32,130 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:32] "[36mGET /static/css/index.css HTTP/1.1[0m" 304 -
+2025-04-08 11:58:32,169 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:32] "GET /static/js/practice.js HTTP/1.1" 200 -
+2025-04-08 11:58:32,214 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:32] "[36mGET /static/socialmedia+meme_practice/1.png HTTP/1.1[0m" 304 -
+2025-04-08 11:58:34,421 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:34] "[36mGET /static/socialmedia+meme_practice/2.png HTTP/1.1[0m" 304 -
+2025-04-08 11:58:35,056 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:35] "[36mGET /static/socialmedia+meme_practice/3.png HTTP/1.1[0m" 304 -
+2025-04-08 11:58:35,538 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:35] "[36mGET /static/socialmedia+meme_practice/4.png HTTP/1.1[0m" 304 -
+2025-04-08 11:58:35,961 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:35] "[36mGET /static/socialmedia+meme_practice/5.png HTTP/1.1[0m" 304 -
+2025-04-08 11:58:37,092 - WARNING - 404 error: http://140.113.214.158:5000/clear_session_and_redirect
+2025-04-08 11:58:37,094 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:37] "[32mPOST /clear_session_and_redirect HTTP/1.1[0m" 302 -
+2025-04-08 11:58:37,122 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:37] "GET / HTTP/1.1" 200 -
+2025-04-08 11:58:37,154 - WARNING - Unauthorized access attempt: No session
+2025-04-08 11:58:37,155 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:37] "[32mGET /game/user_20250408_115826_7506331313 HTTP/1.1[0m" 302 -
+2025-04-08 11:58:37,171 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:37] "GET / HTTP/1.1" 200 -
+2025-04-08 11:58:37,218 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:37] "[36mGET /static/css/introduction.css HTTP/1.1[0m" 304 -
+2025-04-08 11:58:40,322 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:40] "GET /terms HTTP/1.1" 200 -
+2025-04-08 11:58:40,359 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:40] "[36mGET /static/css/terms.css HTTP/1.1[0m" 304 -
+2025-04-08 11:58:41,724 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:41] "POST /instruction1 HTTP/1.1" 200 -
+2025-04-08 11:58:41,763 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:41] "[36mGET /static/css/instruction_1.css HTTP/1.1[0m" 304 -
+2025-04-08 11:58:41,777 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:41] "[36mGET /static/example.png HTTP/1.1[0m" 304 -
+2025-04-08 11:58:41,779 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:41] "[36mGET /static/js/instruction.js HTTP/1.1[0m" 304 -
+2025-04-08 11:58:43,591 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:43] "GET /instruction2 HTTP/1.1" 200 -
+2025-04-08 11:58:43,624 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:43] "[36mGET /static/css/instruction_2.css HTTP/1.1[0m" 304 -
+2025-04-08 11:58:43,636 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:43] "[36mGET /static/js/instruction.js HTTP/1.1[0m" 304 -
+2025-04-08 11:58:46,946 - INFO - Secure session created for user_20250408_115843_4462807872
+2025-04-08 11:58:46,962 - INFO - Selected Afraid-To-Ask-Andy_52.png from Afraid-To-Ask-Andy, renamed to Afraid-To-Ask-Andy.png
+2025-04-08 11:58:46,974 - INFO - Selected Always-Has-Been_65.png from Always-Has-Been, renamed to Always-Has-Been.png
+2025-04-08 11:58:46,987 - INFO - Selected Always-you-three_91.png from Always-you-three, renamed to Always-you-three.png
+2025-04-08 11:58:46,999 - INFO - Selected Angry-Baby_39.png from Angry-Baby, renamed to Angry-Baby.png
+2025-04-08 11:58:47,010 - INFO - Selected Archer_54.png from Archer, renamed to Archer.png
+2025-04-08 11:58:47,022 - INFO - Selected Arthur-Fist_76.png from Arthur-Fist, renamed to Arthur-Fist.png
+2025-04-08 11:58:47,034 - INFO - Selected Batman-Slapping-Robin_4.png from Batman-Slapping-Robin, renamed to Batman-Slapping-Robin.png
+2025-04-08 11:58:47,047 - INFO - Selected Black-guy-hiding-behind-tree_88.png from Black-guy-hiding-behind-tree, renamed to Black-guy-hiding-behind-tree.png
+2025-04-08 11:58:47,058 - INFO - Selected Charlie-Day_59.png from Charlie-Day, renamed to Charlie-Day.png
+2025-04-08 11:58:47,068 - INFO - Selected Chill-guy_32.png from Chill-guy, renamed to Chill-guy.png
+2025-04-08 11:58:47,081 - INFO - Selected Confused-Gandalf_21.png from Confused-Gandalf, renamed to Confused-Gandalf.png
+2025-04-08 11:58:47,093 - INFO - Selected Dave-chappelle_53.png from Dave-chappelle, renamed to Dave-chappelle.png
+2025-04-08 11:58:47,105 - INFO - Selected Dinkleberg_73.png from Dinkleberg, renamed to Dinkleberg.png
+2025-04-08 11:58:47,118 - INFO - Selected Disappointed-Man_93.png from Disappointed-Man, renamed to Disappointed-Man.png
+2025-04-08 11:58:47,129 - INFO - Selected Disaster-Girl_77.png from Disaster-Girl, renamed to Disaster-Girl.png
+2025-04-08 11:58:47,142 - INFO - Selected DJ-Pauly-D_83.png from DJ-Pauly-D, renamed to DJ-Pauly-D.png
+2025-04-08 11:58:47,153 - INFO - Selected Drake-NoYes_26.png from Drake-NoYes, renamed to Drake-NoYes.png
+2025-04-08 11:58:47,163 - INFO - Selected For-the-better-right-blank_42.png from For-the-better-right-blank, renamed to For-the-better-right-blank.png
+2025-04-08 11:58:47,174 - INFO - Selected Futurama-Fry_43.png from Futurama-Fry, renamed to Futurama-Fry.png
+2025-04-08 11:58:47,177 - INFO - Selected Gru-Gun_89.png from Gru-Gun, renamed to Gru-Gun.png
+2025-04-08 11:58:47,189 - INFO - Selected Happy--Shock_38.png from Happy--Shock, renamed to Happy--Shock.png
+2025-04-08 11:58:47,200 - INFO - Selected Hide-the-Pain-Harold_23.png from Hide-the-Pain-Harold, renamed to Hide-the-Pain-Harold.png
+2025-04-08 11:58:47,212 - INFO - Selected Hold-fart_95.png from Hold-fart, renamed to Hold-fart.png
+2025-04-08 11:58:47,225 - INFO - Selected I-am-once-again-asking_8.png from I-am-once-again-asking, renamed to I-am-once-again-asking.png
+2025-04-08 11:58:47,236 - INFO - Selected Ill-Have-You-Know-Spongebob_94.png from Ill-Have-You-Know-Spongebob, renamed to Ill-Have-You-Know-Spongebob.png
+2025-04-08 11:58:47,251 - INFO - Selected Im-The-Captain-Now_16.png from Im-The-Captain-Now, renamed to Im-The-Captain-Now.png
+2025-04-08 11:58:47,262 - INFO - Selected Kevin-Hart_9.png from Kevin-Hart, renamed to Kevin-Hart.png
+2025-04-08 11:58:47,273 - INFO - Selected Khan_34.png from Khan, renamed to Khan.png
+2025-04-08 11:58:47,285 - INFO - Selected Laughing-wolf_74.png from Laughing-wolf, renamed to Laughing-wolf.png
+2025-04-08 11:58:47,298 - INFO - Selected Leonardo-Dicaprio-Wolf-Of-Wall-Street_46.png from Leonardo-Dicaprio-Wolf-Of-Wall-Street, renamed to Leonardo-Dicaprio-Wolf-Of-Wall-Street.png
+2025-04-08 11:58:47,301 - INFO - Selected Math-ladyConfused-lady_75.png from Math-ladyConfused-lady, renamed to Math-ladyConfused-lady.png
+2025-04-08 11:58:47,314 - INFO - Selected Mocking-Spongebob_92.png from Mocking-Spongebob, renamed to Mocking-Spongebob.png
+2025-04-08 11:58:47,326 - INFO - Selected Moe-throws-Barney_96.png from Moe-throws-Barney, renamed to Moe-throws-Barney.png
+2025-04-08 11:58:47,330 - INFO - Selected Monkey-Puppet_66.png from Monkey-Puppet, renamed to Monkey-Puppet.png
+2025-04-08 11:58:47,346 - INFO - Selected Mr-incredible-mad_100.png from Mr-incredible-mad, renamed to Mr-incredible-mad.png
+2025-04-08 11:58:47,359 - INFO - Selected Mr-McMahon-reaction_51.png from Mr-McMahon-reaction, renamed to Mr-McMahon-reaction.png
+2025-04-08 11:58:47,371 - INFO - Selected Nuclear-Explosion_58.png from Nuclear-Explosion, renamed to Nuclear-Explosion.png
+2025-04-08 11:58:47,375 - INFO - Selected Obi-Wan-Kenobi_56.png from Obi-Wan-Kenobi, renamed to Obi-Wan-Kenobi.png
+2025-04-08 11:58:47,378 - INFO - Selected Persian-Cat-Room-Guardian_35.png from Persian-Cat-Room-Guardian, renamed to Persian-Cat-Room-Guardian.png
+2025-04-08 11:58:47,381 - INFO - Selected Picard-Wtf_60.png from Picard-Wtf, renamed to Picard-Wtf.png
+2025-04-08 11:58:47,392 - INFO - Selected Put-It-Somewhere-Else-Patrick_69.png from Put-It-Somewhere-Else-Patrick, renamed to Put-It-Somewhere-Else-Patrick.png
+2025-04-08 11:58:47,402 - INFO - Selected Scooby-doo-mask-reveal_64.png from Scooby-doo-mask-reveal, renamed to Scooby-doo-mask-reveal.png
+2025-04-08 11:58:47,412 - INFO - Selected Smudge-the-cat_97.png from Smudge-the-cat, renamed to Smudge-the-cat.png
+2025-04-08 11:58:47,422 - INFO - Selected Spiderman-Hospital_10.png from Spiderman-Hospital, renamed to Spiderman-Hospital.png
+2025-04-08 11:58:47,433 - INFO - Selected Spongebob-Yelling_37.png from Spongebob-Yelling, renamed to Spongebob-Yelling.png
+2025-04-08 11:58:47,442 - INFO - Selected Surprised-Pikachu_3.png from Surprised-Pikachu, renamed to Surprised-Pikachu.png
+2025-04-08 11:58:47,453 - INFO - Selected Table-Flip-Guy_41.png from Table-Flip-Guy, renamed to Table-Flip-Guy.png
+2025-04-08 11:58:47,464 - INFO - Selected Thats-a-paddlin_87.png from Thats-a-paddlin, renamed to Thats-a-paddlin.png
+2025-04-08 11:58:47,474 - INFO - Selected Well-Yes-But-Actually-No_63.png from Well-Yes-But-Actually-No, renamed to Well-Yes-But-Actually-No.png
+2025-04-08 11:58:47,477 - INFO - Selected You-The-Real-MVP_98.png from You-The-Real-MVP, renamed to You-The-Real-MVP.png
+2025-04-08 11:58:47,477 - INFO - Found 4 attention check images
+2025-04-08 11:58:47,478 - INFO - Will insert 2 attention check images, interval about 20 images
+2025-04-08 11:58:47,478 - INFO - Attention check images will be inserted at positions: [20, 41]
+2025-04-08 11:58:47,479 - INFO - Inserted attention check image at position 20: attention_check_Others.png
+2025-04-08 11:58:47,481 - INFO - Inserted attention check image at position 41: attention_check_Contempt.png
+2025-04-08 11:58:47,481 - INFO - Final image list length: 52
+2025-04-08 11:58:47,670 - INFO - User info saved for user_20250408_115843_4462807872
+2025-04-08 11:58:47,671 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:47] "[32mPOST /instruction2 HTTP/1.1[0m" 302 -
+2025-04-08 11:58:47,875 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:47] "GET /practice HTTP/1.1" 200 -
+2025-04-08 11:58:47,926 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:47] "[36mGET /static/css/index.css HTTP/1.1[0m" 304 -
+2025-04-08 11:58:47,927 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:47] "[36mGET /static/js/practice.js HTTP/1.1[0m" 304 -
+2025-04-08 11:58:47,965 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:47] "[36mGET /static/socialmedia+meme_practice/1.png HTTP/1.1[0m" 304 -
+2025-04-08 11:58:50,418 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:50] "[36mGET /static/socialmedia+meme_practice/2.png HTTP/1.1[0m" 304 -
+2025-04-08 11:58:50,835 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:50] "[36mGET /static/socialmedia+meme_practice/3.png HTTP/1.1[0m" 304 -
+2025-04-08 11:58:51,202 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:51] "[36mGET /static/socialmedia+meme_practice/4.png HTTP/1.1[0m" 304 -
+2025-04-08 11:58:51,546 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:51] "[36mGET /static/socialmedia+meme_practice/5.png HTTP/1.1[0m" 304 -
+2025-04-08 11:58:53,545 - WARNING - 404 error: http://140.113.214.158:5000/clear_session_and_redirect
+2025-04-08 11:58:53,546 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:53] "[32mPOST /clear_session_and_redirect HTTP/1.1[0m" 302 -
+2025-04-08 11:58:53,575 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:53] "GET / HTTP/1.1" 200 -
+2025-04-08 11:58:53,608 - WARNING - Unauthorized access attempt: No session
+2025-04-08 11:58:53,609 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:53] "[32mGET /game/user_20250408_115843_4462807872 HTTP/1.1[0m" 302 -
+2025-04-08 11:58:53,625 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:53] "GET / HTTP/1.1" 200 -
+2025-04-08 11:58:53,671 - INFO - 118.166.77.13 - - [08/Apr/2025 11:58:53] "[36mGET /static/css/introduction.css HTTP/1.1[0m" 304 -
+2025-04-08 12:03:26,812 - INFO - 118.166.77.13 - - [08/Apr/2025 12:03:26] "GET /terms HTTP/1.1" 200 -
+2025-04-08 12:03:26,863 - INFO - 118.166.77.13 - - [08/Apr/2025 12:03:26] "[36mGET /static/css/terms.css HTTP/1.1[0m" 304 -
+2025-04-08 12:03:45,368 - INFO - 118.166.77.13 - - [08/Apr/2025 12:03:45] "GET /terms HTTP/1.1" 200 -
+2025-04-08 12:03:45,397 - INFO - 118.166.77.13 - - [08/Apr/2025 12:03:45] "[36mGET /static/css/terms.css HTTP/1.1[0m" 304 -
+2025-04-08 12:03:45,430 - INFO - 118.166.77.13 - - [08/Apr/2025 12:03:45] "[36mGET /static/favicon.png HTTP/1.1[0m" 304 -
+2025-04-08 12:03:47,059 - INFO - 118.166.77.13 - - [08/Apr/2025 12:03:47] "POST /instruction1 HTTP/1.1" 200 -
+2025-04-08 12:03:47,091 - INFO - 118.166.77.13 - - [08/Apr/2025 12:03:47] "[36mGET /static/css/instruction_1.css HTTP/1.1[0m" 304 -
+2025-04-08 12:03:47,109 - INFO - 118.166.77.13 - - [08/Apr/2025 12:03:47] "[36mGET /static/js/instruction.js HTTP/1.1[0m" 304 -
+2025-04-08 12:03:47,110 - INFO - 118.166.77.13 - - [08/Apr/2025 12:03:47] "[36mGET /static/example.png HTTP/1.1[0m" 304 -
+2025-04-08 12:03:49,328 - INFO - 118.166.77.13 - - [08/Apr/2025 12:03:49] "GET /instruction2 HTTP/1.1" 200 -
+2025-04-08 12:03:49,358 - INFO - 118.166.77.13 - - [08/Apr/2025 12:03:49] "[36mGET /static/css/instruction_2.css HTTP/1.1[0m" 304 -
+2025-04-08 12:03:49,370 - INFO - 118.166.77.13 - - [08/Apr/2025 12:03:49] "[36mGET /static/js/instruction.js HTTP/1.1[0m" 304 -
+2025-04-08 12:03:52,759 - INFO - Secure session created for user_20250408_120348_3751258977
+2025-04-08 12:03:52,775 - INFO - Selected Afraid-To-Ask-Andy_34.png from Afraid-To-Ask-Andy, renamed to Afraid-To-Ask-Andy.png
+2025-04-08 12:03:52,788 - INFO - Selected Always-Has-Been_15.png from Always-Has-Been, renamed to Always-Has-Been.png
+2025-04-08 12:03:52,800 - INFO - Selected Always-you-three_19.png from Always-you-three, renamed to Always-you-three.png
+2025-04-08 12:03:52,811 - INFO - Selected Angry-Baby_56.png from Angry-Baby, renamed to Angry-Baby.png
+2025-04-08 12:03:52,822 - INFO - Selected Archer_42.png from Archer, renamed to Archer.png
+2025-04-08 12:03:52,832 - INFO - Selected Arthur-Fist_88.png from Arthur-Fist, renamed to Arthur-Fist.png
+2025-04-08 12:03:52,835 - INFO - Selected Batman-Slapping-Robin_73.png from Batman-Slapping-Robin, renamed to Batman-Slapping-Robin.png
+2025-04-08 12:03:52,847 - INFO - Selected Black-guy-hiding-behind-tree_81.png from Black-guy-hiding-behind-tree, renamed to Black-guy-hiding-behind-tree.png
+2025-04-08 12:03:52,859 - INFO - Selected Charlie-Day_25.png from Charlie-Day, renamed to Charlie-Day.png
+2025-04-08 12:03:52,871 - INFO - Selected Chill-guy_91.png from Chill-guy, renamed to Chill-guy.png
+2025-04-08 12:03:52,883 - INFO - Selected Confused-Gandalf_62.png from Confused-Gandalf, renamed to Confused-Gandalf.png
+2025-04-08 12:03:52,896 - INFO - Selected Dave-chappelle_67.png from Dave-chappelle, renamed to Dave-chappelle.png
+2025-04-08 12:03:52,909 - INFO - Selected Dinkleberg_16.png from Dinkleberg, renamed to Dinkleberg.png
+2025-04-08 12:03:52,921 - INFO - Selected Disappointed-Man_46.png from Disappointed-Man, renamed to Disappointed-Man.png
+2025-04-08 12:03:52,932 - INFO - Selected Disaster-Girl_36.png from Disaster-Girl, renamed to Disaster-Girl.png
+2025-04-08 12:03:52,947 - INFO - Selected DJ-Pauly-D_80.png from DJ-Pauly-D, renamed to DJ-Pauly-D.png
+2025-04-08 12:03:52,960 - INFO - Selected Drake-NoYes_79.png from Drake-NoYes, renamed to Drake-NoYes.png
+2025-04-08 12:03:52,973 - INFO - Selected For-the-better-right-blank_22.png from For-the-better-right-blank, renamed to For-the-better-right-blank.png
+2025-04-08 12:03:52,986 - INFO - Selected Futurama-Fry_86.png from Futurama-Fry, renamed to Futurama-Fry.png
+2025-04-08 12:03:52,998 - INFO - Selected Gru-Gun_14.png from Gru-Gun, renamed to Gru-Gun.png
+2025-04-08 12:03:53,010 - INFO - Selected Happy--Shock_41.png from Happy--Shock, renamed to Happy--Shock.png
+2025-04-08 12:03:53,024 - INFO - Selected Hide-the-Pain-Harold_57.png from Hide-the-Pain-Harold, renamed to Hide-the-Pain-Harold.png
+2025-04-08 12:03:53,027 - INFO - Selected Hold-fart_76.png from Hold-fart, renamed to Hold-fart.png
+2025-04-08 12:03:53,040 - INFO - Selected I-am-once-again-asking_4.png from I-am-once-again-asking, renamed to I-am-once-again-asking.png
+2025-04-08 12:03:53,053 - INFO - Selected Ill-Have-You-Know-Spongebob_98.png from Ill-Have-You-Know-Spongebob, renamed to Ill-Have-You-Know-Spongebob.png
+2025-04-08 12:03:53,068 - INFO - Selected Im-The-Captain-Now_65.png from Im-The-Captain-Now, renamed to Im-The-Captain-Now.png
+2025-04-08 12:03:53,071 - INFO - Selected Kevin-Hart_75.png from Kevin-Hart, renamed to Kevin-Hart.png
+2025-04-08 12:03:53,073 - INFO - Selected Khan_33.png from Khan, renamed to Khan.png
+2025-04-08 12:03:53,086 - INFO - Selected Laughing-wolf_37.png from Laughing-wolf, renamed to Laughing-wolf.png
+2025-04-08 12:03:53,090 - INFO - Selected Leonardo-Dicaprio-Wolf-Of-Wall-Street_24.png from Leonardo-Dicaprio-Wolf-Of-Wall-Street, renamed to Leonardo-Dicaprio-Wolf-Of-Wall-Street.png
+2025-04-08 12:03:53,102 - INFO - Selected Math-ladyConfused-lady_38.png from Math-ladyConfused-lady, renamed to Math-ladyConfused-lady.png
+2025-04-08 12:03:53,116 - INFO - Selected Mocking-Spongebob_11.png from Mocking-Spongebob, renamed to Mocking-Spongebob.png
+2025-04-08 12:03:53,128 - INFO - Selected Moe-throws-Barney_12.png from Moe-throws-Barney, renamed to Moe-throws-Barney.png
+2025-04-08 12:03:53,132 - INFO - Selected Monkey-Puppet_40.png from Monkey-Puppet, renamed to Monkey-Puppet.png
+2025-04-08 12:03:53,147 - INFO - Selected Mr-incredible-mad_50.png from Mr-incredible-mad, renamed to Mr-incredible-mad.png
+2025-04-08 12:03:53,163 - INFO - Selected Mr-McMahon-reaction_89.png from Mr-McMahon-reaction, renamed to Mr-McMahon-reaction.png
+2025-04-08 12:03:53,175 - INFO - Selected Nuclear-Explosion_10.png from Nuclear-Explosion, renamed to Nuclear-Explosion.png
+2025-04-08 12:03:53,187 - INFO - Selected Obi-Wan-Kenobi_49.png from Obi-Wan-Kenobi, renamed to Obi-Wan-Kenobi.png
+2025-04-08 12:03:53,199 - INFO - Selected Persian-Cat-Room-Guardian_17.png from Persian-Cat-Room-Guardian, renamed to Persian-Cat-Room-Guardian.png
+2025-04-08 12:03:53,211 - INFO - Selected Picard-Wtf_1.png from Picard-Wtf, renamed to Picard-Wtf.png
+2025-04-08 12:03:53,222 - INFO - Selected Put-It-Somewhere-Else-Patrick_71.png from Put-It-Somewhere-Else-Patrick, renamed to Put-It-Somewhere-Else-Patrick.png
+2025-04-08 12:03:53,234 - INFO - Selected Scooby-doo-mask-reveal_99.png from Scooby-doo-mask-reveal, renamed to Scooby-doo-mask-reveal.png
+2025-04-08 12:03:53,244 - INFO - Selected Smudge-the-cat_2.png from Smudge-the-cat, renamed to Smudge-the-cat.png
+2025-04-08 12:03:53,255 - INFO - Selected Spiderman-Hospital_9.png from Spiderman-Hospital, renamed to Spiderman-Hospital.png
+2025-04-08 12:03:53,259 - INFO - Selected Spongebob-Yelling_48.png from Spongebob-Yelling, renamed to Spongebob-Yelling.png
+2025-04-08 12:03:53,262 - INFO - Selected Surprised-Pikachu_45.png from Surprised-Pikachu, renamed to Surprised-Pikachu.png
+2025-04-08 12:03:53,274 - INFO - Selected Table-Flip-Guy_27.png from Table-Flip-Guy, renamed to Table-Flip-Guy.png
+2025-04-08 12:03:53,286 - INFO - Selected Thats-a-paddlin_60.png from Thats-a-paddlin, renamed to Thats-a-paddlin.png
+2025-04-08 12:03:53,290 - INFO - Selected Well-Yes-But-Actually-No_20.png from Well-Yes-But-Actually-No, renamed to Well-Yes-But-Actually-No.png
+2025-04-08 12:03:53,300 - INFO - Selected You-The-Real-MVP_68.png from You-The-Real-MVP, renamed to You-The-Real-MVP.png
+2025-04-08 12:03:53,301 - INFO - Found 4 attention check images
+2025-04-08 12:03:53,301 - INFO - Will insert 2 attention check images, interval about 20 images
+2025-04-08 12:03:53,301 - INFO - Attention check images will be inserted at positions: [19, 43]
+2025-04-08 12:03:53,302 - INFO - Inserted attention check image at position 19: attention_check_Disgust.png
+2025-04-08 12:03:53,305 - INFO - Inserted attention check image at position 43: attention_check_Others.png
+2025-04-08 12:03:53,305 - INFO - Final image list length: 52
+2025-04-08 12:03:53,512 - INFO - User info saved for user_20250408_120348_3751258977
+2025-04-08 12:03:53,514 - INFO - 118.166.77.13 - - [08/Apr/2025 12:03:53] "[32mPOST /instruction2 HTTP/1.1[0m" 302 -
+2025-04-08 12:03:53,726 - INFO - 118.166.77.13 - - [08/Apr/2025 12:03:53] "GET /practice HTTP/1.1" 200 -
+2025-04-08 12:03:53,773 - INFO - 118.166.77.13 - - [08/Apr/2025 12:03:53] "[36mGET /static/css/index.css HTTP/1.1[0m" 304 -
+2025-04-08 12:03:53,774 - INFO - 118.166.77.13 - - [08/Apr/2025 12:03:53] "[36mGET /static/js/practice.js HTTP/1.1[0m" 304 -
+2025-04-08 12:03:53,809 - INFO - 118.166.77.13 - - [08/Apr/2025 12:03:53] "[36mGET /static/socialmedia+meme_practice/1.png HTTP/1.1[0m" 304 -
+2025-04-08 12:03:54,430 - INFO - 118.166.77.13 - - [08/Apr/2025 12:03:54] "[36mGET /static/socialmedia+meme_practice/2.png HTTP/1.1[0m" 304 -
+2025-04-08 12:03:54,890 - INFO - 118.166.77.13 - - [08/Apr/2025 12:03:54] "[36mGET /static/socialmedia+meme_practice/3.png HTTP/1.1[0m" 304 -
+2025-04-08 12:03:55,283 - INFO - 118.166.77.13 - - [08/Apr/2025 12:03:55] "[36mGET /static/socialmedia+meme_practice/4.png HTTP/1.1[0m" 304 -
+2025-04-08 12:03:55,680 - INFO - 118.166.77.13 - - [08/Apr/2025 12:03:55] "[36mGET /static/socialmedia+meme_practice/5.png HTTP/1.1[0m" 304 -
+2025-04-08 12:03:56,909 - WARNING - 404 error: http://140.113.214.158:5000/clear_session_and_redirect
+2025-04-08 12:03:56,910 - INFO - 118.166.77.13 - - [08/Apr/2025 12:03:56] "[32mPOST /clear_session_and_redirect HTTP/1.1[0m" 302 -
+2025-04-08 12:03:56,937 - INFO - 118.166.77.13 - - [08/Apr/2025 12:03:56] "GET / HTTP/1.1" 200 -
+2025-04-08 12:03:56,969 - WARNING - Unauthorized access attempt: No session
+2025-04-08 12:03:56,970 - INFO - 118.166.77.13 - - [08/Apr/2025 12:03:56] "[32mGET /game/user_20250408_120348_3751258977 HTTP/1.1[0m" 302 -
+2025-04-08 12:03:56,986 - INFO - 118.166.77.13 - - [08/Apr/2025 12:03:56] "GET / HTTP/1.1" 200 -
+2025-04-08 12:03:57,031 - INFO - 118.166.77.13 - - [08/Apr/2025 12:03:57] "[36mGET /static/css/introduction.css HTTP/1.1[0m" 304 -
+2025-04-08 12:16:20,812 - INFO - 118.166.77.13 - - [08/Apr/2025 12:16:20] "GET / HTTP/1.1" 200 -
+2025-04-08 12:16:20,843 - INFO - 118.166.77.13 - - [08/Apr/2025 12:16:20] "[36mGET /static/css/introduction.css HTTP/1.1[0m" 304 -
+2025-04-08 12:16:20,886 - INFO - 118.166.77.13 - - [08/Apr/2025 12:16:20] "[36mGET /static/favicon.png HTTP/1.1[0m" 304 -
+2025-04-08 12:16:26,203 - INFO - 118.166.77.13 - - [08/Apr/2025 12:16:26] "GET /terms HTTP/1.1" 200 -
+2025-04-08 12:16:26,245 - INFO - 118.166.77.13 - - [08/Apr/2025 12:16:26] "[36mGET /static/css/terms.css HTTP/1.1[0m" 304 -
+2025-04-08 12:16:27,460 - INFO - 118.166.77.13 - - [08/Apr/2025 12:16:27] "POST /instruction1 HTTP/1.1" 200 -
+2025-04-08 12:16:27,504 - INFO - 118.166.77.13 - - [08/Apr/2025 12:16:27] "[36mGET /static/css/instruction_1.css HTTP/1.1[0m" 304 -
+2025-04-08 12:16:27,518 - INFO - 118.166.77.13 - - [08/Apr/2025 12:16:27] "[36mGET /static/example.png HTTP/1.1[0m" 304 -
+2025-04-08 12:16:27,518 - INFO - 118.166.77.13 - - [08/Apr/2025 12:16:27] "[36mGET /static/js/instruction.js HTTP/1.1[0m" 304 -
+2025-04-08 12:16:30,045 - INFO - 118.166.77.13 - - [08/Apr/2025 12:16:30] "GET /instruction2 HTTP/1.1" 200 -
+2025-04-08 12:16:30,085 - INFO - 118.166.77.13 - - [08/Apr/2025 12:16:30] "[36mGET /static/css/instruction_2.css HTTP/1.1[0m" 304 -
+2025-04-08 12:16:30,098 - INFO - 118.166.77.13 - - [08/Apr/2025 12:16:30] "[36mGET /static/js/instruction.js HTTP/1.1[0m" 304 -
+2025-04-08 12:16:34,023 - INFO - Secure session created for user_20250408_121629_6080766354
+2025-04-08 12:16:34,030 - INFO - Selected Afraid-To-Ask-Andy_84.png from Afraid-To-Ask-Andy, renamed to Afraid-To-Ask-Andy.png
+2025-04-08 12:16:34,043 - INFO - Selected Always-Has-Been_60.png from Always-Has-Been, renamed to Always-Has-Been.png
+2025-04-08 12:16:34,056 - INFO - Selected Always-you-three_97.png from Always-you-three, renamed to Always-you-three.png
+2025-04-08 12:16:34,066 - INFO - Selected Angry-Baby_4.png from Angry-Baby, renamed to Angry-Baby.png
+2025-04-08 12:16:34,078 - INFO - Selected Archer_67.png from Archer, renamed to Archer.png
+2025-04-08 12:16:34,090 - INFO - Selected Arthur-Fist_1.png from Arthur-Fist, renamed to Arthur-Fist.png
+2025-04-08 12:16:34,101 - INFO - Selected Batman-Slapping-Robin_40.png from Batman-Slapping-Robin, renamed to Batman-Slapping-Robin.png
+2025-04-08 12:16:34,113 - INFO - Selected Black-guy-hiding-behind-tree_19.png from Black-guy-hiding-behind-tree, renamed to Black-guy-hiding-behind-tree.png
+2025-04-08 12:16:34,117 - INFO - Selected Charlie-Day_88.png from Charlie-Day, renamed to Charlie-Day.png
+2025-04-08 12:16:34,128 - INFO - Selected Chill-guy_27.png from Chill-guy, renamed to Chill-guy.png
+2025-04-08 12:16:34,139 - INFO - Selected Confused-Gandalf_59.png from Confused-Gandalf, renamed to Confused-Gandalf.png
+2025-04-08 12:16:34,150 - INFO - Selected Dave-chappelle_86.png from Dave-chappelle, renamed to Dave-chappelle.png
+2025-04-08 12:16:34,161 - INFO - Selected Dinkleberg_44.png from Dinkleberg, renamed to Dinkleberg.png
+2025-04-08 12:16:34,164 - INFO - Selected Disappointed-Man_100.png from Disappointed-Man, renamed to Disappointed-Man.png
+2025-04-08 12:16:34,167 - INFO - Selected Disaster-Girl_99.png from Disaster-Girl, renamed to Disaster-Girl.png
+2025-04-08 12:16:34,182 - INFO - Selected DJ-Pauly-D_8.png from DJ-Pauly-D, renamed to DJ-Pauly-D.png
+2025-04-08 12:16:34,193 - INFO - Selected Drake-NoYes_70.png from Drake-NoYes, renamed to Drake-NoYes.png
+2025-04-08 12:16:34,204 - INFO - Selected For-the-better-right-blank_38.png from For-the-better-right-blank, renamed to For-the-better-right-blank.png
+2025-04-08 12:16:34,215 - INFO - Selected Futurama-Fry_36.png from Futurama-Fry, renamed to Futurama-Fry.png
+2025-04-08 12:16:34,219 - INFO - Selected Gru-Gun_90.png from Gru-Gun, renamed to Gru-Gun.png
+2025-04-08 12:16:34,229 - INFO - Selected Happy--Shock_62.png from Happy--Shock, renamed to Happy--Shock.png
+2025-04-08 12:16:34,241 - INFO - Selected Hide-the-Pain-Harold_63.png from Hide-the-Pain-Harold, renamed to Hide-the-Pain-Harold.png
+2025-04-08 12:16:34,244 - INFO - Selected Hold-fart_9.png from Hold-fart, renamed to Hold-fart.png
+2025-04-08 12:16:34,256 - INFO - Selected I-am-once-again-asking_12.png from I-am-once-again-asking, renamed to I-am-once-again-asking.png
+2025-04-08 12:16:34,267 - INFO - Selected Ill-Have-You-Know-Spongebob_58.png from Ill-Have-You-Know-Spongebob, renamed to Ill-Have-You-Know-Spongebob.png
+2025-04-08 12:16:34,284 - INFO - Selected Im-The-Captain-Now_80.png from Im-The-Captain-Now, renamed to Im-The-Captain-Now.png
+2025-04-08 12:16:34,294 - INFO - Selected Kevin-Hart_45.png from Kevin-Hart, renamed to Kevin-Hart.png
+2025-04-08 12:16:34,303 - INFO - Selected Khan_26.png from Khan, renamed to Khan.png
+2025-04-08 12:16:34,314 - INFO - Selected Laughing-wolf_66.png from Laughing-wolf, renamed to Laughing-wolf.png
+2025-04-08 12:16:34,326 - INFO - Selected Leonardo-Dicaprio-Wolf-Of-Wall-Street_41.png from Leonardo-Dicaprio-Wolf-Of-Wall-Street, renamed to Leonardo-Dicaprio-Wolf-Of-Wall-Street.png
+2025-04-08 12:16:34,337 - INFO - Selected Math-ladyConfused-lady_22.png from Math-ladyConfused-lady, renamed to Math-ladyConfused-lady.png
+2025-04-08 12:16:34,349 - INFO - Selected Mocking-Spongebob_29.png from Mocking-Spongebob, renamed to Mocking-Spongebob.png
+2025-04-08 12:16:34,352 - INFO - Selected Moe-throws-Barney_74.png from Moe-throws-Barney, renamed to Moe-throws-Barney.png
+2025-04-08 12:16:34,364 - INFO - Selected Monkey-Puppet_39.png from Monkey-Puppet, renamed to Monkey-Puppet.png
+2025-04-08 12:16:34,370 - INFO - Selected Mr-incredible-mad_50.png from Mr-incredible-mad, renamed to Mr-incredible-mad.png
+2025-04-08 12:16:34,384 - INFO - Selected Mr-McMahon-reaction_76.png from Mr-McMahon-reaction, renamed to Mr-McMahon-reaction.png
+2025-04-08 12:16:34,388 - INFO - Selected Nuclear-Explosion_23.png from Nuclear-Explosion, renamed to Nuclear-Explosion.png
+2025-04-08 12:16:34,399 - INFO - Selected Obi-Wan-Kenobi_75.png from Obi-Wan-Kenobi, renamed to Obi-Wan-Kenobi.png
+2025-04-08 12:16:34,410 - INFO - Selected Persian-Cat-Room-Guardian_54.png from Persian-Cat-Room-Guardian, renamed to Persian-Cat-Room-Guardian.png
+2025-04-08 12:16:34,414 - INFO - Selected Picard-Wtf_14.png from Picard-Wtf, renamed to Picard-Wtf.png
+2025-04-08 12:16:34,425 - INFO - Selected Put-It-Somewhere-Else-Patrick_46.png from Put-It-Somewhere-Else-Patrick, renamed to Put-It-Somewhere-Else-Patrick.png
+2025-04-08 12:16:34,429 - INFO - Selected Scooby-doo-mask-reveal_77.png from Scooby-doo-mask-reveal, renamed to Scooby-doo-mask-reveal.png
+2025-04-08 12:16:34,440 - INFO - Selected Smudge-the-cat_82.png from Smudge-the-cat, renamed to Smudge-the-cat.png
+2025-04-08 12:16:34,450 - INFO - Selected Spiderman-Hospital_16.png from Spiderman-Hospital, renamed to Spiderman-Hospital.png
+2025-04-08 12:16:34,461 - INFO - Selected Spongebob-Yelling_21.png from Spongebob-Yelling, renamed to Spongebob-Yelling.png
+2025-04-08 12:16:34,472 - INFO - Selected Surprised-Pikachu_85.png from Surprised-Pikachu, renamed to Surprised-Pikachu.png
+2025-04-08 12:16:34,482 - INFO - Selected Table-Flip-Guy_96.png from Table-Flip-Guy, renamed to Table-Flip-Guy.png
+2025-04-08 12:16:34,494 - INFO - Selected Thats-a-paddlin_94.png from Thats-a-paddlin, renamed to Thats-a-paddlin.png
+2025-04-08 12:16:34,504 - INFO - Selected Well-Yes-But-Actually-No_33.png from Well-Yes-But-Actually-No, renamed to Well-Yes-But-Actually-No.png
+2025-04-08 12:16:34,513 - INFO - Selected You-The-Real-MVP_11.png from You-The-Real-MVP, renamed to You-The-Real-MVP.png
+2025-04-08 12:16:34,513 - INFO - Found 4 attention check images
+2025-04-08 12:16:34,513 - INFO - Will insert 2 attention check images, interval about 20 images
+2025-04-08 12:16:34,513 - INFO - Attention check images will be inserted at positions: [23, 41]
+2025-04-08 12:16:34,516 - INFO - Inserted attention check image at position 23: attention_check_Others.png
+2025-04-08 12:16:34,517 - INFO - Inserted attention check image at position 41: attention_check_Contempt.png
+2025-04-08 12:16:34,517 - INFO - Final image list length: 52
+2025-04-08 12:16:34,717 - INFO - User info saved for user_20250408_121629_6080766354
+2025-04-08 12:16:34,718 - INFO - 118.166.77.13 - - [08/Apr/2025 12:16:34] "[32mPOST /instruction2 HTTP/1.1[0m" 302 -
+2025-04-08 12:16:34,928 - INFO - 118.166.77.13 - - [08/Apr/2025 12:16:34] "GET /practice HTTP/1.1" 200 -
+2025-04-08 12:16:34,988 - INFO - 118.166.77.13 - - [08/Apr/2025 12:16:34] "[36mGET /static/css/index.css HTTP/1.1[0m" 304 -
+2025-04-08 12:16:34,989 - INFO - 118.166.77.13 - - [08/Apr/2025 12:16:34] "[36mGET /static/js/practice.js HTTP/1.1[0m" 304 -
+2025-04-08 12:16:35,034 - INFO - 118.166.77.13 - - [08/Apr/2025 12:16:35] "[36mGET /static/socialmedia+meme_practice/1.png HTTP/1.1[0m" 304 -
+2025-04-08 12:16:37,457 - INFO - 118.166.77.13 - - [08/Apr/2025 12:16:37] "[36mGET /static/socialmedia+meme_practice/2.png HTTP/1.1[0m" 304 -
+2025-04-08 12:16:37,982 - INFO - 118.166.77.13 - - [08/Apr/2025 12:16:37] "[36mGET /static/socialmedia+meme_practice/3.png HTTP/1.1[0m" 304 -
+2025-04-08 12:16:38,403 - INFO - 118.166.77.13 - - [08/Apr/2025 12:16:38] "[36mGET /static/socialmedia+meme_practice/4.png HTTP/1.1[0m" 304 -
+2025-04-08 12:16:38,847 - INFO - 118.166.77.13 - - [08/Apr/2025 12:16:38] "[36mGET /static/socialmedia+meme_practice/5.png HTTP/1.1[0m" 304 -
+2025-04-08 12:16:40,767 - WARNING - 404 error: http://140.113.214.158:5000/clear_session_and_redirect
+2025-04-08 12:16:40,768 - INFO - 118.166.77.13 - - [08/Apr/2025 12:16:40] "[32mPOST /clear_session_and_redirect HTTP/1.1[0m" 302 -
+2025-04-08 12:16:40,796 - INFO - 118.166.77.13 - - [08/Apr/2025 12:16:40] "GET / HTTP/1.1" 200 -
+2025-04-08 12:16:40,837 - WARNING - Unauthorized access attempt: No session
+2025-04-08 12:16:40,838 - INFO - 118.166.77.13 - - [08/Apr/2025 12:16:40] "[32mGET /game/user_20250408_121629_6080766354 HTTP/1.1[0m" 302 -
+2025-04-08 12:16:40,853 - INFO - 118.166.77.13 - - [08/Apr/2025 12:16:40] "GET / HTTP/1.1" 200 -
+2025-04-08 12:16:40,907 - INFO - 118.166.77.13 - - [08/Apr/2025 12:16:40] "[36mGET /static/css/introduction.css HTTP/1.1[0m" 304 -
+2025-04-08 12:17:21,003 - INFO - 118.166.77.13 - - [08/Apr/2025 12:17:21] "GET / HTTP/1.1" 200 -
+2025-04-08 12:17:21,037 - INFO - 118.166.77.13 - - [08/Apr/2025 12:17:21] "[36mGET /static/css/introduction.css HTTP/1.1[0m" 304 -
+2025-04-08 12:17:21,082 - INFO - 118.166.77.13 - - [08/Apr/2025 12:17:21] "[36mGET /static/favicon.png HTTP/1.1[0m" 304 -
+2025-04-08 12:17:23,043 - INFO - 118.166.77.13 - - [08/Apr/2025 12:17:23] "GET /terms HTTP/1.1" 200 -
+2025-04-08 12:17:23,084 - INFO - 118.166.77.13 - - [08/Apr/2025 12:17:23] "[36mGET /static/css/terms.css HTTP/1.1[0m" 304 -
+2025-04-08 12:17:24,391 - INFO - 118.166.77.13 - - [08/Apr/2025 12:17:24] "POST /instruction1 HTTP/1.1" 200 -
+2025-04-08 12:17:24,432 - INFO - 118.166.77.13 - - [08/Apr/2025 12:17:24] "[36mGET /static/css/instruction_1.css HTTP/1.1[0m" 304 -
+2025-04-08 12:17:24,446 - INFO - 118.166.77.13 - - [08/Apr/2025 12:17:24] "[36mGET /static/example.png HTTP/1.1[0m" 304 -
+2025-04-08 12:17:24,447 - INFO - 118.166.77.13 - - [08/Apr/2025 12:17:24] "[36mGET /static/js/instruction.js HTTP/1.1[0m" 304 -
+2025-04-08 12:17:26,387 - INFO - 118.166.77.13 - - [08/Apr/2025 12:17:26] "GET /instruction2 HTTP/1.1" 200 -
+2025-04-08 12:17:26,422 - INFO - 118.166.77.13 - - [08/Apr/2025 12:17:26] "[36mGET /static/css/instruction_2.css HTTP/1.1[0m" 304 -
+2025-04-08 12:17:26,434 - INFO - 118.166.77.13 - - [08/Apr/2025 12:17:26] "[36mGET /static/js/instruction.js HTTP/1.1[0m" 304 -
+2025-04-08 12:17:46,549 - INFO - Secure session created for user_20250408_121725_3565515443
+2025-04-08 12:17:46,567 - INFO - Selected Afraid-To-Ask-Andy_98.png from Afraid-To-Ask-Andy, renamed to Afraid-To-Ask-Andy.png
+2025-04-08 12:17:46,578 - INFO - Selected Always-Has-Been_55.png from Always-Has-Been, renamed to Always-Has-Been.png
+2025-04-08 12:17:46,590 - INFO - Selected Always-you-three_38.png from Always-you-three, renamed to Always-you-three.png
+2025-04-08 12:17:46,593 - INFO - Selected Angry-Baby_63.png from Angry-Baby, renamed to Angry-Baby.png
+2025-04-08 12:17:46,603 - INFO - Selected Archer_70.png from Archer, renamed to Archer.png
+2025-04-08 12:17:46,614 - INFO - Selected Arthur-Fist_62.png from Arthur-Fist, renamed to Arthur-Fist.png
+2025-04-08 12:17:46,624 - INFO - Selected Batman-Slapping-Robin_26.png from Batman-Slapping-Robin, renamed to Batman-Slapping-Robin.png
+2025-04-08 12:17:46,636 - INFO - Selected Black-guy-hiding-behind-tree_1.png from Black-guy-hiding-behind-tree, renamed to Black-guy-hiding-behind-tree.png
+2025-04-08 12:17:46,647 - INFO - Selected Charlie-Day_71.png from Charlie-Day, renamed to Charlie-Day.png
+2025-04-08 12:17:46,651 - INFO - Selected Chill-guy_66.png from Chill-guy, renamed to Chill-guy.png
+2025-04-08 12:17:46,662 - INFO - Selected Confused-Gandalf_99.png from Confused-Gandalf, renamed to Confused-Gandalf.png
+2025-04-08 12:17:46,672 - INFO - Selected Dave-chappelle_100.png from Dave-chappelle, renamed to Dave-chappelle.png
+2025-04-08 12:17:46,675 - INFO - Selected Dinkleberg_58.png from Dinkleberg, renamed to Dinkleberg.png
+2025-04-08 12:17:46,686 - INFO - Selected Disappointed-Man_74.png from Disappointed-Man, renamed to Disappointed-Man.png
+2025-04-08 12:17:46,689 - INFO - Selected Disaster-Girl_73.png from Disaster-Girl, renamed to Disaster-Girl.png
+2025-04-08 12:17:46,694 - INFO - Selected DJ-Pauly-D_80.png from DJ-Pauly-D, renamed to DJ-Pauly-D.png
+2025-04-08 12:17:46,705 - INFO - Selected Drake-NoYes_35.png from Drake-NoYes, renamed to Drake-NoYes.png
+2025-04-08 12:17:46,708 - INFO - Selected For-the-better-right-blank_43.png from For-the-better-right-blank, renamed to For-the-better-right-blank.png
+2025-04-08 12:17:46,719 - INFO - Selected Futurama-Fry_72.png from Futurama-Fry, renamed to Futurama-Fry.png
+2025-04-08 12:17:46,729 - INFO - Selected Gru-Gun_20.png from Gru-Gun, renamed to Gru-Gun.png
+2025-04-08 12:17:46,738 - INFO - Selected Happy--Shock_78.png from Happy--Shock, renamed to Happy--Shock.png
+2025-04-08 12:17:46,749 - INFO - Selected Hide-the-Pain-Harold_16.png from Hide-the-Pain-Harold, renamed to Hide-the-Pain-Harold.png
+2025-04-08 12:17:46,752 - INFO - Selected Hold-fart_95.png from Hold-fart, renamed to Hold-fart.png
+2025-04-08 12:17:46,763 - INFO - Selected I-am-once-again-asking_22.png from I-am-once-again-asking, renamed to I-am-once-again-asking.png
+2025-04-08 12:17:46,774 - INFO - Selected Ill-Have-You-Know-Spongebob_7.png from Ill-Have-You-Know-Spongebob, renamed to Ill-Have-You-Know-Spongebob.png
+2025-04-08 12:17:46,788 - INFO - Selected Im-The-Captain-Now_77.png from Im-The-Captain-Now, renamed to Im-The-Captain-Now.png
+2025-04-08 12:17:46,800 - INFO - Selected Kevin-Hart_31.png from Kevin-Hart, renamed to Kevin-Hart.png
+2025-04-08 12:17:46,810 - INFO - Selected Khan_40.png from Khan, renamed to Khan.png
+2025-04-08 12:17:46,821 - INFO - Selected Laughing-wolf_47.png from Laughing-wolf, renamed to Laughing-wolf.png
+2025-04-08 12:17:46,832 - INFO - Selected Leonardo-Dicaprio-Wolf-Of-Wall-Street_53.png from Leonardo-Dicaprio-Wolf-Of-Wall-Street, renamed to Leonardo-Dicaprio-Wolf-Of-Wall-Street.png
+2025-04-08 12:17:46,835 - INFO - Selected Math-ladyConfused-lady_69.png from Math-ladyConfused-lady, renamed to Math-ladyConfused-lady.png
+2025-04-08 12:17:46,847 - INFO - Selected Mocking-Spongebob_36.png from Mocking-Spongebob, renamed to Mocking-Spongebob.png
+2025-04-08 12:17:46,857 - INFO - Selected Moe-throws-Barney_17.png from Moe-throws-Barney, renamed to Moe-throws-Barney.png
+2025-04-08 12:17:46,867 - INFO - Selected Monkey-Puppet_30.png from Monkey-Puppet, renamed to Monkey-Puppet.png
+2025-04-08 12:17:46,879 - INFO - Selected Mr-incredible-mad_25.png from Mr-incredible-mad, renamed to Mr-incredible-mad.png
+2025-04-08 12:17:46,893 - INFO - Selected Mr-McMahon-reaction_94.png from Mr-McMahon-reaction, renamed to Mr-McMahon-reaction.png
+2025-04-08 12:17:46,904 - INFO - Selected Nuclear-Explosion_34.png from Nuclear-Explosion, renamed to Nuclear-Explosion.png
+2025-04-08 12:17:46,915 - INFO - Selected Obi-Wan-Kenobi_68.png from Obi-Wan-Kenobi, renamed to Obi-Wan-Kenobi.png
+2025-04-08 12:17:46,925 - INFO - Selected Persian-Cat-Room-Guardian_59.png from Persian-Cat-Room-Guardian, renamed to Persian-Cat-Room-Guardian.png
+2025-04-08 12:17:46,936 - INFO - Selected Picard-Wtf_8.png from Picard-Wtf, renamed to Picard-Wtf.png
+2025-04-08 12:17:46,945 - INFO - Selected Put-It-Somewhere-Else-Patrick_45.png from Put-It-Somewhere-Else-Patrick, renamed to Put-It-Somewhere-Else-Patrick.png
+2025-04-08 12:17:46,955 - INFO - Selected Scooby-doo-mask-reveal_46.png from Scooby-doo-mask-reveal, renamed to Scooby-doo-mask-reveal.png
+2025-04-08 12:17:46,965 - INFO - Selected Smudge-the-cat_28.png from Smudge-the-cat, renamed to Smudge-the-cat.png
+2025-04-08 12:17:46,974 - INFO - Selected Spiderman-Hospital_89.png from Spiderman-Hospital, renamed to Spiderman-Hospital.png
+2025-04-08 12:17:46,977 - INFO - Selected Spongebob-Yelling_83.png from Spongebob-Yelling, renamed to Spongebob-Yelling.png
+2025-04-08 12:17:46,987 - INFO - Selected Surprised-Pikachu_10.png from Surprised-Pikachu, renamed to Surprised-Pikachu.png
+2025-04-08 12:17:46,997 - INFO - Selected Table-Flip-Guy_3.png from Table-Flip-Guy, renamed to Table-Flip-Guy.png
+2025-04-08 12:17:47,006 - INFO - Selected Thats-a-paddlin_32.png from Thats-a-paddlin, renamed to Thats-a-paddlin.png
+2025-04-08 12:17:47,009 - INFO - Selected Well-Yes-But-Actually-No_96.png from Well-Yes-But-Actually-No, renamed to Well-Yes-But-Actually-No.png
+2025-04-08 12:17:47,018 - INFO - Selected You-The-Real-MVP_13.png from You-The-Real-MVP, renamed to You-The-Real-MVP.png
+2025-04-08 12:17:47,019 - INFO - Found 4 attention check images
+2025-04-08 12:17:47,019 - INFO - Will insert 2 attention check images, interval about 20 images
+2025-04-08 12:17:47,019 - INFO - Attention check images will be inserted at positions: [20, 41]
+2025-04-08 12:17:47,021 - INFO - Inserted attention check image at position 20: attention_check_Anger.png
+2025-04-08 12:17:47,022 - INFO - Inserted attention check image at position 41: attention_check_Disgust.png
+2025-04-08 12:17:47,022 - INFO - Final image list length: 52
+2025-04-08 12:17:47,222 - INFO - User info saved for user_20250408_121725_3565515443
+2025-04-08 12:17:47,223 - INFO - 118.166.77.13 - - [08/Apr/2025 12:17:47] "[32mPOST /instruction2 HTTP/1.1[0m" 302 -
+2025-04-08 12:17:47,439 - INFO - 118.166.77.13 - - [08/Apr/2025 12:17:47] "GET /practice HTTP/1.1" 200 -
+2025-04-08 12:17:47,496 - INFO - 118.166.77.13 - - [08/Apr/2025 12:17:47] "[36mGET /static/css/index.css HTTP/1.1[0m" 304 -
+2025-04-08 12:17:47,502 - INFO - 118.166.77.13 - - [08/Apr/2025 12:17:47] "[36mGET /static/js/practice.js HTTP/1.1[0m" 304 -
+2025-04-08 12:17:47,539 - INFO - 118.166.77.13 - - [08/Apr/2025 12:17:47] "[36mGET /static/socialmedia+meme_practice/1.png HTTP/1.1[0m" 304 -
+2025-04-08 12:17:49,352 - INFO - 118.166.77.13 - - [08/Apr/2025 12:17:49] "[36mGET /static/socialmedia+meme_practice/2.png HTTP/1.1[0m" 304 -
+2025-04-08 12:17:49,725 - INFO - 118.166.77.13 - - [08/Apr/2025 12:17:49] "[36mGET /static/socialmedia+meme_practice/3.png HTTP/1.1[0m" 304 -
+2025-04-08 12:17:50,060 - INFO - 118.166.77.13 - - [08/Apr/2025 12:17:50] "[36mGET /static/socialmedia+meme_practice/4.png HTTP/1.1[0m" 304 -
+2025-04-08 12:17:50,376 - INFO - 118.166.77.13 - - [08/Apr/2025 12:17:50] "[36mGET /static/socialmedia+meme_practice/5.png HTTP/1.1[0m" 304 -
+2025-04-08 12:17:51,215 - WARNING - 404 error: http://140.113.214.158:5000/clear_session_and_redirect
+2025-04-08 12:17:51,216 - INFO - 118.166.77.13 - - [08/Apr/2025 12:17:51] "[32mPOST /clear_session_and_redirect HTTP/1.1[0m" 302 -
+2025-04-08 12:17:51,245 - INFO - 118.166.77.13 - - [08/Apr/2025 12:17:51] "GET / HTTP/1.1" 200 -
+2025-04-08 12:17:51,286 - WARNING - Unauthorized access attempt: No session
+2025-04-08 12:17:51,286 - INFO - 118.166.77.13 - - [08/Apr/2025 12:17:51] "[32mGET /game/user_20250408_121725_3565515443 HTTP/1.1[0m" 302 -
+2025-04-08 12:17:51,305 - INFO - 118.166.77.13 - - [08/Apr/2025 12:17:51] "GET / HTTP/1.1" 200 -
+2025-04-08 12:17:51,361 - INFO - 118.166.77.13 - - [08/Apr/2025 12:17:51] "[36mGET /static/css/introduction.css HTTP/1.1[0m" 304 -
+2025-04-08 12:18:21,667 - INFO - 118.166.77.13 - - [08/Apr/2025 12:18:21] "GET / HTTP/1.1" 200 -
+2025-04-08 12:18:21,700 - INFO - 118.166.77.13 - - [08/Apr/2025 12:18:21] "[36mGET /static/css/introduction.css HTTP/1.1[0m" 304 -
+2025-04-08 12:18:21,744 - INFO - 118.166.77.13 - - [08/Apr/2025 12:18:21] "[36mGET /static/favicon.png HTTP/1.1[0m" 304 -
+2025-04-08 12:18:23,012 - INFO - 118.166.77.13 - - [08/Apr/2025 12:18:23] "GET /terms HTTP/1.1" 200 -
+2025-04-08 12:18:23,052 - INFO - 118.166.77.13 - - [08/Apr/2025 12:18:23] "[36mGET /static/css/terms.css HTTP/1.1[0m" 304 -
+2025-04-08 12:18:24,699 - INFO - 118.166.77.13 - - [08/Apr/2025 12:18:24] "POST /instruction1 HTTP/1.1" 200 -
+2025-04-08 12:18:24,745 - INFO - 118.166.77.13 - - [08/Apr/2025 12:18:24] "[36mGET /static/css/instruction_1.css HTTP/1.1[0m" 304 -
+2025-04-08 12:18:24,758 - INFO - 118.166.77.13 - - [08/Apr/2025 12:18:24] "[36mGET /static/example.png HTTP/1.1[0m" 304 -
+2025-04-08 12:18:24,759 - INFO - 118.166.77.13 - - [08/Apr/2025 12:18:24] "[36mGET /static/js/instruction.js HTTP/1.1[0m" 304 -
+2025-04-08 12:18:26,624 - INFO - 118.166.77.13 - - [08/Apr/2025 12:18:26] "GET /instruction2 HTTP/1.1" 200 -
+2025-04-08 12:18:26,657 - INFO - 118.166.77.13 - - [08/Apr/2025 12:18:26] "[36mGET /static/css/instruction_2.css HTTP/1.1[0m" 304 -
+2025-04-08 12:18:26,668 - INFO - 118.166.77.13 - - [08/Apr/2025 12:18:26] "[36mGET /static/js/instruction.js HTTP/1.1[0m" 304 -
+2025-04-08 12:18:29,563 - INFO - Secure session created for user_20250408_121826_4010902681
+2025-04-08 12:18:29,570 - INFO - Selected Afraid-To-Ask-Andy_84.png from Afraid-To-Ask-Andy, renamed to Afraid-To-Ask-Andy.png
+2025-04-08 12:18:29,573 - INFO - Selected Always-Has-Been_68.png from Always-Has-Been, renamed to Always-Has-Been.png
+2025-04-08 12:18:29,588 - INFO - Selected Always-you-three_40.png from Always-you-three, renamed to Always-you-three.png
+2025-04-08 12:18:29,598 - INFO - Selected Angry-Baby_7.png from Angry-Baby, renamed to Angry-Baby.png
+2025-04-08 12:18:29,608 - INFO - Selected Archer_43.png from Archer, renamed to Archer.png
+2025-04-08 12:18:29,619 - INFO - Selected Arthur-Fist_90.png from Arthur-Fist, renamed to Arthur-Fist.png
+2025-04-08 12:18:29,623 - INFO - Selected Batman-Slapping-Robin_44.png from Batman-Slapping-Robin, renamed to Batman-Slapping-Robin.png
+2025-04-08 12:18:29,635 - INFO - Selected Black-guy-hiding-behind-tree_73.png from Black-guy-hiding-behind-tree, renamed to Black-guy-hiding-behind-tree.png
+2025-04-08 12:18:29,647 - INFO - Selected Charlie-Day_75.png from Charlie-Day, renamed to Charlie-Day.png
+2025-04-08 12:18:29,658 - INFO - Selected Chill-guy_95.png from Chill-guy, renamed to Chill-guy.png
+2025-04-08 12:18:29,662 - INFO - Selected Confused-Gandalf_81.png from Confused-Gandalf, renamed to Confused-Gandalf.png
+2025-04-08 12:18:29,672 - INFO - Selected Dave-chappelle_94.png from Dave-chappelle, renamed to Dave-chappelle.png
+2025-04-08 12:18:29,683 - INFO - Selected Dinkleberg_36.png from Dinkleberg, renamed to Dinkleberg.png
+2025-04-08 12:18:29,694 - INFO - Selected Disappointed-Man_48.png from Disappointed-Man, renamed to Disappointed-Man.png
+2025-04-08 12:18:29,703 - INFO - Selected Disaster-Girl_47.png from Disaster-Girl, renamed to Disaster-Girl.png
+2025-04-08 12:18:29,717 - INFO - Selected DJ-Pauly-D_1.png from DJ-Pauly-D, renamed to DJ-Pauly-D.png
+2025-04-08 12:18:29,728 - INFO - Selected Drake-NoYes_39.png from Drake-NoYes, renamed to Drake-NoYes.png
+2025-04-08 12:18:29,739 - INFO - Selected For-the-better-right-blank_66.png from For-the-better-right-blank, renamed to For-the-better-right-blank.png
+2025-04-08 12:18:29,749 - INFO - Selected Futurama-Fry_63.png from Futurama-Fry, renamed to Futurama-Fry.png
+2025-04-08 12:18:29,759 - INFO - Selected Gru-Gun_46.png from Gru-Gun, renamed to Gru-Gun.png
+2025-04-08 12:18:29,769 - INFO - Selected Happy--Shock_15.png from Happy--Shock, renamed to Happy--Shock.png
+2025-04-08 12:18:29,780 - INFO - Selected Hide-the-Pain-Harold_17.png from Hide-the-Pain-Harold, renamed to Hide-the-Pain-Harold.png
+2025-04-08 12:18:29,790 - INFO - Selected Hold-fart_62.png from Hold-fart, renamed to Hold-fart.png
+2025-04-08 12:18:29,801 - INFO - Selected I-am-once-again-asking_64.png from I-am-once-again-asking, renamed to I-am-once-again-asking.png
+2025-04-08 12:18:29,813 - INFO - Selected Ill-Have-You-Know-Spongebob_82.png from Ill-Have-You-Know-Spongebob, renamed to Ill-Have-You-Know-Spongebob.png
+2025-04-08 12:18:29,819 - INFO - Selected Im-The-Captain-Now_80.png from Im-The-Captain-Now, renamed to Im-The-Captain-Now.png
+2025-04-08 12:18:29,831 - INFO - Selected Kevin-Hart_12.png from Kevin-Hart, renamed to Kevin-Hart.png
+2025-04-08 12:18:29,841 - INFO - Selected Khan_28.png from Khan, renamed to Khan.png
+2025-04-08 12:18:29,851 - INFO - Selected Laughing-wolf_27.png from Laughing-wolf, renamed to Laughing-wolf.png
+2025-04-08 12:18:29,863 - INFO - Selected Leonardo-Dicaprio-Wolf-Of-Wall-Street_99.png from Leonardo-Dicaprio-Wolf-Of-Wall-Street, renamed to Leonardo-Dicaprio-Wolf-Of-Wall-Street.png
+2025-04-08 12:18:29,874 - INFO - Selected Math-ladyConfused-lady_85.png from Math-ladyConfused-lady, renamed to Math-ladyConfused-lady.png
+2025-04-08 12:18:29,878 - INFO - Selected Mocking-Spongebob_18.png from Mocking-Spongebob, renamed to Mocking-Spongebob.png
+2025-04-08 12:18:29,889 - INFO - Selected Moe-throws-Barney_32.png from Moe-throws-Barney, renamed to Moe-throws-Barney.png
+2025-04-08 12:18:29,900 - INFO - Selected Monkey-Puppet_91.png from Monkey-Puppet, renamed to Monkey-Puppet.png
+2025-04-08 12:18:29,906 - INFO - Selected Mr-incredible-mad_57.png from Mr-incredible-mad, renamed to Mr-incredible-mad.png
+2025-04-08 12:18:29,919 - INFO - Selected Mr-McMahon-reaction_13.png from Mr-McMahon-reaction, renamed to Mr-McMahon-reaction.png
+2025-04-08 12:18:29,930 - INFO - Selected Nuclear-Explosion_41.png from Nuclear-Explosion, renamed to Nuclear-Explosion.png
+2025-04-08 12:18:29,934 - INFO - Selected Obi-Wan-Kenobi_49.png from Obi-Wan-Kenobi, renamed to Obi-Wan-Kenobi.png
+2025-04-08 12:18:29,945 - INFO - Selected Persian-Cat-Room-Guardian_51.png from Persian-Cat-Room-Guardian, renamed to Persian-Cat-Room-Guardian.png
+2025-04-08 12:18:29,948 - INFO - Selected Picard-Wtf_52.png from Picard-Wtf, renamed to Picard-Wtf.png
+2025-04-08 12:18:29,959 - INFO - Selected Put-It-Somewhere-Else-Patrick_60.png from Put-It-Somewhere-Else-Patrick, renamed to Put-It-Somewhere-Else-Patrick.png
+2025-04-08 12:18:29,969 - INFO - Selected Scooby-doo-mask-reveal_97.png from Scooby-doo-mask-reveal, renamed to Scooby-doo-mask-reveal.png
+2025-04-08 12:18:29,978 - INFO - Selected Smudge-the-cat_98.png from Smudge-the-cat, renamed to Smudge-the-cat.png
+2025-04-08 12:18:29,987 - INFO - Selected Spiderman-Hospital_26.png from Spiderman-Hospital, renamed to Spiderman-Hospital.png
+2025-04-08 12:18:29,997 - INFO - Selected Spongebob-Yelling_3.png from Spongebob-Yelling, renamed to Spongebob-Yelling.png
+2025-04-08 12:18:30,000 - INFO - Selected Surprised-Pikachu_22.png from Surprised-Pikachu, renamed to Surprised-Pikachu.png
+2025-04-08 12:18:30,009 - INFO - Selected Table-Flip-Guy_37.png from Table-Flip-Guy, renamed to Table-Flip-Guy.png
+2025-04-08 12:18:30,019 - INFO - Selected Thats-a-paddlin_67.png from Thats-a-paddlin, renamed to Thats-a-paddlin.png
+2025-04-08 12:18:30,023 - INFO - Selected Well-Yes-But-Actually-No_35.png from Well-Yes-But-Actually-No, renamed to Well-Yes-But-Actually-No.png
+2025-04-08 12:18:30,032 - INFO - Selected You-The-Real-MVP_14.png from You-The-Real-MVP, renamed to You-The-Real-MVP.png
+2025-04-08 12:18:30,032 - INFO - Found 4 attention check images
+2025-04-08 12:18:30,033 - INFO - Will insert 2 attention check images, interval about 20 images
+2025-04-08 12:18:30,033 - INFO - Attention check images will be inserted at positions: [25, 40]
+2025-04-08 12:18:30,034 - INFO - Inserted attention check image at position 25: attention_check_Contempt.png
+2025-04-08 12:18:30,035 - INFO - Inserted attention check image at position 40: attention_check_Disgust.png
+2025-04-08 12:18:30,036 - INFO - Final image list length: 52
+2025-04-08 12:18:30,228 - INFO - User info saved for user_20250408_121826_4010902681
+2025-04-08 12:18:30,229 - INFO - 118.166.77.13 - - [08/Apr/2025 12:18:30] "[32mPOST /instruction2 HTTP/1.1[0m" 302 -
+2025-04-08 12:18:30,441 - INFO - 118.166.77.13 - - [08/Apr/2025 12:18:30] "GET /practice HTTP/1.1" 200 -
+2025-04-08 12:18:30,509 - INFO - 118.166.77.13 - - [08/Apr/2025 12:18:30] "[36mGET /static/css/index.css HTTP/1.1[0m" 304 -
+2025-04-08 12:18:30,509 - INFO - 118.166.77.13 - - [08/Apr/2025 12:18:30] "[36mGET /static/js/practice.js HTTP/1.1[0m" 304 -
+2025-04-08 12:18:30,549 - INFO - 118.166.77.13 - - [08/Apr/2025 12:18:30] "[36mGET /static/socialmedia+meme_practice/1.png HTTP/1.1[0m" 304 -
+2025-04-08 12:18:32,622 - INFO - 118.166.77.13 - - [08/Apr/2025 12:18:32] "[36mGET /static/socialmedia+meme_practice/2.png HTTP/1.1[0m" 304 -
+2025-04-08 12:18:33,064 - INFO - 118.166.77.13 - - [08/Apr/2025 12:18:33] "[36mGET /static/socialmedia+meme_practice/3.png HTTP/1.1[0m" 304 -
+2025-04-08 12:18:33,386 - INFO - 118.166.77.13 - - [08/Apr/2025 12:18:33] "[36mGET /static/socialmedia+meme_practice/4.png HTTP/1.1[0m" 304 -
+2025-04-08 12:18:33,778 - INFO - 118.166.77.13 - - [08/Apr/2025 12:18:33] "[36mGET /static/socialmedia+meme_practice/5.png HTTP/1.1[0m" 304 -
+2025-04-08 12:18:34,606 - WARNING - 404 error: http://140.113.214.158:5000/clear_session_and_redirect
+2025-04-08 12:18:34,607 - INFO - 118.166.77.13 - - [08/Apr/2025 12:18:34] "[32mPOST /clear_session_and_redirect HTTP/1.1[0m" 302 -
+2025-04-08 12:18:34,636 - INFO - 118.166.77.13 - - [08/Apr/2025 12:18:34] "GET / HTTP/1.1" 200 -
+2025-04-08 12:18:34,679 - WARNING - Unauthorized access attempt: No session
+2025-04-08 12:18:34,680 - INFO - 118.166.77.13 - - [08/Apr/2025 12:18:34] "[32mGET /game/user_20250408_121826_4010902681 HTTP/1.1[0m" 302 -
+2025-04-08 12:18:34,696 - INFO - 118.166.77.13 - - [08/Apr/2025 12:18:34] "GET / HTTP/1.1" 200 -
+2025-04-08 12:18:34,753 - INFO - 118.166.77.13 - - [08/Apr/2025 12:18:34] "[36mGET /static/css/introduction.css HTTP/1.1[0m" 304 -
+2025-04-08 12:19:01,529 - INFO - 118.166.77.13 - - [08/Apr/2025 12:19:01] "GET / HTTP/1.1" 200 -
+2025-04-08 12:19:01,569 - INFO - 118.166.77.13 - - [08/Apr/2025 12:19:01] "[36mGET /static/css/introduction.css HTTP/1.1[0m" 304 -
+2025-04-08 12:19:01,615 - INFO - 118.166.77.13 - - [08/Apr/2025 12:19:01] "[36mGET /static/favicon.png HTTP/1.1[0m" 304 -

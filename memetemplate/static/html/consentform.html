@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>研究說明 - 情緒評估任務</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/consentform.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+</head>
+<body>
+    <div class="consent-container">
+        <div class="consent-header">
+            <h2>國立陽明交通大學人體研究倫理審查委員會</h2>
+            <h3>研究說明書</h3>
+        </div>
+        
+        <div class="consent-content">
+            <p>研究參與者您好：</p>
+            
+            <p>我是國立陽明交通大學資訊工程學系的張永儒教授，也是這個研究計畫的主持人，想邀請您參加「應用生成式人工智慧於智慧通知系統與群眾外包平台以解決資訊過載問題的研究－探討迷因圖片在社群留言中降低人身攻擊語言使用的潛力」研究計畫。此項計畫是由「應用生成式人工智慧於智慧通知系統與群眾外包平台以解決資訊過載問題的研究」（計畫編號：113-2222-E-A49-009-MY3）所資助。</p>
+            
+            <p>因社群媒體資訊量快速成長，留言互動中經常出現情緒性語言，甚至涉及人身攻擊，對使用者心理造成負面影響，而目前尚缺乏有效的情緒緩衝設計策略，故我們希望了解：當社群媒體留言轉化為迷因圖片後，讀者會如何解讀留言者的情緒表達。</p>
+            
+            <p>因此，我們誠摯邀請符合下列條件之參與者加入研究：年滿 18 歲，具備基本的中文閱讀能力，並擁有可穩定網路連線的電腦。研究將安排您進行時長約 7–13 分鐘的線上標記活動，您將進入我們設計的研究專用網頁，依序瀏覽社群新聞貼文與網友使用迷因的留言，並從我們提供的三種情緒選項中，選出最接近留言者情緒的一項。</p>
+            
+            <p>研究中可能有極低機率發生心理不適風險或副作用，我們將以明確提示提醒參與者此風險，並建議依自身狀態自行斟酌是否繼續參與。整個操作過程中，您可隨時關閉網頁以中止實驗，不會有任何限制或紀錄產生。</p>
+            
+            <p>研究進行中與結束後所蒐集之資料或檢體，我們將以雲端方式存放於由研究主持人管理、設有密碼保護與權限控管的雲端硬碟資料夾，僅研究團隊得以存取。資料將保存 10 年，不會永久保留；錄影／錄音資料於製作逐字稿後將予以銷毀。匿名資料將由計畫主持人妥善管理，以確保個別資料的機密與參與者的隱私。本研究結果可能產生學術文獻發表、智慧財產或其他實質效益，其應用將由國立陽明交通大學作為人機互動領域之學術研究用途。</p>
+            
+            <p>您可自由決定是否參與研究，過程中無需提供任何理由，並可隨時停止或拒絕進行。本研究將於結束時，提供研究參與補償，並以參與者留下的 Email 舉辦抽獎活動，送出 50 份 7-ELEVEN 100 元數位商品禮券。參與本研究無須繳交任何費用。</p>
+            
+            <p>若參與者於研究過程中選擇中途退出，將不影響其個人權益，惟無法參與本次抽獎補償；同時，中途退出亦不影響未來針對本研究提供之其他迷因學術研究補償。</p>
+            
+            <p>若您在研究過程中對參與者權益有任何意見、疑問，或因參與研究而受到損害，可與國立陽明交通大學人體研究倫理審查委員會聯絡請求諮詢：</p>
+            <ul>
+                <li>(審查會 A) 電話：02-2823-9753 / Email：irb.ym@nycu.edu.tw</li>
+                <li>(審查會 B) 電話：03-571-2121 分機 53270 / Email：irb@nycu.edu.tw</li>
+            </ul>
+            <p>國立陽明交通大學資訊工程學系/所；計畫聯絡人 張永儒 教授；連絡電話：03-5712121 #56632</p>
+        </div>
+        
+        <div class="consent-checkbox">
+            <label>
+                <input type="checkbox" id="consent-check" required> 我已閱讀完畢
+            </label>
+        </div>
+        
+        <div class="consent-buttons">
+            <button class="consent-button" id="proceed-button" onclick="proceed()" disabled>下一頁</button>
+        </div>
+    </div>
+
+    <script>
+        // Add event listener for the checkbox
+        document.getElementById('consent-check').addEventListener('change', function() {
+            // Enable or disable button based on checkbox state
+            document.getElementById('proceed-button').disabled = !this.checked;
+        });
+        
+        function proceed() {
+            // Only proceed if checkbox is checked
+            if (document.getElementById('consent-check').checked) {
+                window.location.href = "{{ url_for('terms') }}";
+            } else {
+                alert("請先閱讀並同意研究說明");
+            }
+        }
+    </script>
+</body>
+</html>

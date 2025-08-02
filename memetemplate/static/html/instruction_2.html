@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Instruction part 2</title>
+    <link rel="stylesheet" href="/static/css/instruction_2.css">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+</head>
+<body>
+    <div class="instructions-container">
+        <h1>🙋 小小問一下</h1>
+        <p style="text-align: center;">
+            我們想簡單了解參與者的背景
+        </p>        
+        <div class="welcome-container">
+            <form id="player-form" action="/instruction2" method="post" class="player-form" onsubmit="showPracticeModal(event)">
+                <input type="text" name="player_name_display" id="player_name_display" value="{{ player_name }}" style="display: none;" disabled>
+                <input type="hidden" name="player_name" id="player_name" value="{{ player_name }}">
+
+                <label for="age">您的年齡：</label>
+                <select id="age" name="age" required>
+                    <option value="" disabled selected>請選擇您的年齡範圍</option>
+                    <option value="18-24">18-24 歲</option>
+                    <option value="25-29">25-29 歲</option>
+                    <option value="30-34">30-34 歲</option>
+                    <option value="35-39">35-39 歲</option>
+                    <option value="40-44">40-44 歲</option>
+                    <option value="45-49">45-49 歲</option>
+                    <option value="50-54">50-54 歲</option>
+                    <option value="55+">55 歲以上</option>
+                </select>
+
+                <label for="gender">您的性別：</label>
+                <select id="gender" name="gender" onchange="toggleCustomGenderInput()" required>
+                    <option value="" disabled selected>請選擇您的性別</option>
+                    <option value="male">男性</option>
+                    <option value="female">女性</option>
+                    <option value="Transgender">跨性別</option>
+                    <option value="Non-binary">非二元性別</option>
+                    <option value="Prefer not to respond">不願透露</option>
+
+                </select>
+                <button type="submit" class="start-button">進入練習環節</button>
+            </form>
+
+            {% if error %}
+            <p id="error-message" style="color: red;">{{ error }}</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- 練習說明Modal -->
+    <div id="practiceModal" class="modal">
+        <div class="practice-modal-content">
+            <div class="modal-header">🎯 進入練習環節</div>
+            <div class="modal-body">
+                <p>讓我們用 5 張練習圖片來熱身，熟悉遊戲的操作流程吧！</p>
+                <button type="button" class="practice-modal-button" onclick="submitForm()">開始練習 🎮</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleCustomGenderInput() {
+            const genderSelect = document.getElementById('gender');
+            const customGenderInput = document.getElementById('custom_gender');
+            if (genderSelect.value === 'custom') {
+                customGenderInput.style.display = 'block';
+                customGenderInput.required = true;
+            } else {
+                customGenderInput.style.display = 'none';
+                customGenderInput.required = false;
+            }
+        }
+
+        document.addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                document.querySelector('.start-button').click();
+            }
+        });
+    </script>
+    <script src="{{ url_for('static', filename='js/instruction.js') }}"></script>
+</body>
+</html>

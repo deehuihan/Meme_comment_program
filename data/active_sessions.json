@@ -1,0 +1,1654 @@
+{
+  "user_ba8379": {
+    "first_seen": "2025-07-16 08:05:12.133",
+    "first_seen_ms": 1752653112133,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 08:05:12.133",
+        "timestamp_ms": 1752653112133,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 08:05:12.133",
+    "last_seen_ms": 1752653112133
+  },
+  "user_b548b5": {
+    "first_seen": "2025-07-16 08:10:35.368",
+    "first_seen_ms": 1752653435368,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 08:10:35.368",
+        "timestamp_ms": 1752653435368,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 08:10:35.368",
+    "last_seen_ms": 1752653435368
+  },
+  "user_df195e": {
+    "first_seen": "2025-07-16 08:10:43.630",
+    "first_seen_ms": 1752653443630,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 08:10:43.630",
+        "timestamp_ms": 1752653443630,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 08:10:43.630",
+    "last_seen_ms": 1752653443630
+  },
+  "user_8b5246": {
+    "first_seen": "2025-07-16 08:10:53.155",
+    "first_seen_ms": 1752653453155,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 08:10:53.155",
+        "timestamp_ms": 1752653453155,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 08:10:53.155",
+    "last_seen_ms": 1752653453155
+  },
+  "user_28ab93": {
+    "first_seen": "2025-07-16 08:10:56.980",
+    "first_seen_ms": 1752653456980,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 08:10:56.980",
+        "timestamp_ms": 1752653456980,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 08:10:56.980",
+    "last_seen_ms": 1752653456980
+  },
+  "user_1bc685": {
+    "first_seen": "2025-07-16 08:11:02.192",
+    "first_seen_ms": 1752653462192,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 08:11:02.192",
+        "timestamp_ms": 1752653462192,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 08:11:02.192",
+    "last_seen_ms": 1752653462192
+  },
+  "user_93317b": {
+    "first_seen": "2025-07-16 08:11:07.165",
+    "first_seen_ms": 1752653467165,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 08:11:07.165",
+        "timestamp_ms": 1752653467165,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 08:11:07.165",
+    "last_seen_ms": 1752653467165
+  },
+  "user_010978": {
+    "first_seen": "2025-07-16 08:11:11.591",
+    "first_seen_ms": 1752653471591,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 08:11:11.591",
+        "timestamp_ms": 1752653471591,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 08:11:11.591",
+    "last_seen_ms": 1752653471591
+  },
+  "user_f276d1": {
+    "first_seen": "2025-07-16 08:11:15.135",
+    "first_seen_ms": 1752653475135,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 08:11:15.135",
+        "timestamp_ms": 1752653475135,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 08:11:15.135",
+    "last_seen_ms": 1752653475135
+  },
+  "user_1a8830": {
+    "first_seen": "2025-07-16 08:11:30.315",
+    "first_seen_ms": 1752653490315,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 08:11:30.315",
+        "timestamp_ms": 1752653490315,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 08:11:30.315",
+    "last_seen_ms": 1752653490315
+  },
+  "user_2a6446": {
+    "first_seen": "2025-07-16 08:12:12.084",
+    "first_seen_ms": 1752653532084,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 08:12:12.084",
+        "timestamp_ms": 1752653532084,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 08:12:12.084",
+    "last_seen_ms": 1752653532084
+  },
+  "user_6862f3": {
+    "first_seen": "2025-07-16 08:14:10.917",
+    "first_seen_ms": 1752653650917,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 08:14:10.917",
+        "timestamp_ms": 1752653650917,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 08:14:10.917",
+    "last_seen_ms": 1752653650917
+  },
+  "user_3cbc64": {
+    "first_seen": "2025-07-16 08:41:36.561",
+    "first_seen_ms": 1752655296561,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 08:41:36.561",
+        "timestamp_ms": 1752655296561,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 08:41:36.561",
+    "last_seen_ms": 1752655296561
+  },
+  "user_659ca4": {
+    "first_seen": "2025-07-16 08:48:38.297",
+    "first_seen_ms": 1752655718297,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 08:48:38.297",
+        "timestamp_ms": 1752655718297,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 08:48:38.297",
+    "last_seen_ms": 1752655718297
+  },
+  "user_815db2": {
+    "first_seen": "2025-07-16 09:06:01.535",
+    "first_seen_ms": 1752656761535,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 09:06:01.535",
+        "timestamp_ms": 1752656761535,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 09:06:01.535",
+    "last_seen_ms": 1752656761535
+  },
+  "user_a03ade": {
+    "first_seen": "2025-07-16 09:16:13.027",
+    "first_seen_ms": 1752657373027,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 09:16:13.027",
+        "timestamp_ms": 1752657373027,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 09:16:13.027",
+    "last_seen_ms": 1752657373027
+  },
+  "user_289bce": {
+    "first_seen": "2025-07-16 09:16:13.074",
+    "first_seen_ms": 1752657373074,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 09:16:13.074",
+        "timestamp_ms": 1752657373074,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 09:16:13.074",
+    "last_seen_ms": 1752657373074
+  },
+  "user_7adce3": {
+    "first_seen": "2025-07-16 09:16:13.121",
+    "first_seen_ms": 1752657373121,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 09:16:13.121",
+        "timestamp_ms": 1752657373121,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 09:16:13.121",
+    "last_seen_ms": 1752657373121
+  },
+  "user_454a4f": {
+    "first_seen": "2025-07-16 09:16:13.298",
+    "first_seen_ms": 1752657373298,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 09:16:13.298",
+        "timestamp_ms": 1752657373298,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 09:16:13.298",
+    "last_seen_ms": 1752657373298
+  },
+  "user_5a02fb": {
+    "first_seen": "2025-07-16 09:16:13.346",
+    "first_seen_ms": 1752657373346,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 09:16:13.346",
+        "timestamp_ms": 1752657373346,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 09:16:13.346",
+    "last_seen_ms": 1752657373346
+  },
+  "user_b9d675": {
+    "first_seen": "2025-07-16 09:16:13.886",
+    "first_seen_ms": 1752657373886,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 09:16:13.886",
+        "timestamp_ms": 1752657373886,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 09:16:13.886",
+    "last_seen_ms": 1752657373886
+  },
+  "user_3fa664": {
+    "first_seen": "2025-07-16 09:16:17.368",
+    "first_seen_ms": 1752657377368,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 09:16:17.368",
+        "timestamp_ms": 1752657377368,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 09:16:17.368",
+    "last_seen_ms": 1752657377368
+  },
+  "user_490180": {
+    "first_seen": "2025-07-16 09:20:26.805",
+    "first_seen_ms": 1752657626805,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 09:20:26.805",
+        "timestamp_ms": 1752657626805,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 09:20:26.805",
+    "last_seen_ms": 1752657626805
+  },
+  "user_13f86b": {
+    "first_seen": "2025-07-16 09:20:32.086",
+    "first_seen_ms": 1752657632086,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 09:20:32.086",
+        "timestamp_ms": 1752657632086,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 09:20:32.086",
+    "last_seen_ms": 1752657632086
+  },
+  "user_7d97dc": {
+    "first_seen": "2025-07-16 09:21:20.068",
+    "first_seen_ms": 1752657680068,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 09:21:20.068",
+        "timestamp_ms": 1752657680068,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 09:21:20.068",
+    "last_seen_ms": 1752657680068
+  },
+  "user_66b2dd": {
+    "first_seen": "2025-07-16 09:50:56.111",
+    "first_seen_ms": 1752659456111,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 09:50:56.111",
+        "timestamp_ms": 1752659456111,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 09:50:56.111",
+    "last_seen_ms": 1752659456111
+  },
+  "user_5d87bf": {
+    "first_seen": "2025-07-16 09:55:58.026",
+    "first_seen_ms": 1752659758026,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 09:55:58.026",
+        "timestamp_ms": 1752659758026,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 09:55:58.026",
+    "last_seen_ms": 1752659758026
+  },
+  "user_7b6749": {
+    "first_seen": "2025-07-16 10:08:29.137",
+    "first_seen_ms": 1752660509137,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 10:08:29.137",
+        "timestamp_ms": 1752660509137,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 10:08:29.137",
+    "last_seen_ms": 1752660509137
+  },
+  "user_67f8c2": {
+    "first_seen": "2025-07-16 10:08:45.728",
+    "first_seen_ms": 1752660525728,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 10:08:45.728",
+        "timestamp_ms": 1752660525728,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 10:08:45.728",
+    "last_seen_ms": 1752660525728
+  },
+  "user_b1d570": {
+    "first_seen": "2025-07-16 10:36:48.116",
+    "first_seen_ms": 1752662208116,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 10:36:48.116",
+        "timestamp_ms": 1752662208116,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 10:36:48.116",
+    "last_seen_ms": 1752662208116
+  },
+  "user_4cc413": {
+    "first_seen": "2025-07-16 10:52:05.376",
+    "first_seen_ms": 1752663125376,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 10:52:05.376",
+        "timestamp_ms": 1752663125376,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 10:52:05.376",
+    "last_seen_ms": 1752663125376
+  },
+  "user_63f5ac": {
+    "first_seen": "2025-07-16 11:14:22.951",
+    "first_seen_ms": 1752664462951,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 11:14:22.951",
+        "timestamp_ms": 1752664462951,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 11:14:22.951",
+    "last_seen_ms": 1752664462951
+  },
+  "user_f52545": {
+    "first_seen": "2025-07-16 11:16:04.839",
+    "first_seen_ms": 1752664564839,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 11:16:04.839",
+        "timestamp_ms": 1752664564839,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 11:16:04.839",
+    "last_seen_ms": 1752664564839
+  },
+  "user_174309": {
+    "first_seen": "2025-07-16 11:39:08.632",
+    "first_seen_ms": 1752665948632,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 11:39:08.632",
+        "timestamp_ms": 1752665948632,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 11:39:08.632",
+    "last_seen_ms": 1752665948632
+  },
+  "user_f08cde": {
+    "first_seen": "2025-07-16 11:48:38.480",
+    "first_seen_ms": 1752666518480,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 11:48:38.480",
+        "timestamp_ms": 1752666518480,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 11:48:38.480",
+    "last_seen_ms": 1752666518480
+  },
+  "user_46e475": {
+    "first_seen": "2025-07-16 11:53:52.587",
+    "first_seen_ms": 1752666832587,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 11:53:52.587",
+        "timestamp_ms": 1752666832587,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 11:53:52.587",
+    "last_seen_ms": 1752666832587
+  },
+  "user_106834": {
+    "first_seen": "2025-07-16 12:02:24.290",
+    "first_seen_ms": 1752667344290,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 12:02:24.290",
+        "timestamp_ms": 1752667344290,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 12:02:24.290",
+    "last_seen_ms": 1752667344290
+  },
+  "user_f8949d": {
+    "first_seen": "2025-07-16 14:25:30.070",
+    "first_seen_ms": 1752675930070,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 14:25:30.070",
+        "timestamp_ms": 1752675930070,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 14:25:30.070",
+    "last_seen_ms": 1752675930070
+  },
+  "user_b30c2b": {
+    "first_seen": "2025-07-16 14:30:12.420",
+    "first_seen_ms": 1752676212420,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 14:30:12.420",
+        "timestamp_ms": 1752676212420,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 14:30:12.420",
+    "last_seen_ms": 1752676212420
+  },
+  "user_d90468": {
+    "first_seen": "2025-07-16 14:37:23.608",
+    "first_seen_ms": 1752676643608,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 14:37:23.608",
+        "timestamp_ms": 1752676643608,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 14:37:23.608",
+    "last_seen_ms": 1752676643608
+  },
+  "user_8aee43": {
+    "first_seen": "2025-07-16 14:37:37.330",
+    "first_seen_ms": 1752676657330,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 14:37:37.330",
+        "timestamp_ms": 1752676657330,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 14:37:37.330",
+    "last_seen_ms": 1752676657330
+  },
+  "user_1d6c70": {
+    "first_seen": "2025-07-16 14:54:10.061",
+    "first_seen_ms": 1752677650061,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 14:54:10.061",
+        "timestamp_ms": 1752677650061,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 14:54:10.061",
+    "last_seen_ms": 1752677650061
+  },
+  "user_b3604a": {
+    "first_seen": "2025-07-16 14:54:23.218",
+    "first_seen_ms": 1752677663218,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 14:54:23.218",
+        "timestamp_ms": 1752677663218,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 14:54:23.218",
+    "last_seen_ms": 1752677663218
+  },
+  "user_bbc4c1": {
+    "first_seen": "2025-07-16 15:29:14.777",
+    "first_seen_ms": 1752679754777,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 15:29:14.777",
+        "timestamp_ms": 1752679754777,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 15:29:14.777",
+    "last_seen_ms": 1752679754777
+  },
+  "user_0196a3": {
+    "first_seen": "2025-07-16 15:31:30.880",
+    "first_seen_ms": 1752679890880,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 15:31:30.880",
+        "timestamp_ms": 1752679890880,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 15:31:30.880",
+    "last_seen_ms": 1752679890880
+  },
+  "user_b2a5be": {
+    "first_seen": "2025-07-16 16:09:11.326",
+    "first_seen_ms": 1752682151326,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 16:09:11.326",
+        "timestamp_ms": 1752682151326,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 16:09:11.326",
+    "last_seen_ms": 1752682151326
+  },
+  "user_1cd486": {
+    "first_seen": "2025-07-16 16:25:40.889",
+    "first_seen_ms": 1752683140889,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 16:25:40.889",
+        "timestamp_ms": 1752683140889,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 16:25:40.889",
+    "last_seen_ms": 1752683140889
+  },
+  "user_08075f": {
+    "first_seen": "2025-07-16 16:32:44.808",
+    "first_seen_ms": 1752683564808,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 16:32:44.808",
+        "timestamp_ms": 1752683564808,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 16:32:44.808",
+    "last_seen_ms": 1752683564808
+  },
+  "user_f0fd23": {
+    "first_seen": "2025-07-16 16:38:37.998",
+    "first_seen_ms": 1752683917998,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 16:38:37.998",
+        "timestamp_ms": 1752683917998,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 16:38:37.998",
+    "last_seen_ms": 1752683917998
+  },
+  "user_180d86": {
+    "first_seen": "2025-07-16 16:49:18.873",
+    "first_seen_ms": 1752684558873,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 16:49:18.873",
+        "timestamp_ms": 1752684558873,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 16:49:18.873",
+    "last_seen_ms": 1752684558873
+  },
+  "user_a40064": {
+    "first_seen": "2025-07-16 16:53:03.865",
+    "first_seen_ms": 1752684783865,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 16:53:03.865",
+        "timestamp_ms": 1752684783865,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 16:53:03.865",
+    "last_seen_ms": 1752684783865
+  },
+  "user_8f0fff": {
+    "first_seen": "2025-07-16 17:40:27.776",
+    "first_seen_ms": 1752687627776,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 17:40:27.776",
+        "timestamp_ms": 1752687627776,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 17:40:27.776",
+    "last_seen_ms": 1752687627776
+  },
+  "user_76798f": {
+    "first_seen": "2025-07-16 17:41:30.339",
+    "first_seen_ms": 1752687690339,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 17:41:30.339",
+        "timestamp_ms": 1752687690339,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 17:41:30.339",
+    "last_seen_ms": 1752687690339
+  },
+  "user_b3adc5": {
+    "first_seen": "2025-07-16 17:57:01.798",
+    "first_seen_ms": 1752688621798,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 17:57:01.798",
+        "timestamp_ms": 1752688621798,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 17:57:01.798",
+    "last_seen_ms": 1752688621798
+  },
+  "user_71f553": {
+    "first_seen": "2025-07-16 18:58:06.277",
+    "first_seen_ms": 1752692286277,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 18:58:06.277",
+        "timestamp_ms": 1752692286277,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 18:58:06.277",
+    "last_seen_ms": 1752692286277
+  },
+  "user_b9ed45": {
+    "first_seen": "2025-07-16 19:29:01.301",
+    "first_seen_ms": 1752694141301,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 19:29:01.301",
+        "timestamp_ms": 1752694141301,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 19:29:01.301",
+    "last_seen_ms": 1752694141301
+  },
+  "user_e239b8": {
+    "first_seen": "2025-07-16 20:20:14.623",
+    "first_seen_ms": 1752697214623,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 20:20:14.623",
+        "timestamp_ms": 1752697214623,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 20:20:14.623",
+    "last_seen_ms": 1752697214623
+  },
+  "user_069c00": {
+    "first_seen": "2025-07-16 20:35:16.389",
+    "first_seen_ms": 1752698116389,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 20:35:16.389",
+        "timestamp_ms": 1752698116389,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 20:35:16.389",
+    "last_seen_ms": 1752698116389
+  },
+  "user_b2fa1e": {
+    "first_seen": "2025-07-16 20:50:22.331",
+    "first_seen_ms": 1752699022331,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 20:50:22.331",
+        "timestamp_ms": 1752699022331,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 20:50:22.331",
+    "last_seen_ms": 1752699022331
+  },
+  "user_78c654": {
+    "first_seen": "2025-07-16 21:26:12.096",
+    "first_seen_ms": 1752701172096,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 21:26:12.096",
+        "timestamp_ms": 1752701172096,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 21:26:12.096",
+    "last_seen_ms": 1752701172096
+  },
+  "user_9d51b8": {
+    "first_seen": "2025-07-16 21:43:19.693",
+    "first_seen_ms": 1752702199693,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 21:43:19.693",
+        "timestamp_ms": 1752702199693,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 21:43:19.693",
+    "last_seen_ms": 1752702199693
+  },
+  "user_91590b": {
+    "first_seen": "2025-07-16 21:57:13.137",
+    "first_seen_ms": 1752703033137,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 21:57:13.137",
+        "timestamp_ms": 1752703033137,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 21:57:13.137",
+    "last_seen_ms": 1752703033137
+  },
+  "user_40a7b4": {
+    "first_seen": "2025-07-16 22:22:03.965",
+    "first_seen_ms": 1752704523965,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 22:22:03.965",
+        "timestamp_ms": 1752704523965,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 22:22:03.965",
+    "last_seen_ms": 1752704523965
+  },
+  "user_be762b": {
+    "first_seen": "2025-07-16 22:22:05.266",
+    "first_seen_ms": 1752704525266,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 22:22:05.266",
+        "timestamp_ms": 1752704525266,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 22:22:05.266",
+    "last_seen_ms": 1752704525266
+  },
+  "user_f3019d": {
+    "first_seen": "2025-07-16 22:22:06.143",
+    "first_seen_ms": 1752704526143,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 22:22:06.143",
+        "timestamp_ms": 1752704526143,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 22:22:06.143",
+    "last_seen_ms": 1752704526143
+  },
+  "user_826143": {
+    "first_seen": "2025-07-16 22:22:07.029",
+    "first_seen_ms": 1752704527029,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 22:22:07.029",
+        "timestamp_ms": 1752704527029,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 22:22:07.029",
+    "last_seen_ms": 1752704527029
+  },
+  "user_c49ca3": {
+    "first_seen": "2025-07-16 22:22:08.328",
+    "first_seen_ms": 1752704528328,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 22:22:08.328",
+        "timestamp_ms": 1752704528328,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 22:22:08.328",
+    "last_seen_ms": 1752704528328
+  },
+  "user_2479ed": {
+    "first_seen": "2025-07-16 22:22:09.229",
+    "first_seen_ms": 1752704529229,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 22:22:09.229",
+        "timestamp_ms": 1752704529229,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 22:22:09.229",
+    "last_seen_ms": 1752704529229
+  },
+  "user_8462df": {
+    "first_seen": "2025-07-16 22:22:10.113",
+    "first_seen_ms": 1752704530113,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 22:22:10.113",
+        "timestamp_ms": 1752704530113,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 22:22:10.113",
+    "last_seen_ms": 1752704530113
+  },
+  "user_ac3d70": {
+    "first_seen": "2025-07-16 22:45:52.182",
+    "first_seen_ms": 1752705952182,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 22:45:52.182",
+        "timestamp_ms": 1752705952182,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 22:45:52.182",
+    "last_seen_ms": 1752705952182
+  },
+  "user_b0c1d7": {
+    "first_seen": "2025-07-16 22:47:15.235",
+    "first_seen_ms": 1752706035235,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 22:47:15.235",
+        "timestamp_ms": 1752706035235,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 22:47:15.235",
+    "last_seen_ms": 1752706035235
+  },
+  "user_c070b8": {
+    "first_seen": "2025-07-16 22:58:16.651",
+    "first_seen_ms": 1752706696651,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 22:58:16.651",
+        "timestamp_ms": 1752706696651,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 22:58:16.651",
+    "last_seen_ms": 1752706696651
+  },
+  "user_075eb1": {
+    "first_seen": "2025-07-16 23:30:18.183",
+    "first_seen_ms": 1752708618183,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 23:30:18.183",
+        "timestamp_ms": 1752708618183,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 23:30:18.183",
+    "last_seen_ms": 1752708618183
+  },
+  "user_0abec5": {
+    "first_seen": "2025-07-16 23:33:04.278",
+    "first_seen_ms": 1752708784278,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 23:33:04.278",
+        "timestamp_ms": 1752708784278,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 23:33:04.278",
+    "last_seen_ms": 1752708784278
+  },
+  "user_18115d": {
+    "first_seen": "2025-07-16 23:46:10.429",
+    "first_seen_ms": 1752709570429,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 23:46:10.429",
+        "timestamp_ms": 1752709570429,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 23:46:10.429",
+    "last_seen_ms": 1752709570429
+  },
+  "user_71bea9": {
+    "first_seen": "2025-07-16 23:47:04.157",
+    "first_seen_ms": 1752709624157,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 23:47:04.157",
+        "timestamp_ms": 1752709624157,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 23:47:04.157",
+    "last_seen_ms": 1752709624157
+  },
+  "user_5514ba": {
+    "first_seen": "2025-07-16 23:57:50.112",
+    "first_seen_ms": 1752710270112,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-16 23:57:50.112",
+        "timestamp_ms": 1752710270112,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-16 23:57:50.112",
+    "last_seen_ms": 1752710270112
+  },
+  "user_69c5e2": {
+    "first_seen": "2025-07-17 00:15:25.860",
+    "first_seen_ms": 1752711325860,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 00:15:25.860",
+        "timestamp_ms": 1752711325860,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 00:15:25.860",
+    "last_seen_ms": 1752711325860
+  },
+  "user_a79bea": {
+    "first_seen": "2025-07-17 00:15:26.465",
+    "first_seen_ms": 1752711326465,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 00:15:26.465",
+        "timestamp_ms": 1752711326465,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 00:15:26.465",
+    "last_seen_ms": 1752711326465
+  },
+  "user_4d08fd": {
+    "first_seen": "2025-07-17 00:25:24.556",
+    "first_seen_ms": 1752711924556,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 00:25:24.556",
+        "timestamp_ms": 1752711924556,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 00:25:24.556",
+    "last_seen_ms": 1752711924556
+  },
+  "user_233fe5": {
+    "first_seen": "2025-07-17 00:25:25.809",
+    "first_seen_ms": 1752711925809,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 00:25:25.809",
+        "timestamp_ms": 1752711925809,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 00:25:25.809",
+    "last_seen_ms": 1752711925809
+  },
+  "user_e464fc": {
+    "first_seen": "2025-07-17 00:25:27.027",
+    "first_seen_ms": 1752711927027,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 00:25:27.027",
+        "timestamp_ms": 1752711927027,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 00:25:27.027",
+    "last_seen_ms": 1752711927027
+  },
+  "user_5b9c4e": {
+    "first_seen": "2025-07-17 01:09:00.707",
+    "first_seen_ms": 1752714540707,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 01:09:00.707",
+        "timestamp_ms": 1752714540707,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 01:09:00.707",
+    "last_seen_ms": 1752714540707
+  },
+  "user_82c6fa": {
+    "first_seen": "2025-07-17 01:17:55.740",
+    "first_seen_ms": 1752715075740,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 01:17:55.740",
+        "timestamp_ms": 1752715075740,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 01:17:55.740",
+    "last_seen_ms": 1752715075740
+  },
+  "user_df306d": {
+    "first_seen": "2025-07-17 01:25:44.249",
+    "first_seen_ms": 1752715544249,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 01:25:44.249",
+        "timestamp_ms": 1752715544249,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 01:25:44.249",
+    "last_seen_ms": 1752715544249
+  },
+  "user_f2e9af": {
+    "first_seen": "2025-07-17 01:31:40.184",
+    "first_seen_ms": 1752715900184,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 01:31:40.184",
+        "timestamp_ms": 1752715900184,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 01:31:40.184",
+    "last_seen_ms": 1752715900184
+  },
+  "user_81376b": {
+    "first_seen": "2025-07-17 01:35:59.839",
+    "first_seen_ms": 1752716159839,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 01:35:59.839",
+        "timestamp_ms": 1752716159839,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 01:35:59.839",
+    "last_seen_ms": 1752716159839
+  },
+  "user_a245dc": {
+    "first_seen": "2025-07-17 01:43:03.891",
+    "first_seen_ms": 1752716583891,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 01:43:03.891",
+        "timestamp_ms": 1752716583891,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 01:43:03.891",
+    "last_seen_ms": 1752716583891
+  },
+  "user_9f9302": {
+    "first_seen": "2025-07-17 01:43:27.336",
+    "first_seen_ms": 1752716607336,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 01:43:27.336",
+        "timestamp_ms": 1752716607336,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 01:43:27.336",
+    "last_seen_ms": 1752716607336
+  },
+  "user_0e08f6": {
+    "first_seen": "2025-07-17 01:44:07.144",
+    "first_seen_ms": 1752716647144,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 01:44:07.144",
+        "timestamp_ms": 1752716647144,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 01:44:07.144",
+    "last_seen_ms": 1752716647144
+  },
+  "user_a66f00": {
+    "first_seen": "2025-07-17 01:44:07.357",
+    "first_seen_ms": 1752716647357,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 01:44:07.357",
+        "timestamp_ms": 1752716647357,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 01:44:07.357",
+    "last_seen_ms": 1752716647357
+  },
+  "user_a26ab3": {
+    "first_seen": "2025-07-17 01:44:07.570",
+    "first_seen_ms": 1752716647570,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 01:44:07.570",
+        "timestamp_ms": 1752716647570,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 01:44:07.570",
+    "last_seen_ms": 1752716647570
+  },
+  "user_ffe0fc": {
+    "first_seen": "2025-07-17 01:44:08.198",
+    "first_seen_ms": 1752716648198,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 01:44:08.198",
+        "timestamp_ms": 1752716648198,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 01:44:08.198",
+    "last_seen_ms": 1752716648198
+  },
+  "user_6bc789": {
+    "first_seen": "2025-07-17 01:44:08.411",
+    "first_seen_ms": 1752716648411,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 01:44:08.411",
+        "timestamp_ms": 1752716648411,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 01:44:08.411",
+    "last_seen_ms": 1752716648411
+  },
+  "user_5dc653": {
+    "first_seen": "2025-07-17 02:43:48.379",
+    "first_seen_ms": 1752720228379,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 02:43:48.379",
+        "timestamp_ms": 1752720228379,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 02:43:48.379",
+    "last_seen_ms": 1752720228379
+  },
+  "user_43bbba": {
+    "first_seen": "2025-07-17 03:07:35.525",
+    "first_seen_ms": 1752721655525,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 03:07:35.525",
+        "timestamp_ms": 1752721655525,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 03:07:35.525",
+    "last_seen_ms": 1752721655525
+  },
+  "user_2e24c8": {
+    "first_seen": "2025-07-17 03:11:23.232",
+    "first_seen_ms": 1752721883232,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 03:11:23.232",
+        "timestamp_ms": 1752721883232,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 03:11:23.232",
+    "last_seen_ms": 1752721883232
+  },
+  "user_fc691d": {
+    "first_seen": "2025-07-17 03:45:58.647",
+    "first_seen_ms": 1752723958647,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 03:45:58.647",
+        "timestamp_ms": 1752723958647,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 03:45:58.647",
+    "last_seen_ms": 1752723958647
+  },
+  "user_3fa15a": {
+    "first_seen": "2025-07-17 03:49:13.874",
+    "first_seen_ms": 1752724153874,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 03:49:13.874",
+        "timestamp_ms": 1752724153874,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 03:49:13.874",
+    "last_seen_ms": 1752724153874
+  },
+  "user_ea954c": {
+    "first_seen": "2025-07-17 04:02:13.783",
+    "first_seen_ms": 1752724933783,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 04:02:13.783",
+        "timestamp_ms": 1752724933783,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 04:02:13.783",
+    "last_seen_ms": 1752724933783
+  },
+  "user_6e1f99": {
+    "first_seen": "2025-07-17 04:06:13.547",
+    "first_seen_ms": 1752725173547,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 04:06:13.547",
+        "timestamp_ms": 1752725173547,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 04:06:13.547",
+    "last_seen_ms": 1752725173547
+  },
+  "user_a0be4e": {
+    "first_seen": "2025-07-17 04:55:58.381",
+    "first_seen_ms": 1752728158381,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 04:55:58.381",
+        "timestamp_ms": 1752728158381,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 04:55:58.381",
+    "last_seen_ms": 1752728158381
+  },
+  "user_c6008d": {
+    "first_seen": "2025-07-17 04:57:20.518",
+    "first_seen_ms": 1752728240518,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 04:57:20.518",
+        "timestamp_ms": 1752728240518,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 04:57:20.518",
+    "last_seen_ms": 1752728240518
+  },
+  "user_56b8f9": {
+    "first_seen": "2025-07-17 05:05:34.165",
+    "first_seen_ms": 1752728734165,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 05:05:34.165",
+        "timestamp_ms": 1752728734165,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 05:05:34.165",
+    "last_seen_ms": 1752728734165
+  },
+  "user_3a9ae0": {
+    "first_seen": "2025-07-17 05:11:14.514",
+    "first_seen_ms": 1752729074514,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 05:11:14.514",
+        "timestamp_ms": 1752729074514,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 05:11:14.514",
+    "last_seen_ms": 1752729074514
+  },
+  "user_d89a70": {
+    "first_seen": "2025-07-17 05:19:31.214",
+    "first_seen_ms": 1752729571214,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 05:19:31.214",
+        "timestamp_ms": 1752729571214,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 05:19:31.214",
+    "last_seen_ms": 1752729571214
+  },
+  "user_82fb26": {
+    "first_seen": "2025-07-17 05:44:09.859",
+    "first_seen_ms": 1752731049859,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 05:44:09.859",
+        "timestamp_ms": 1752731049859,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 05:44:09.859",
+    "last_seen_ms": 1752731049859
+  },
+  "user_32abd9": {
+    "first_seen": "2025-07-17 06:27:04.087",
+    "first_seen_ms": 1752733624087,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 06:27:04.087",
+        "timestamp_ms": 1752733624087,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 06:27:04.087",
+    "last_seen_ms": 1752733624087
+  },
+  "user_2c91c2": {
+    "first_seen": "2025-07-17 06:32:46.624",
+    "first_seen_ms": 1752733966624,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 06:32:46.624",
+        "timestamp_ms": 1752733966624,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 06:32:46.624",
+    "last_seen_ms": 1752733966624
+  },
+  "user_1d1f41": {
+    "first_seen": "2025-07-17 06:56:37.922",
+    "first_seen_ms": 1752735397922,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 06:56:37.922",
+        "timestamp_ms": 1752735397922,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 06:56:37.922",
+    "last_seen_ms": 1752735397922
+  },
+  "user_5612ea": {
+    "first_seen": "2025-07-17 07:29:12.347",
+    "first_seen_ms": 1752737352347,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 07:29:12.347",
+        "timestamp_ms": 1752737352347,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 07:29:12.347",
+    "last_seen_ms": 1752737352347
+  },
+  "user_d6dc54": {
+    "first_seen": "2025-07-17 07:46:32.308",
+    "first_seen_ms": 1752738392308,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 07:46:32.308",
+        "timestamp_ms": 1752738392308,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 07:46:32.308",
+    "last_seen_ms": 1752738392308
+  },
+  "user_573470": {
+    "first_seen": "2025-07-17 07:54:32.197",
+    "first_seen_ms": 1752738872197,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 07:54:32.197",
+        "timestamp_ms": 1752738872197,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 07:54:32.197",
+    "last_seen_ms": 1752738872197
+  },
+  "user_740302": {
+    "first_seen": "2025-07-17 08:13:27.721",
+    "first_seen_ms": 1752740007721,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 08:13:27.721",
+        "timestamp_ms": 1752740007721,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 08:13:27.721",
+    "last_seen_ms": 1752740007721
+  },
+  "user_e9e5c3": {
+    "first_seen": "2025-07-17 08:17:26.850",
+    "first_seen_ms": 1752740246850,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 08:17:26.850",
+        "timestamp_ms": 1752740246850,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 08:17:26.850",
+    "last_seen_ms": 1752740246850
+  },
+  "user_1ccbe5": {
+    "first_seen": "2025-07-17 08:28:42.218",
+    "first_seen_ms": 1752740922218,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 08:28:42.218",
+        "timestamp_ms": 1752740922218,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 08:28:42.218",
+    "last_seen_ms": 1752740922218
+  },
+  "user_3e1ab9": {
+    "first_seen": "2025-07-17 08:41:20.276",
+    "first_seen_ms": 1752741680276,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 08:41:20.276",
+        "timestamp_ms": 1752741680276,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 08:41:20.276",
+    "last_seen_ms": 1752741680276
+  },
+  "user_9a0ddb": {
+    "first_seen": "2025-07-17 08:46:32.684",
+    "first_seen_ms": 1752741992684,
+    "actions": [
+      {
+        "action": "visited_introduction",
+        "timestamp": "2025-07-17 08:46:32.684",
+        "timestamp_ms": 1752741992684,
+        "sequence_number": 1
+      }
+    ],
+    "last_seen": "2025-07-17 08:46:32.684",
+    "last_seen_ms": 1752741992684
+  }
+}

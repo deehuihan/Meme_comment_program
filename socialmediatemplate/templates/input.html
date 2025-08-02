@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social - 登入</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/input.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='S.png') }}">
+    <style>
+        /* 額外樣式，讓等待狀態更明顯 */
+        button:disabled {
+            opacity: 0.7;
+            cursor: wait;
+        }
+        /* 提示訊息樣式 */
+        .notification {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            max-width: 350px;
+            animation: slideIn 0.3s forwards;
+        }
+        .notification.error {
+            border-left: 4px solid #e53935;
+        }
+        .notification.success {
+            border-left: 4px solid #4caf50;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login-form">
+            <div class="logo-section">
+                <h1>social</h1>
+                <p>請輸入您的用戶名稱以繼續</p>
+            </div>
+            
+            <form id="userIdForm">
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="userIdInput" placeholder="請輸入用戶名稱" required>
+                </div>
+                <div class="error-message" id="userIdError"></div>
+                <button type="submit" id="userIdSubmit">開始使用</button>
+            </form>
+            
+
+        </div>
+    </div>
+    
+    <!-- 通知訊息元素 -->
+    <div id="notification" class="notification">
+        <span id="notificationMessage"></span>
+    </div>
+
+    <script>
+        // 顯示通知訊息
+        function showNotification(message, type = 'error') {
+            const notification = document.getElementById('notification');
+            const notificationMessage = document.getElementById('notificationMessage');
+            
+            notification.className = 'notification ' + type;
+            notificationMessage.textContent = message;
+            notification.style.display = 'block';
+            
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 5000);
+        }
+        
+        // Function to log activity to Excel via API
+        function logActivityToExcel(userId, activityType, page, details = '') {
+            fetch('/api/log-activity', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    user_id: userId,
+                    activity_type: activityType,
+                    page: page,
+                    details: details
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log('Activity logged to Excel:', activityType);
+                } else {
+                    console.error('Failed to log activity to Excel:', data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Error logging activity to Excel:', error);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Input page loaded');
+            
+            // 清除之前的用戶數據，確保每次都需要重新輸入
+            localStorage.removeItem('socialUserId');
+            localStorage.removeItem('experimentStartTime');
+            localStorage.removeItem('currentPhase');
+            console.log('Previous user data cleared');
+            
+            const userIdForm = document.getElementById('userIdForm');
+            const userIdInput = document.getElementById('userIdInput');
+            const userIdError = document.getElementById('userIdError');
+            const userIdSubmit = document.getElementById('userIdSubmit');
+            
+            // 使用後端API檢查用戶名
+            async function checkUsernameWithAPI(username) {
+                try {
+                    const response = await fetch('/api/check-username', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ username })
+                    });
+                    
+                    if (!response.ok) {
+                        throw new Error('檢查用戶名失敗');
+                    }
+                    
+                    const data = await response.json();
+                    return data.exists;
+                } catch (error) {
+                    console.error('API檢查錯誤:', error);
+                    return false; // 如果API失敗，假設用戶名沒有被使用
+                }
+            }
+            
+            userIdForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                // 禁用提交按鈕，顯示狀態
+                userIdSubmit.disabled = true;
+                userIdSubmit.textContent = '檢查中...';
+                
+                const userId = userIdInput.value.trim();
+                
+                if (!userId) {
+                    userIdError.textContent = '請輸入用戶名稱';
+                    userIdError.classList.add('show');
+                    userIdSubmit.disabled = false;
+                    userIdSubmit.textContent = '開始使用';
+                    return;
+                }
+                
+                try {
+                    // 修改為使用後端API檢查用戶名，避免權限問題
+                    const usernameExists = await checkUsernameWithAPI(userId);
+                    
+                    if (usernameExists) {
+                        userIdError.textContent = '此用戶名稱已被使用，請選擇其他名稱';
+                        userIdError.classList.add('show');
+                        userIdSubmit.disabled = false;
+                        userIdSubmit.textContent = '開始使用';
+                        return;
+                    }
+                    
+                    // 將用戶資訊儲存到localStorage - 始終執行這一步，即使後面的步驟失敗
+                    localStorage.setItem('socialUserId', userId);
+                    console.log('User ID stored:', userId);
+                    console.log('localStorage after storing:', localStorage.getItem('socialUserId'));
+                    
+                    // Log user registration to Excel
+                    logActivityToExcel(userId, 'user_registration', 'input', 'User created account and logged in');
+                    
+                    // 嘗試註冊，但不阻止繼續
+                    try {
+                        // 使用Firebase Admin SDK透過後端API註冊用戶
+                        const registerResponse = await fetch('/api/register-user', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ username: userId })
+                        });
+                        
+                        if (!registerResponse.ok) {
+                            // 即使API註冊失敗，也繼續後續流程
+                            console.warn('API註冊用戶警告: API返回非200狀態碼');
+                            // 不拋出錯誤，繼續執行
+                        } else {
+                            console.log('User registered successfully via API');
+                        }
+                    } catch (firebaseError) {
+                        console.error('API 註冊用戶錯誤:', firebaseError);
+                        // 顯示警告但繼續
+                        showNotification('無法連接到伺服器，但您仍可以繼續使用。部分功能可能受限。', 'warning');
+                    }
+                    
+                    // 記錄實驗開始時間並設定為觀察者階段
+                    localStorage.setItem('experimentStartTime', new Date().toISOString());
+                    localStorage.setItem('currentPhase', 'receiver');
+                    console.log('Experiment settings stored');
+                    
+                    // 添加小延遲確保所有設置完成後再跳轉
+                    setTimeout(() => {
+                        console.log('Redirecting to receiver with userId:', localStorage.getItem('socialUserId'));
+                        window.location.href = '/receiver';
+                    }, 200);
+                    
+                } catch (error) {
+                    console.error('Error checking or registering user:', error);
+                    userIdError.textContent = '發生錯誤，請重試';
+                    userIdError.classList.add('show');
+                    showNotification('檢查用戶名時發生錯誤: ' + error.message, 'error');
+                    userIdSubmit.disabled = false;
+                    userIdSubmit.textContent = '開始使用';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

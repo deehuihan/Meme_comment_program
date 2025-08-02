@@ -1,0 +1,72 @@
+{
+  "user_id": "user_fe49e2",
+  "file_name": "user_fe49e2",
+  "unix_start_time": 1750866986,
+  "unix_start_time_ms": 1750866986634,
+  "unix_end_time": null,
+  "unix_end_time_ms": null,
+  "age": "18-24",
+  "gender": "female",
+  "user_agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Mobile Safari/537.36",
+  "user_ip": "42.73.45.129",
+  "status": "incomplete",
+  "email_provided": "incomplete",
+  "attention_passed": null,
+  "start_time_readable": "2025-06-25 15:56:26.634",
+  "end_time_readable": null,
+  "total_labels": 0,
+  "emotion_summary": {
+    "anger": 0,
+    "contempt": 0,
+    "disgust": 0,
+    "others": 0
+  },
+  "email": null,
+  "participation": null,
+  "total_responses": 0,
+  "responses": [],
+  "session_start_unix": 1750866986,
+  "session_status": "active",
+  "last_updated_unix": 1750866995,
+  "image_order": [],
+  "completion_status": {
+    "practice_completed": false,
+    "game_started": false,
+    "game_completed": false,
+    "summary_viewed": false,
+    "email_submitted": false
+  },
+  "timestamps_unix": {
+    "registration_completed": 1750866986,
+    "practice_started": 1750866995,
+    "practice_completed": null,
+    "game_started": null,
+    "first_label": null,
+    "last_label": null,
+    "game_completed": null,
+    "summary_viewed": null,
+    "email_submitted": null,
+    "session_end": null,
+    "last_updated": 1750866995
+  },
+  "timestamps_unix_ms": {
+    "registration_completed_ms": 1750866986634,
+    "practice_started_ms": 1750866995089,
+    "practice_completed_ms": null,
+    "game_started_ms": null,
+    "first_label_ms": null,
+    "last_label_ms": null,
+    "game_completed_ms": null,
+    "summary_viewed_ms": null,
+    "email_submitted_ms": null,
+    "session_end_ms": null,
+    "last_updated_ms": 1750866995089
+  },
+  "duration_stats_ms": {
+    "total_session_duration_ms": null,
+    "practice_duration_ms": null,
+    "game_duration_ms": null,
+    "labeling_duration_ms": null,
+    "email_submission_duration_ms": null
+  }
+}

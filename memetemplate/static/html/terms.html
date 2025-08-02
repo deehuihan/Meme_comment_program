@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>Consent form</title>
+    <link rel="stylesheet" href="/static/css/terms.css">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+</head>
+<body>
+
+    <div class="terms-container">
+        <div class="terms-content">
+            <h2>🔍 開始前的注意事項</h2>
+            <p>
+                📢 遊戲裡的貼文是來自社群媒體的真實新聞內容截取 🔍
+            </p>
+            <p>
+                ⚠️ 貼文內容可能涉及<strong>冒犯性語言</strong>或<strong>強烈情緒</strong>表達 💡
+            </p>
+            <p>
+                🧠 請您依直覺判斷留言者透過迷因圖片想表達的情緒是什麼 🙆‍♂️            
+            </p>
+            <p> 
+                ⏰ 遊戲時長大約 7-13 分鐘，如有需要隨時可中止 👍
+            </p>
+            <p>
+                ✅ 若中途退出不影響後續迷因學術研究提供的補償金額 💰
+            </p>
+            
+            <p>
+                🧾 遊戲後，您可以看到自己與其他參與者的選擇結果 ✨
+            </p>
+        
+            <p>
+                📫 若有任何問題，歡迎隨時聯絡<br>
+                負責人：國立陽明交通大學 資訊科學與工程研究所 呂輝翰<br>
+                <a href="mailto:deehuihan.cs11@nycu.edu.tw">deehuihan.cs11@nycu.edu.tw</a> <br>
+                指導教授：國立陽明交通大學 資訊工程學系 張永儒 教授<br>
+                <a href="mailto:armuro@nycu.edu.tw">armuro@nycu.edu.tw</a>
+            </p>
+        </div>
+        <form id="termsForm" method="post" action="{{ url_for('instruction_1') }}">
+            <label>
+                <input type="checkbox" id="acceptCheckbox" name="accept_terms"> 我已閱讀並同意參與
+            </label>
+            <button type="submit" class="accept-button" id="nextPageButton" disabled>進入操作說明</button>
+        </form>
+    </div>
+    <script>
+        // 简化脚本，移除不存在的模态框代码
+        const checkbox = document.getElementById('acceptCheckbox');
+        const nextPageButton = document.getElementById('nextPageButton');
+        
+        // 当复选框状态变化时，更新按钮状态
+        checkbox.addEventListener('change', function() {
+            nextPageButton.disabled = !this.checked;
+        });
+        
+        // 表单提交验证
+        document.getElementById('termsForm').addEventListener('submit', function(event) {
+            if (!checkbox.checked) {
+                event.preventDefault();
+                alert('請先閱讀並勾選');
+            }
+        });
+    </script>
+</body>
+</html>

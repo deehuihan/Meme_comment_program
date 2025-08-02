@@ -1,0 +1,72 @@
+{
+  "user_id": "user_cf37fe",
+  "file_name": "user_cf37fe",
+  "unix_start_time": 1749811198,
+  "unix_start_time_ms": 1749811198685,
+  "unix_end_time": null,
+  "unix_end_time_ms": null,
+  "age": "25-29",
+  "gender": "male",
+  "user_agent": "Mozilla/5.0 (iPad; CPU OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 [FBAN/FBIOS;FBAV/516.0.0.47.97;FBBV/743277063;FBDV/iPad13,16;FBMD/iPad;FBSN/iPadOS;FBSV/18.5;FBSS/2;FBID/tablet;FBLC/zh_TW;FBOP/5;FBRV/747490736]",
+  "user_ip": "49.218.230.182",
+  "status": "incomplete",
+  "email_provided": "incomplete",
+  "attention_passed": null,
+  "start_time_readable": "2025-06-13 10:39:58.685",
+  "end_time_readable": null,
+  "total_labels": 0,
+  "emotion_summary": {
+    "anger": 0,
+    "contempt": 0,
+    "disgust": 0,
+    "others": 0
+  },
+  "email": null,
+  "participation": null,
+  "total_responses": 0,
+  "responses": [],
+  "session_start_unix": 1749811198,
+  "session_status": "active",
+  "last_updated_unix": 1749811258,
+  "image_order": [],
+  "completion_status": {
+    "practice_completed": false,
+    "game_started": false,
+    "game_completed": false,
+    "summary_viewed": false,
+    "email_submitted": false
+  },
+  "timestamps_unix": {
+    "registration_completed": 1749811198,
+    "practice_started": 1749811258,
+    "practice_completed": null,
+    "game_started": null,
+    "first_label": null,
+    "last_label": null,
+    "game_completed": null,
+    "summary_viewed": null,
+    "email_submitted": null,
+    "session_end": null,
+    "last_updated": 1749811258
+  },
+  "timestamps_unix_ms": {
+    "registration_completed_ms": 1749811198685,
+    "practice_started_ms": 1749811258882,
+    "practice_completed_ms": null,
+    "game_started_ms": null,
+    "first_label_ms": null,
+    "last_label_ms": null,
+    "game_completed_ms": null,
+    "summary_viewed_ms": null,
+    "email_submitted_ms": null,
+    "session_end_ms": null,
+    "last_updated_ms": 1749811258882
+  },
+  "duration_stats_ms": {
+    "total_session_duration_ms": null,
+    "practice_duration_ms": null,
+    "game_duration_ms": null,
+    "labeling_duration_ms": null,
+    "email_submission_duration_ms": null
+  }
+}

@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social - 發送者頁面</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sender.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/context-intro.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='s_logo.png') }}">
+</head>
+<body>
+    <div id="page-content-wrapper">
+        <!-- 情境說明區域 -->
+        <div id="context-introduction" class="context-intro">
+            <div class="intro-header">
+                <h2><i class="fas fa-paper-plane"></i> 發送者階段</h2>
+            </div>
+            
+            <div class="intro-content">
+                <div class="scenario-description">
+                    <h3>發送者情境</h3>
+                    <p>想像一下，您幾小時前在社群媒體上發表了一則留言，系統重新審核後偵測到您的留言包含人身攻擊語言，依平台政策，您的留言將被轉換為迷因圖表達。</p>
+                    
+                    <h4>您的任務：</h4>
+                    <ul>
+                        <li>仔細閱讀每則新聞貼文的內容</li>
+                        <li>填寫相關的評價問卷</li>
+                    </ul>
+                </div>
+               
+            </div>
+            
+            <button class="start-posting-btn" id="startPosting">
+                <i class="fas fa-arrow-right"></i>
+                開始選擇迷因圖片
+            </button>
+        </div>
+        
+        <!-- Page label -->        
+        <main class="horizontal-layout" id="main-content" style="display: none;">
+            <!-- 左側：帖文區域 -->
+            <div class="left-content">
+                {% if posts_data %}
+                    {% for post_data in posts_data %}
+                    <div class="post news-post {% if loop.index == 1 %}active{% endif %}" 
+                         data-post-id="{{ post_data.post_id }}" 
+                         data-post-index="{{ loop.index - 1 }}"
+                         style="{% if loop.index != 1 %}display: none;{% endif %}">
+                        <div class="post-header">
+                            <div class="user-avatar small">
+                                <img class="random-avatar news-avatar" data-seed="news{{ loop.index }}" src="" alt="新聞台">
+                            </div>
+                            <div class="post-info">
+                                <h3>新聞台</h3>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            <img class="post-image compact" src="{{ url_for('static', filename='news/' + post_data.news_file) }}" alt="新聞圖片">
+                        </div>
+                        
+                        <div class="post-actions">
+                            <div class="action"><i class="far fa-thumbs-up"></i> 讚</div>
+                            <div class="action"><i class="far fa-comment"></i> 留言</div>
+                            <div class="action"><i class="fas fa-share"></i> 分享</div>
+                        </div>
+                        
+                        <!-- 留言區域放在按鈕下方 -->
+                        <div class="comments-section">
+                            <div class="comment">
+                                <div class="user-avatar xsmall">
+                                    <img class="random-avatar" data-seed="commenter{{ loop.index }}" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-author">你</div>
+                                    <div class="comment-text">{{ post_data.comment }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="post">
+                        <div class="post-content">
+                            <p>目前沒有新聞貼文。請將圖片放入 static/news 資料夾。</p>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- 右側：互動區域 -->
+            <div class="right-content">
+                {% if posts_data %}
+                    {% for post_data in posts_data %}
+                    <div class="interaction-panel {% if loop.index == 1 %}active{% endif %}" 
+                         data-post-index="{{ loop.index - 1 }}"
+                         style="{% if loop.index != 1 %}display: none;{% endif %}">
+                        
+                        <!-- 人身攻擊檢測警告 -->
+                        <div class="attack-detection-alert">
+                            <div class="alert-content">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <span>檢測到人身攻擊留言，建議轉換為迷因圖</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Meme推薦選擇區域 -->
+                        <div class="meme-recommendation-section">
+                            <div class="meme-grid">
+                                {% for meme in post_data.recommended_memes %}
+                                <div class="meme-option" data-meme-name="{{ meme.name }}" data-meme-url="{{ url_for('static', filename='meme_50/' + meme.filename) }}">
+                                    <img src="{{ url_for('static', filename='meme_50/' + meme.filename) }}" alt="{{ meme.name }}">
+                                </div>
+                                {% endfor %}
+                            </div>
+                            
+                            <!-- 確認按鈕 -->
+                            <div class="confirm-section" style="display: none;">
+                                <button class="confirm-meme-btn" data-post-id="{{ post_data.original_post_id }}">
+                                    確認選擇並發送留言
+                                </button>
+                            </div>
+                            
+                            <!-- 已選擇的迷因顯示區域 -->
+                            <div class="selected-meme-area" style="display: none;">
+                                <div class="selected-meme-container">
+                                    <div class="meme-actions">
+                                        <button class="edit-meme-btn">重新選擇迷因</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 問卷調查區域 - 選擇迷因後顯示 -->
+                        <div class="survey-section" data-post-id="{{ post_data.original_post_id }}" style="display: none;">
+                            <div class="survey-header">
+                                <h4>請評價您選擇的迷因圖</h4>
+                            </div>
+                            
+                            <div class="survey-questions">
+                                <!-- Q1 -->
+                                <div class="question-group">
+                                    <div class="question-text">
+                                        這個迷因圖是否充分表達了你想傳達的情緒？
+                                    </div>
+                                    <div class="scale-container">
+                                        <div class="scale-labels">
+                                            <span class="scale-label">1-完全沒有表達到</span>
+                                            <span class="scale-label">7-完全表達到</span>
+                                        </div>
+                                        <div class="scale-controls">
+                                            <input type="range" class="likert-scale" min="1" max="7" value="4" data-question="q1">
+                                            <div class="scale-value">4</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Q2 -->
+                                <div class="question-group">
+                                    <div class="question-text">
+                                        這個迷因圖保留了你多少原本想表達的情緒強度？
+                                    </div>
+                                    <div class="scale-container">
+                                        <div class="scale-labels">
+                                            <span class="scale-label">1-完全沒保留</span>
+                                            <span class="scale-label">7-完全保留</span>
+                                        </div>
+                                        <div class="scale-controls">
+                                            <input type="range" class="likert-scale" min="1" max="7" value="4" data-question="q2">
+                                            <div class="scale-value">4</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Q3 -->
+                                <div class="question-group">
+                                    <div class="question-text">
+                                        你是否接受自己的留言被轉換成這個迷因圖？
+                                    </div>
+                                    <div class="scale-container">
+                                        <div class="scale-labels">
+                                            <span class="scale-label">1-完全不接受</span>
+                                            <span class="scale-label">7-完全接受</span>
+                                        </div>
+                                        <div class="scale-controls">
+                                            <input type="range" class="likert-scale" min="1" max="7" value="4" data-question="q3">
+                                            <div class="scale-value">4</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 提交按鈕 -->
+                            <div class="survey-submit">
+                                <button class="submit-survey-btn">提交</button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </main>
+        
+        <!-- 底部導航圓點 -->
+        {% if posts_data %}
+        <div class="post-navigation">
+            <div class="nav-dots">
+                {% for post_data in posts_data %}
+                <div class="nav-dot {% if loop.index == 1 %}active{% endif %}" 
+                     data-post-index="{{ loop.index - 1 }}"
+                     title="新聞 {{ loop.index }}">
+                    <span class="dot-number">{{ loop.index }}</span>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="nav-progress">
+                <span class="current-post">1</span> / <span class="total-posts">{{ posts_data|length }}</span>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <script src="{{ url_for('static', filename='js/sender.js') }}"></script>
+    
+    <!-- Meme選擇交互功能 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 檢查用戶是否已登錄
+            const username = localStorage.getItem('socialUserId');
+            console.log('Sender page loaded, username:', username);
+            
+            if (!username) {
+                // No username, redirect to input page
+                console.log('No username found, redirecting to input');
+                window.location.href = '/';
+                return;
+            }
+            
+            console.log('User authenticated, showing sender content');
+            
+            // 導航功能初始化
+            let currentPostIndex = 0;
+            const totalPosts = {{ posts_data|length if posts_data else 0 }};
+            const completedPosts = new Set();
+            let hasShownCompletionAlert = false; // 記錄是否已經顯示過完成alert
+            
+            // 初始化顯示第一篇帖文
+            function initializeNavigation() {
+                showPost(0);
+                updateNavigationDots();
+            }
+            
+            // 顯示指定帖文
+            function showPost(index) {
+                // 隱藏所有帖文
+                document.querySelectorAll('.post').forEach(post => {
+                    post.classList.remove('active');
+                    post.style.display = 'none';
+                });
+                
+                // 隱藏所有互動面板
+                document.querySelectorAll('.interaction-panel').forEach(panel => {
+                    panel.classList.remove('active');
+                    panel.style.display = 'none';
+                });
+                
+                // 顯示指定帖文（根據data-post-index屬性）
+                const currentPost = document.querySelector(`.post[data-post-index="${index}"]`);
+                const currentPanel = document.querySelector(`.interaction-panel[data-post-index="${index}"]`);
+                
+                if (currentPost) {
+                    currentPost.classList.add('active');
+                    currentPost.style.display = 'block';
+                    currentPostIndex = index;
+                }
+                
+                if (currentPanel) {
+                    currentPanel.classList.add('active');
+                    currentPanel.style.display = 'block';
+                }
+                
+                updateNavigationDots();
+            }
+            
+            // 更新導航點狀態
+            function updateNavigationDots() {
+                const dots = document.querySelectorAll('.nav-dot');
+                dots.forEach((dot, index) => {
+                    dot.classList.remove('active');
+                    
+                    if (index === currentPostIndex) {
+                        dot.classList.add('active');
+                    }
+                    
+                    if (completedPosts.has(index)) {
+                        dot.classList.add('completed');
+                    }
+                });
+                
+                // 更新進度顯示
+                const progressText = document.querySelector('.nav-progress .current-post');
+                if (progressText) {
+                    progressText.textContent = currentPostIndex + 1;
+                }
+            }
+            
+            // 移除導航點點擊事件 - 只作為進度指示器，不允許跳轉
+            // 導航點現在純粹用於顯示進度，不響應點擊
+            
+            // 標記當前帖文為已完成並移到下一個
+            function completeCurrentPost() {
+                completedPosts.add(currentPostIndex);
+                
+                // 自動移到下一個未完成的帖文
+                const nextPost = findNextIncompletePost();
+                if (nextPost !== -1) {
+                    showPost(nextPost);
+                } else {
+                    // 所有帖文完成 - 只在第一次完成時顯示alert並結束實驗
+                    if (!hasShownCompletionAlert) {
+                        hasShownCompletionAlert = true;
+                        
+                        // 記錄實驗完成時間
+                        localStorage.setItem('experimentCompleted', new Date().toISOString());
+                        localStorage.setItem('senderPhaseCompleted', new Date().toISOString());
+                        
+                        alert('恭喜！您已完成整個實驗。感謝您的參與！');
+                        
+                        // 實驗結束後清除所有數據並回到登入頁面
+                        setTimeout(() => {
+                            alert('實驗已完成！感謝您的參與。');
+                            // 清除所有數據
+                            localStorage.clear();
+                            // 跳轉回登入頁面
+                            window.location.href = '/';
+                        }, 2000);
+                    }
+                }
+            }
+            
+            // 找到下一個未完成的帖文
+            function findNextIncompletePost() {
+                for (let i = 0; i < totalPosts; i++) {
+                    if (!completedPosts.has(i)) {
+                        return i;
+                    }
+                }
+                return -1; // 全部完成
+            }
+            
+            // 初始化導航
+            initializeNavigation();
+            
+            // 在頁面載入時保存原始留言內容
+            document.querySelectorAll('.post[data-post-index]').forEach(post => {
+                const commentText = post.querySelector('.comment-text');
+                if (commentText) {
+                    post.dataset.originalComment = commentText.textContent;
+                }
+            });
+            
+            // 為每個Meme選項添加點擊事件
+            const memeOptions = document.querySelectorAll('.meme-option');
+            
+            memeOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // 移除同一個帖文中其他meme的選中狀態
+                    const parent = this.closest('.meme-recommendation-section');
+                    const siblingOptions = parent.querySelectorAll('.meme-option');
+                    siblingOptions.forEach(sibling => {
+                        sibling.classList.remove('selected');
+                    });
+                    
+                    // 為當前選中的meme添加選中狀態
+                    this.classList.add('selected');
+                    
+                    // 顯示確認按鈕
+                    const confirmSection = parent.querySelector('.confirm-section');
+                    confirmSection.style.display = 'block';
+                    
+                    // 獲取選中的meme信息
+                    const memeName = this.dataset.memeName;
+                    const memeUrl = this.dataset.memeUrl;
+                    
+                    // 儲存選中的meme信息到確認按鈕
+                    const confirmBtn = confirmSection.querySelector('.confirm-meme-btn');
+                    confirmBtn.dataset.selectedMeme = memeName;
+                    confirmBtn.dataset.selectedMemeUrl = memeUrl;
+                    
+                    console.log('選中的Meme:', memeName);
+                });
+            });
+            
+            // 確認按鈕點擊事件
+            const confirmButtons = document.querySelectorAll('.confirm-meme-btn');
+            confirmButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const postId = this.dataset.postId;
+                    const selectedMeme = this.dataset.selectedMeme;
+                    const selectedMemeUrl = this.dataset.selectedMemeUrl;
+                    
+                    console.log('確認選擇:', selectedMeme, 'for post:', postId);
+                    
+                    // 隱藏確認按鈕區域
+                    const confirmSection = this.closest('.confirm-section');
+                    confirmSection.style.display = 'none';
+                    
+                    // 隱藏Meme網格選擇區域
+                    const memeSection = this.closest('.meme-recommendation-section');
+                    const memeGrid = memeSection.querySelector('.meme-grid');
+                    memeGrid.style.display = 'none';
+                    
+                    // 顯示已選擇的迷因區域（只顯示重新選擇按鈕）
+                    const selectedMemeArea = memeSection.querySelector('.selected-meme-area');
+                    selectedMemeArea.style.display = 'block';
+                    
+                    // 將留言區域的文本替換為Meme圖片（現在在左側新聞下方）
+                    const interactionPanel = this.closest('.interaction-panel');
+                    const postIndex = interactionPanel.dataset.postIndex;
+                    const postContainer = document.querySelector(`.post[data-post-index="${postIndex}"]`);
+                    
+                    if (postContainer) {
+                        const commentSection = postContainer.querySelector('.comments-section');
+                        const commentText = commentSection.querySelector('.comment-text');
+                        commentText.innerHTML = `<img src="${selectedMemeUrl}" alt="${selectedMeme}" style="max-width: 150px; border-radius: 6px;">`;
+                    }
+                    
+                    // 顯示問卷調查區域
+                    const surveySection = interactionPanel.querySelector('.survey-section');
+                    surveySection.style.display = 'block';
+                    
+                    // 更新問卷中選中的Meme顯示（如果存在這些元素）
+                    const selectedMemeImg = surveySection.querySelector('.selected-meme-img');
+                    const selectedMemeName = surveySection.querySelector('.selected-meme-name');
+                    if (selectedMemeImg) {
+                        selectedMemeImg.src = selectedMemeUrl;
+                    }
+                    if (selectedMemeName) {
+                        selectedMemeName.textContent = selectedMeme;
+                    }
+                });
+            });
+            
+            // 重新選擇迷因按鈕事件（使用事件委託）
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('edit-meme-btn')) {
+                    const memeSection = e.target.closest('.meme-recommendation-section');
+                    const interactionPanel = e.target.closest('.interaction-panel');
+                    const postIndex = interactionPanel.dataset.postIndex;
+                    const postContainer = document.querySelector(`.post[data-post-index="${postIndex}"]`);
+                    
+                    // 隱藏已選擇的迷因區域
+                    const selectedMemeArea = memeSection.querySelector('.selected-meme-area');
+                    selectedMemeArea.style.display = 'none';
+                    
+                    // 顯示Meme網格選擇區域
+                    const memeGrid = memeSection.querySelector('.meme-grid');
+                    memeGrid.style.display = 'grid';
+                    
+                    // 清除所有選中狀態
+                    const memeOptions = memeSection.querySelectorAll('.meme-option');
+                    memeOptions.forEach(option => {
+                        option.classList.remove('selected');
+                    });
+                    
+                    // 隱藏確認按鈕
+                    const confirmSection = memeSection.querySelector('.confirm-section');
+                    confirmSection.style.display = 'none';
+                    
+                    // 隱藏問卷區域，讓用戶重新選擇迷因
+                    const surveySection = interactionPanel.querySelector('.survey-section');
+                    surveySection.style.display = 'none';
+                    
+                    // 恢復原始留言文本（現在在左側新聞下方）
+                    if (postContainer) {
+                        const commentSection = postContainer.querySelector('.comments-section');
+                        const commentText = commentSection.querySelector('.comment-text');
+                        const originalComment = postContainer.dataset.originalComment || '原始留言內容';
+                        commentText.textContent = originalComment;
+                    }
+                    
+                    console.log('重新選擇迷因模式啟動');
+                }
+            });
+            
+            // 移除之前的靜態事件綁定程式碼
+            
+            // Likert量表滑動事件
+            const likertScales = document.querySelectorAll('.likert-scale');
+            likertScales.forEach(scale => {
+                scale.addEventListener('input', function() {
+                    const value = this.value;
+                    const valueDisplay = this.parentElement.querySelector('.scale-value');
+                    valueDisplay.textContent = value;
+                });
+            });
+            
+            // 提交問卷按鈕
+            const submitButtons = document.querySelectorAll('.submit-survey-btn');
+            submitButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const surveySection = this.closest('.survey-section');
+                    const postId = surveySection.dataset.postId;
+                    const scales = surveySection.querySelectorAll('.likert-scale');
+                    
+                    // 獲取選中的Meme信息 - 從全局變量或者選中的迷因選項
+                    const interactionPanel = surveySection.closest('.interaction-panel');
+                    // 尋找當前選中的迷因選項
+                    const selectedMemeOption = interactionPanel.querySelector('.meme-option.selected');
+                    const selectedMemeName = selectedMemeOption ? selectedMemeOption.querySelector('img').alt : 'Unknown Meme';
+                    
+                    // 收集問卷數據
+                    const surveyData = {
+                        postId: postId,
+                        selectedMeme: selectedMemeName,
+                        responses: {}
+                    };
+                    
+                    scales.forEach(scale => {
+                        const question = scale.dataset.question;
+                        const value = scale.value;
+                        surveyData.responses[question] = parseInt(value);
+                    });
+                    
+                    console.log('準備提交問卷數據:', surveyData);
+                    
+                    // 禁用提交按鈕防止重複提交
+                    btn.disabled = true;
+                    btn.textContent = '提交中...';
+                    
+                    // 準備API數據格式
+                    const questionnaireScores = {};
+                    
+                    // 動態轉換問卷分數格式 (q1 -> Q1, q2 -> Q2, etc.)
+                    for (const [questionId, score] of Object.entries(surveyData.responses)) {
+                        const questionKey = questionId.toUpperCase(); // Convert "q1" to "Q1"
+                        questionnaireScores[questionKey] = score;
+                    }
+                    
+                    const apiData = {
+                        userId: localStorage.getItem('socialUserId'),
+                        postId: surveyData.postId,
+                        selectedMemeName: surveyData.selectedMeme,
+                        questionnaireScores: questionnaireScores
+                    };
+                    
+                    // 提交數據到後端
+                    fetch('/api/record-sender-data', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(apiData)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            console.log('問卷提交成功:', data);
+                            
+                            // 直接標記完成並移到下一篇，不顯示alert
+                            completeCurrentPost();
+                        } else {
+                            alert('提交失敗: ' + data.message);
+                            console.error('問卷提交失敗:', data);
+                            // 重新啟用按鈕
+                            btn.disabled = false;
+                            btn.textContent = '提交';
+                            return;
+                        }
+                    })
+                    .catch(error => {
+                        console.error('提交問卷時發生錯誤:', error);
+                        alert('提交時發生錯誤，請稍後重試。');
+                        // 重新啟用按鈕
+                        btn.disabled = false;
+                        btn.textContent = '提交';
+                        return;
+                    });
+                    
+                    // 隱藏問卷區域
+                    surveySection.style.display = 'none';
+                });
+            });
+            
+            // 跳過問卷按鈕
+            const skipButtons = document.querySelectorAll('.skip-survey-btn');
+            skipButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const surveySection = this.closest('.survey-section');
+                    surveySection.style.display = 'none';
+                    console.log('用戶跳過了問卷');
+                    
+                    // 跳過後也移到下一篇
+                    completeCurrentPost();
+                });
+            });
+        });
+    </script>
+</body>
+</html>

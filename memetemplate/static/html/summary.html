@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Result</title>
+    <link rel="stylesheet" href="/static/css/summary.css">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+</head>
+<body>
+
+
+    <div class="result-container">
+        <h1>🎉 遊戲完成！ </h1>
+        <!-- <div class="personality-image-container">
+            <img class="personality-image" src="/static/picture/{{personality_animal}}.png">
+        </div> -->
+        <div class="personality-result">
+            <h2>結果分析: <span id="personalityType" class="highlight-personality">{{personality_description}}</span></h2>    
+            <p>（點擊情緒標籤篩選圖片，點擊圖片查看詳細資訊）</p>
+        </div>
+        
+        <div class="performance-summary">
+            <div class="emotion-legend">
+                <div class="legend-item" data-filter="all">
+                    <span class="color-swatch all"></span>
+                    <span class="legend-text">全部</span>
+                </div>
+                {% if user_percentages is defined %}
+                <div class="legend-item" data-filter="輕蔑">
+                    <span class="color-swatch contempt"></span>
+                    <span class="legend-text">輕蔑 {{ user_percentages['輕蔑'] }}%</span>
+                </div>
+                <div class="legend-item" data-filter="憤怒">
+                    <span class="color-swatch anger"></span>
+                    <span class="legend-text">憤怒 {{ user_percentages['憤怒'] }}%</span>
+                </div>
+                <div class="legend-item" data-filter="厭惡">
+                    <span class="color-swatch disgust"></span>
+                    <span class="legend-text">厭惡 {{ user_percentages['厭惡'] }}%</span>
+                </div>
+                <div class="legend-item" data-filter="其他">
+                    <span class="color-swatch others"></span>
+                    <span class="legend-text">其他 {{ user_percentages['其他'] }}%</span>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        
+        <div class="analysis-table">
+            {% if all_items|length > 0 %}
+            <div class="image-grid">
+                {% for item in all_items %}
+                <div class="image-item" data-emotion="{{ item.choice }}">
+                    <span class="image-number">{{ loop.index }}</span>
+                    <div class="image-thumbnail-container">
+                        <img src="/summary/images/{{ item.image }}" alt="迷因" class="thumbnail" onclick="openModal(this, '{{ item.choice }}')">
+                        <div class="emotion-overlay emotion-{{ item.choice|emotion_class }}"></div>
+                    </div>
+                    <!-- Progress bars are now hidden by default and shown in the modal -->
+                    <div class="progress-bar-container" style="display:none;">
+                        {% for option in ['輕蔑', '憤怒', '厭惡', '其他'] %}
+                        <div class="progress-bar-wrapper {{ option|emotion_class }}-bar {% if item.choice == option %}user-choice-wrapper{% endif %}">
+                            <div class="progress-bar" style="width: {{ item.percentages[option] }}%;"></div>
+                            <div class="progress-bar-text">
+                                {{ option }} {% if item.choice == option %}{% endif %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+                <p class="no-data">目前沒有可供分析的圖片數據。</p>
+            {% endif %}
+        </div>
+        
+        
+        <div class="footer">
+            <div class="lottery-section">
+                <div class="lottery-header">
+                    <h2>🎁 抽獎活動</h2>
+                </div>
+                
+                <div class="lottery-content">
+                    <p>非常感謝您的參與！我們準備了 50 份 7-Eleven 100 元數位商品禮券作為回饋。<br>
+                    留下 Email 並點擊「完成」就有機會中獎！（Email 僅用於聯絡中獎資訊，不作其他用途）<br>
+                    
+                    <p>
+                        若有任何問題，歡迎隨時聯絡<br>
+                        負責人：國立陽明交通大學 資訊科學與工程研究所 呂輝翰<br>
+                        <a href="mailto:deehuihan.cs11@nycu.edu.tw">deehuihan.cs11@nycu.edu.tw</a> <br>
+                        指導教授：國立陽明交通大學 資訊工程學系 張永儒 教授<br>
+                        <a href="mailto:armuro@nycu.edu.tw">armuro@nycu.edu.tw</a>
+                    </p>  
+                    
+                    <div class="email-container">
+                        <form id="email-form" action="{{ url_for('save_email', player_name=player_name) }}" method="post">
+                            <div class="input-group">
+                                <div class="input-icon">✉️</div>
+                                <input type="email" id="email-input" name="email" placeholder="您的 Email" required>
+                            </div>
+                            
+                            <div class="participation-container">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="participation-checkbox" name="participation" value="yes">
+                                    <span class="custom-checkbox"></span>
+                                    <span>若您對後續的迷因學術研究感興趣，我們將透過您提供的 Email 與您聯繫。</span>
+                                </label>
+                                <input type="hidden" name="participation" value="no">
+                            </div>
+
+                            <button type="submit" class="submit-button">完成</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Modal for image zoom with progress bars -->
+    <div id="imageModal" class="image-modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-content-container">
+            <div class="modal-image-container">
+                <img class="modal-content" id="modalImage">
+            </div>
+            <div class="modal-progress-container" id="modalProgress">
+                <div class="progress-bars-title">
+                    <div class="progress-title-main">大家的選擇</div>
+                    <div class="progress-title-subtitle">每個長條代表了不同觀點的比例，框起來的是您的選擇</div>
+                    <div class="progress-legend">
+                        <span class="mini-swatch contempt"></span>
+                        <span class="mini-swatch anger"></span>
+                        <span class="mini-swatch disgust"></span>
+                        <span class="mini-swatch others"></span>
+                    </div>
+                </div>
+                <!-- Progress bars will be added here dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Email Submission Popup -->
+    <div id="emailPopup" class="email-popup">
+        <div class="email-popup-content">
+            <p>感謝您的參與！</p>
+            <div class="popup-buttons">
+                <button onclick="closePopup()">確定</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script>
+        // Remove the toggleBlock function since we're not using collapsible blocks anymore
+        
+        function openModal(imgElement, userChoice) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const modalProgress = document.getElementById('modalProgress');
+            
+            // Get the image item element (parent of the clicked image)
+            const imageItem = imgElement.closest('.image-item');
+            
+            // Get the progress bar container from the image item
+            const progressContainer = imageItem.querySelector('.progress-bar-container');
+            
+            // Clear previous content except the title
+            const progressTitle = modalProgress.querySelector('.progress-bars-title');
+            modalProgress.innerHTML = '';
+            modalProgress.appendChild(progressTitle);
+            
+            // Clone the progress bar container and add it to the modal
+            if (progressContainer) {
+                const clone = progressContainer.cloneNode(true);
+                clone.style.display = 'block';
+                modalProgress.appendChild(clone);
+            }
+            
+            modal.style.display = 'flex';
+            modalImg.src = imgElement.src;
+        }
+    
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+        }
+    
+        document.getElementById('email-form').addEventListener('submit', function(e) {
+            e.preventDefault(); // 阻止默认表单提交行为
+        
+            const formData = new FormData(this);
+        
+            // 使用 fetch 提交表单
+            fetch(this.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    // 显示弹出框
+                    document.getElementById('emailPopup').style.display = 'flex';
+                } else {
+                    // 处理错误
+                    alert('提交失败，请重试');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('提交失败，请重试');
+            });
+        });
+    
+        // 關閉彈出框並跳轉到 terms.html
+        function closePopup() {
+            document.getElementById('emailPopup').style.display = 'none';
+            window.location.href = '/'; // 跳轉到 terms.html
+        }
+    
+        // Filter images by emotion
+        document.querySelectorAll('.legend-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const filter = this.getAttribute('data-filter');
+                
+                // Remove active class from all legend items
+                document.querySelectorAll('.legend-item').forEach(el => {
+                    el.classList.remove('active');
+                });
+                
+                // Add active class to clicked item
+                this.classList.add('active');
+                
+                // Filter the image grid
+                const imageItems = document.querySelectorAll('.image-item');
+                imageItems.forEach(img => {
+                    if (filter === 'all' || img.getAttribute('data-emotion') === filter) {
+                        img.style.display = '';
+                    } else {
+                        img.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Initialize with "all" selected
+        document.querySelector('.legend-item[data-filter="all"]').classList.add('active');
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM已加載，準備綁定分享按鈕事件');
+            
+            // 獲取分享按鈕元素
+            const shareBtn = document.getElementById('shareResultsBtn');
+            
+            // 檢查按鈕元素是否存在
+            if (shareBtn) {
+                console.log('成功找到分享按鈕元素');
+                
+                // 綁定點擊事件
+                shareBtn.addEventListener('click', function() {
+                    console.log('分享按鈕被點擊');
+                    const shareUrl = `${window.location.origin}`;
+                    console.log('準備複製連結:', shareUrl);
+                    
+                    try {
+                        navigator.clipboard.writeText(shareUrl)
+                            .then(() => {
+                                console.log('複製成功');
+                                // 確保modalSuccess函數存在
+                                showCopySuccessModal('已複製遊戲連結！將此連結分享給朋友即可開始遊戲');
+                            })
+                            .catch(err => {
+                                console.error('複製失敗: ', err);
+                                // 使用備用複製方法
+                                fallbackCopyTextToClipboard(shareUrl);
+                            });
+                    } catch (err) {
+                        console.error('複製出錯: ', err);
+                        fallbackCopyTextToClipboard(shareUrl);
+                    }
+                });
+            } else {
+                console.error('未找到ID為shareResultsBtn的按鈕元素');
+            }
+        });
+        
+        function fallbackCopyTextToClipboard(text) {
+            console.log('使用備用複製方法');
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            
+            textArea.style.position = "fixed";
+            textArea.style.top = "0";
+            textArea.style.left = "0";
+            textArea.style.width = "2em";
+            textArea.style.height = "2em";
+            textArea.style.padding = "0";
+            textArea.style.border = "none";
+            textArea.style.outline = "none";
+            textArea.style.boxShadow = "none";
+            textArea.style.background = "transparent";
+            
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    console.log('備用複製方法成功');
+                    showCopySuccessModal('✅ 已複製遊戲連結！\n\n請分享給朋友一起來玩 🎮');
+                } else {
+                    console.error('備用複製方法失敗');
+                    prompt('請手動複製以下內容分享給朋友：', text);
+                }
+            } catch (err) {
+                console.error('備用複製方法出錯', err);
+                prompt('請手動複製以下內容分享給朋友：', text);
+            }
+            
+            document.body.removeChild(textArea);
+        }
+
+        // 确保showCopySuccessModal函数正确定义
+        function showCopySuccessModal(message) {
+            console.log('顯示成功消息:', message);
+            let successModal = document.getElementById('copySuccessModal');
+            
+            if (!successModal) {
+                successModal = document.createElement('div');
+                successModal.id = 'copySuccessModal';
+                successModal.className = 'copy-success-modal';
+                successModal.innerHTML = `<div class="copy-success-content">${message}</div>`;
+                document.body.appendChild(successModal);
+            } else {
+                successModal.querySelector('.copy-success-content').textContent = message;
+            }
+            
+            successModal.style.display = 'flex';
+            
+            setTimeout(() => {
+                successModal.style.opacity = '0';
+                setTimeout(() => {
+                    successModal.style.display = 'none';
+                    successModal.style.opacity = '1';
+                }, 300);
+            }, 2000);
+        }
+        
+    </script>
+
+    {% if error_message %}
+    <div class="error-message">
+        {{ error_message }}
+    </div>
+    {% else %}
+        <!-- existing summary content -->
+    {% endif %}
+</body>
+</html>
+
+<!-- Add a dedicated Copy Success Modal at the end of the body -->
+<div id="copySuccessModal" class="copy-success-modal" style="display: none;">
+    <div class="copy-success-content">複製鏈接成功！</div>
+</div>
+
+
+

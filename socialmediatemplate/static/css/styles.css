@@ -1,0 +1,1179 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Microsoft JhengHei', 'PMingLiU', 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f0f2f5;
+    color: #1c1e21;
+}
+
+header {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 15px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo h1 {
+    color: #1877f2;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    background-color: #f0f2f5;
+    border-radius: 20px;
+    padding: 8px 15px;
+    width: 240px;
+}
+
+.search input {
+    border: none;
+    background: none;
+    outline: none;
+    width: 100%;
+    margin-right: 8px;
+}
+
+.search i {
+    color: #65676b;
+}
+
+.nav-icons {
+    display: flex;
+    align-items: center;
+}
+
+.nav-icons i {
+    margin: 0 12px;
+    font-size: 20px;
+    color: #65676b;
+    cursor: pointer;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #e4e6eb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.user-avatar.small { width: 40px; height: 40px; }
+.user-avatar.xsmall { width: 30px; height: 30px; }
+
+.user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background-color: #f0f2f5;
+    position: relative;
+    z-index: 1;
+}
+
+.user-avatar::before {
+    content: "\f007";
+    font-family: "Font Awesome 5 Free";
+    color: #BCC0C4;
+    font-size: 18px;
+    position: absolute;
+    z-index: 0;
+}
+
+.user-avatar.xsmall::before { font-size: 14px; }
+.user-avatar img::before { content: none; }
+
+.news-avatar {
+    border: 2px solid #e53935 ;
+    box-shadow: 0 0 0 1px rgba(229, 57, 53, 0.3);
+    background-color: #ffebee ;
+}
+
+.news-badge {
+    position: absolute;
+    bottom: -3px;
+    right: -3px;
+    background-color: #e53935;
+    color: white;
+    font-size: 8px;
+    padding: 1px 4px;
+    border-radius: 4px;
+    z-index: 2;
+    font-weight: bold;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+main {
+    display: flex;
+    max-width: 1280px;
+    margin: 0 auto;
+    gap: 20px;
+    padding: 20px 0;
+    min-height: calc(100vh - 60px);
+}
+
+.left-sidebar {
+    flex: 0 0 280px;
+    padding: 20px 0;
+    height: fit-content;
+    position: sticky;
+    top: 80px;
+}
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-bottom: 4px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #050505;
+}
+
+.sidebar-item:hover {
+    background-color: #f0f2f5;
+}
+
+.sidebar-item i {
+    margin-right: 12px;
+    font-size: 20px;
+    color: #1877f2;
+    width: 20px;
+    text-align: center;
+}
+
+.center-content {
+    flex: 1;
+    max-width: 700px; /* 從600px增加到700px，給長寬內容更多空間 */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 0 15px;
+    /* 確保內容區域能適應不同尺寸的帖文 */
+    overflow: visible;
+    word-wrap: break-word;
+}
+
+.create-post {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.post-input {
+    display: flex;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e4e6eb;
+}
+
+.post-input input {
+    margin-left: 10px;
+    padding: 10px;
+    border: none;
+    background-color: #f0f2f5;
+    border-radius: 20px;
+    flex: 1;
+}
+
+.post-actions {
+    display: flex;
+    justify-content: space-around;
+    border-top: 1px solid #e4e6eb;
+    padding: 8px 0;
+    margin: 0 15px;
+}
+
+.action {
+    display: flex;
+    align-items: center;
+    color: #65676b;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 8px 12px;
+    justify-content: center;
+    border-radius: 6px;
+    flex: 1;
+    transition: background-color 0.2s ease;
+}
+
+.action i {
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+.action:hover {
+    background-color: #f0f2f5;
+}
+
+.add-comment .comment-input:not(.news-input-disabled) {
+    pointer-events: auto ; 
+    cursor: text ;
+    background-color: #f0f2f5; 
+}
+
+.add-comment .comment-submit:not(.disabled) {
+    pointer-events: auto ;
+    cursor: pointer ;
+}
+
+.add-comment .comment-input:not(.news-input-disabled):focus {
+    outline: 2px solid rgba(24, 119, 242, 0.3);
+    background-color: #ffffff;
+}
+
+.disabled {
+    opacity: 0.8;
+    cursor: default ;
+}
+
+.news-input-disabled {
+    pointer-events: auto ;
+    background-color: #f8f8f8 ;
+    color: #aaa ;
+    cursor: not-allowed ;
+}
+
+.action:hover, .sidebar-item:hover {
+    background-color: #f0f2f5;
+    border-radius: 5px;
+    opacity: 0.8;
+}
+
+.comment-input, .post-input input {
+    pointer-events: auto;
+    cursor: text;
+}
+
+.comment-submit {
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.add-comment .comment-input:not(.news-input-disabled) {
+    pointer-events: auto ;
+    cursor: text ;
+    background-color: #f0f2f5 ;
+}
+
+.add-comment .comment-submit:not(.disabled) {
+    pointer-events: auto ;
+    cursor: pointer ;
+}
+
+.news-input-disabled {
+    pointer-events: none ;
+    background-color: #f8f8f8 ;
+    color: #aaa ;
+    cursor: not-allowed ;
+}
+
+.post {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    padding: 0;
+    margin-bottom: 15px;
+    overflow: visible; /* 改為visible讓內容完整顯示 */
+    /* 確保帖文容器能適應內容 */
+    height: auto;
+    min-height: fit-content;
+    word-wrap: break-word; /* 處理長文字 */
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    padding: 15px 15px 10px 15px;
+    margin-bottom: 0;
+}
+
+.post-info {
+    margin-left: 10px;
+    flex: 1;
+}
+
+.post-info h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 2px;
+    color: #050505;
+}
+
+.post-time {
+    font-size: 13px;
+    color: #65676b;
+}
+
+.post-content {
+    margin-bottom: 0;
+    padding: 0 15px 15px 15px;
+    /* 確保內容能完整顯示 */
+    overflow: visible;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.post-content p {
+    margin-bottom: 15px;
+    line-height: 1.33;
+    font-size: 15px;
+    color: #050505;
+    /* 確保長文字能正確換行 */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap; /* 保持原有的換行和空格 */
+}
+
+.post-content img {
+    width: 100%;
+    height: auto;
+    max-height: none; /* 移除高度限制，讓圖片完整顯示 */
+    object-fit: contain; /* 改為contain確保完整顯示內容 */
+    border-radius: 8px;
+    display: block;
+    margin: 10px 0;
+    /* 確保長圖片能完整顯示 */
+    max-width: 100%;
+}
+
+.post-stats {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #e4e6eb;
+    color: #65676b;
+    font-size: 14px;
+}
+
+.post-stats.hidden {
+    display: none ;
+}
+
+.comments-section {
+    padding: 0 15px 15px 15px;
+    margin-top: 0;
+}
+
+.comments-list {
+    margin-bottom: 15px;
+}
+
+.comment {
+    display: flex;
+    margin-bottom: 12px;
+    align-items: flex-start;
+}
+
+.comment-content {
+    margin-left: 8px;
+    background-color: #f0f2f5;
+    padding: 8px 12px;
+    border-radius: 16px;
+    flex: 1;
+    max-width: calc(100% - 50px);
+}
+
+.comment-content h4 {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 2px;
+    color: #050505;
+}
+
+.comment-content p {
+    font-size: 14px;
+    margin: 0;
+    line-height: 1.33;
+    color: #050505;
+}
+
+.add-comment {
+    display: flex;
+    align-items: center;
+    padding-top: 8px;
+}
+
+.comment-input {
+    flex: 1;
+    border: none;
+    background-color: #f0f2f5;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 14px;
+    outline: none;
+    margin-right: 8px;
+}
+
+.comment-submit {
+    background: none;
+    border: none;
+    color: #1877f2;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 8px;
+}
+
+.blurred-comment {
+    /* Removing blur effect */
+    filter: none;
+    user-select: auto;
+    cursor: auto;
+    transition: none;
+}
+
+.blurred-comment:hover {
+    filter: none;
+}
+
+.add-comment {
+    display: flex;
+    align-items: center;
+}
+
+.comment-input {
+    flex: 1;
+    margin: 0 8px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 20px;
+    background-color: #f0f2f5;
+}
+
+.comment-submit {
+    background: none;
+    border: none;
+    color: #1877f2;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.news-input-disabled {
+    background-color: #f8f8f8 ;
+    color: #aaa;
+    cursor: not-allowed ;
+}
+
+.meme-recommendations {
+    margin-top: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 15px;
+    border: 1px solid #e4e6eb;
+    animation: fadeIn 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    pointer-events: auto;
+}
+
+.meme-title {
+    margin-bottom: 10px;
+}
+
+.meme-title h4 {
+    font-size: 14px;
+    color: #444;
+    font-weight: 500;
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.meme-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.meme-row {
+    display: flex;
+    gap: 8px;
+}
+
+.meme-item {
+    flex: 1;
+    max-width: calc(25% - 6px);
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    pointer-events: auto ;
+}
+
+.meme-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.meme-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.2s ease;
+    pointer-events: auto ;
+}
+
+.meme-item:hover img {
+    filter: brightness(1.1);
+}
+
+.comment-content.meme-comment {
+    padding: 8px;
+}
+
+.comment-meme {
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 6px;
+    margin-top: 5px;
+}
+
+.meme-recommendations,
+.meme-item,
+.meme-item img,
+.option-button,
+.return-to-edit-btn,
+.meme-actions button {
+    pointer-events: auto ;
+    cursor: pointer ;
+}
+
+.comment-input:not(.news-input-disabled) {
+    pointer-events: auto ;
+    cursor: text ;
+    background-color: #f0f2f5 ;
+}
+
+.comment-submit:not(.disabled) {
+    pointer-events: auto ;
+    cursor: pointer ;
+}
+
+.meme-recommendations.alternative {
+    border: 2px solid #ffcccc;
+    background-color: #fff8f8;
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.1);
+    animation: pulse 2s infinite;
+}
+
+.meme-recommendations.alternative .meme-title h4 {
+    color: #d32f2f;
+    font-weight: 500;
+}
+
+.meme-recommendations.alternative .meme-title h4 strong {
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.alternative-options {
+    margin-top: 15px;
+    background-color: #fff8f8;
+    border-radius: 8px;
+    padding: 15px;
+    border: 1px solid #ffcccc;
+    animation: fadeIn 0.3s ease;
+    box-shadow: 0 2px 10px rgba(255, 0, 0, 0.1);
+}
+
+.options-title h4 {
+    font-size: 14px;
+    color: #d32f2f;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+.options-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.option-button {
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: none;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.option-button i {
+    margin-right: 6px;
+}
+
+.rephrase-button {
+    background-color: #f0f2f5;
+    color: #606770;
+}
+
+.rephrase-button:hover {
+    background-color: #e4e6eb;
+}
+
+.meme-button {
+    background-color: #e7f3ff;
+    color: #1877f2;
+}
+
+.meme-button:hover {
+    background-color: #dce8fb;
+}
+
+.return-to-edit-btn {
+    background: none;
+    border: none;
+    color: #1877f2;
+    font-size: inherit;
+    font-weight: 500;
+    text-decoration: underline;
+    padding: 0;
+    display: inline;
+}
+
+.return-to-edit-btn:hover {
+    color: #166fe5;
+}
+
+.right-sidebar {
+    flex: 0 0 250px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 15px;
+    height: fit-content;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-title {
+    margin-bottom: 15px;
+    color: #65676b;
+}
+
+.sponsored-content {
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.sponsored-content img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 5px;
+}
+
+.sponsored-text h4 {
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+
+.sponsored-text p {
+    font-size: 12px;
+    color: #65676b;
+}
+
+.contacts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.contact span {
+    margin-left: 8px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.fallback-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f2f5;
+    height: 200px;
+    width: 100%;
+    border-radius: 10px;
+    color: #65676b;
+    font-size: 14px;
+    text-align: center;
+}
+
+.post-image, .random-avatar {
+    transition: opacity 0.3s ease;
+    opacity: 1;
+    background-color: #f0f2f5;
+}
+
+.post-image:not([src]), .random-avatar:not([src]) {
+    opacity: 0;
+}
+
+@keyframes imageLoading {
+    0% { background-position: -200px 0; }
+    100% { background-position: 200px 0; }
+}
+
+.post-image, .user-avatar img {
+    position: relative;
+}
+
+.post-image::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #f0f2f5, #e0e0e0, #f0f2f5);
+    background-size: 400px 100%;
+    animation: imageLoading 1.2s infinite linear;
+    opacity: 0;
+    transition: opacity 0.2s;
+    border-radius: 10px;
+}
+
+.news-post .post-content {
+    position: relative;
+    overflow: visible; /* 改為visible讓內容完整顯示 */
+    border-radius: 10px;
+    /* 確保容器能適應內容高度 */
+    min-height: fit-content;
+    height: auto;
+}
+
+.news-post .post-content::after {
+    content: "新聞";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(229, 57, 53, 0.8);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
+    20%, 40%, 60%, 80% { transform: translateX(2px); }
+}
+
+.shake-animation {
+    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+.post-input input::placeholder {
+    color: #999;
+}
+
+.post-input input:focus::placeholder {
+    color: #e53935;
+}
+
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: white;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 300px;
+    max-width: 450px;
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.notification.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.notification.error { border-left: 4px solid #e53935; }
+.notification.warning { border-left: 4px solid #ff9800; }
+.notification.success { border-left: 4px solid #4caf50; }
+.notification.info { border-left: 4px solid #2196F3; }
+
+.notification.error i { color: #e53935; }
+.notification.warning i { color: #ff9800; }
+.notification.success i { color: #4caf50; }
+.notification.info i { color: #2196F3; }
+
+.notification-content {
+    display: flex;
+    align-items: center;
+}
+
+.notification-content i {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.notification-content span {
+    line-height: 1.4;
+}
+
+.notification-content small {
+    display: block;
+    margin-top: 6px;
+    font-size: 12px;
+    color: #555;
+    line-height: 1.4;
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+.notification-close {
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: #65676b;
+    padding: 0;
+    margin-left: 8px;
+}
+
+.notification-close:hover {
+    color: #1c1e21;
+}
+
+.disabled-input {
+    background-color: #f5f5f5 ;
+    color: #999 ;
+    cursor: not-allowed ;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 4px 12px rgba(255, 0, 0, 0.1); }
+    50% { box-shadow: 0 4px 15px rgba(255, 0, 0, 0.2); }
+    100% { box-shadow: 0 4px 12px rgba(255, 0, 0, 0.1); }
+}
+
+.meme-recommendations,
+.meme-item,
+.meme-item img,
+.option-button,
+.return-to-edit-btn,
+.meme-actions button {
+    pointer-events: auto ;
+    cursor: pointer;
+}
+
+@media (max-width: 992px) {
+    main {
+        flex-direction: column;
+        padding: 15px;
+    }
+    
+    .left-sidebar {
+        flex: none;
+        width: 100%;
+        position: static;
+        display: flex;
+        overflow-x: auto;
+        padding: 10px 0;
+    }
+    
+    .sidebar-item {
+        flex-shrink: 0;
+        margin-right: 15px;
+        margin-bottom: 0;
+    }
+    
+    .center-content {
+        max-width: 100%;
+        padding: 0;
+    }
+}
+
+/* 針對超寬內容的特殊調整 */
+@media (min-width: 1200px) {
+    .center-content {
+        max-width: 800px; /* 在大螢幕上進一步增加寬度 */
+    }
+    
+    main {
+        max-width: 1400px; /* 增加整體容器寬度 */
+    }
+}
+
+/* 確保極長的圖片能正確顯示 */
+.post-content img[src*="High_"], 
+.post-content img[src*="Low_"] {
+    max-height: none !important;
+    height: auto !important;
+    object-fit: contain !important;
+    /* 如果圖片太寬，允許水平滾動 */
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 8px 10px;
+    }
+    
+    .search {
+        width: 180px;
+    }
+    
+    .post-content img {
+        margin: 0 -10px;
+        width: calc(100% + 20px);
+        max-height: none; /* 確保在小螢幕上也能完整顯示 */
+        object-fit: contain; /* 確保完整顯示內容 */
+    }
+    
+    .post-actions {
+        margin: 0 10px;
+    }
+    
+    .comments-section {
+        padding: 0 10px 15px 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar {
+        flex-wrap: wrap;
+    }
+    
+    .search {
+        width: 150px;
+        font-size: 14px;
+    }
+    
+    .center-content {
+        gap: 10px;
+    }
+    
+    .post {
+        margin-bottom: 10px;
+    }
+    
+    .action {
+        font-size: 14px;
+        padding: 6px 8px;
+    }
+    
+    .action i {
+        font-size: 16px;
+    }
+}
+
+.user-id-modal p {
+    margin-bottom: 15px;
+    color: #65676b;
+}
+
+.user-id-modal .modal-note {
+    font-size: 12px;
+    margin-top: 15px;
+    color: #65676b;
+    text-align: center;
+}
+
+.user-id-modal input:focus {
+    border-color: #1877f2;
+    box-shadow: 0 0 0 2px rgba(24, 119, 242, 0.2);
+}
+
+.user-id-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    
+    visibility: visible ;
+    opacity: 1 ;
+}
+
+.user-id-modal {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.user-id-modal h2 {
+    margin-top: 0;
+    color: #1877f2;
+    margin-bottom: 20px;
+}
+
+.user-id-modal input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #dddfe2;
+    border-radius: 6px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.user-id-modal button {
+    background-color: #1877f2;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    font-weight: bold;
+    pointer-events: auto ; 
+}
+
+.user-id-modal button:hover {
+    background-color: #166fe5;
+}
+
+.user-id-modal .error-message {
+    color: #f03e3e;
+    margin-top: 10px;
+    font-size: 14px;
+    display: none; 
+    text-align: left;
+    padding: 5px;
+}
+
+.user-id-modal .error-message.show {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+.hidden {
+    display: none ;
+}
+
+/* 迷因預覽樣式 */
+.meme-preview {
+    margin-top: 15px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 15px;
+    border: 1px solid #e4e6eb;
+    animation: fadeIn 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    pointer-events: auto;
+    position: relative;
+}
+
+.preview-title {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #f0f2f5;
+    padding-bottom: 8px;
+}
+
+.preview-title h4 {
+    font-size: 15px;
+    color: #444;
+    font-weight: 500;
+}
+
+.preview-content {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.preview-image {
+    max-width: 250px;
+    max-height: 250px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.preview-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+    gap: 10px;
+    border-top: 1px solid #f0f2f5;
+    padding-top: 12px;
+}
+
+.preview-button {
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: none;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.preview-button i {
+    margin-right: 6px;
+}
+
+.cancel-button {
+    background-color: #f0f2f5;
+    color: #606770;
+}
+
+.cancel-button:hover {
+    background-color: #e4e6eb;
+}
+
+.confirm-button {
+    background-color: #1877f2;
+    color: #ffffff;
+}
+
+.confirm-button:hover {
+    background-color: #166fe5;
+}

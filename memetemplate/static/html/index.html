@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Labeling Game</title>
+    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+</head>
+<body>
+    <div class="description">
+        <h2>🕹️ 操作說明</h2>
+        <p>請您根據貼文內容，<strong class="highlight">依直覺</strong>判斷<em class="highlight">「網友 A」</em>的情緒。</p>
+            <li>⬆️ 上方向鍵：輕蔑（蔑視，鄙視，輕視）</li>
+            <li>⬅️ 左方向鍵：憤怒（怒火）</li>
+            <li>➡️ 右方向鍵：厭惡（憎惡，反感）</li>
+            <li>⬇️ 下方向鍵：其他（無法選擇或與上述情緒不符）</li>
+            <li>空白鍵：確認選擇</li>
+    </div>
+
+    <div class="image-container">
+        <img id="image" src="" alt="Image" class="game-image" />
+    </div>
+    <div class="right-container">
+        <div class="options-container">
+            <div class="option-box">
+                <div class="option top-option" tabindex="0">輕蔑</div>
+                <div class="option left-option" tabindex="0">憤怒</div>
+                <div class="option right-option" tabindex="0">厭惡</div>
+                <div class="option bottom-option" tabindex="0">其他</div>
+            </div>
+            <button class="confirm-button">確認選項</button>
+            <div id="progress-display" class="progress-display"></div>
+            <p class="non-reversible-note">（確認後將無法再修改）</p>
+        </div>
+ 
+    </div>
+
+
+    <!-- Hidden Timer Display -->
+    <div id="timer-display" class="timer-display" style="display: none;">Time: 00:00:00</div>
+
+    <!-- Add to index.html before closing body tag -->
+    <div class="modal-overlay" id="gameEndModal">
+        <div class="modal">
+            <h2>遊戲完成！</h2>
+            <button class="modal-button" id="viewResultsButton">查看結果</button>
+        </div>
+    </div>
+
+    <!-- Hidden data elements -->
+    <script id="images-data" type="application/json">{{ images | tojson }}</script>
+    <script id="player-name" type="text/plain">{{ player_name }}</script>
+
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+</body>
+</html>

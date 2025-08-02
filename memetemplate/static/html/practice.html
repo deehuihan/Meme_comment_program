@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Practice</title>
+    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+</head>
+<body>
+    <div class="description">
+        <h2>🕹️ 操作說明</h2>
+        <p>請您根據貼文內容，<strong class="highlight">依直覺</strong>判斷<em class="highlight">「網友 A」</em>的情緒。</p>
+            <li>⬆️ 上方向鍵：輕蔑（蔑視，鄙視，輕視）</li>
+            <li>⬅️ 左方向鍵：憤怒（怒火）</li>
+            <li>➡️ 右方向鍵：厭惡（憎惡，反感）</li>
+            <li>⬇️ 下方向鍵：其他（無法選擇或與上述情緒不符）</li>
+            <li>空白鍵：確認選擇</li>
+    </div>
+
+
+    <div class="image-container">
+        <img id="image" src="" alt="Image" class="game-image" />
+    </div>
+    <div class="right-container">
+        <div class="options-container">
+            <div class="option-box">
+                <div class="option top-option" tabindex="-1">輕蔑</div>
+                <div class="option left-option" tabindex="-1">憤怒</div>
+                <div class="option right-option" tabindex="-1">厭惡</div>
+                <div class="option bottom-option" tabindex="-1">其他</div>
+            </div>
+            <button class="confirm-button">確認選擇</button>
+            <!-- 移除了 progress-display 的内容，使其成为纯进度条 -->
+            <div id="progress-display" class="progress-display" style="display: none;"></div>
+            <div id="practice-note" class="practice-note">練習回合</div>
+            <p class="non-reversible-note">（確認後將無法再修改）</p>
+        </div>
+
+    </div>
+
+    <!-- Add to practice.html before closing body tag -->
+    <div class="modal-overlay" id="gameStartModal">
+        <div class="modal">
+            <h2>✅ 熱身完成！</h2>
+            <p>您已完成練習環節。接下來將進入正式遊戲！</p>
+            <button id="start-game-button" class="modal-button" onclick="startGame()">開始正式挑戰 🎮</button>
+        </div>
+    </div>
+
+    <!-- Hidden data elements -->
+    <script id="images-data" type="application/json">{{ images | tojson }}</script>
+    <script id="player-name" type="text/plain">{{ player_name }}</script>
+
+    <script src="{{ url_for('static', filename='js/practice.js') }}"></script>
+</body>
+</html>

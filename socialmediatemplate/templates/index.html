@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social - 選擇頁面</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/context-intro.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='s_logo.png') }}">
+
+</head>
+<body>
+    <div id="pageSelection" class="page-selection" style="display: block;">
+        <h2 class="selection-title">實驗說明</h2>
+        <div class="welcome-text">您好，<span id="usernameDisplay">用戶</span>！</div>
+        
+        <div class="experiment-intro">
+            <h3>歡迎參與社群媒體互動實驗</h3>
+            <div class="intro-content">
+                <p>本實驗分為兩個階段：</p>
+                <ol>
+                    <li><strong>第一階段：觀察者角色</strong><br>
+                    您將觀看一系列社群媒體貼文，並對每個貼文進行評價。請仔細閱讀每個貼文的內容和相關迷因圖片，然後根據您的感受填寫問卷。</li>
+                    
+                    <li><strong>第二階段：發送者角色</strong><br>
+                    完成第一階段後，您將切換到發送者角色，需要為新的貼文選擇適當的迷因圖片進行回應，並填寫相關問卷。</li>
+                </ol>
+                
+                <div class="experiment-notes">
+                    <h4>注意事項：</h4>
+                    <ul>
+                        <li>請按照順序完成每個貼文的評價</li>
+                        <li>請根據您的真實感受填寫問卷</li>
+                        <li>實驗過程中請保持專注</li>
+                        <li>完成所有步驟後會自動結束實驗</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <button class="start-experiment-btn" id="startExperiment">
+                <i class="fas fa-play"></i>
+                開始實驗
+            </button>
+        </div>
+        
+        <div class="user-actions">
+            <button class="logout-button" id="logoutButton">
+                <i class="fas fa-sign-out-alt"></i>
+                切換使用者
+            </button>
+        </div>
+    </div>
+
+    <!-- Add logout dialog container -->
+    <div class="logout-dialog-container" id="logoutDialogContainer" style="display: none;">
+        <div class="logout-dialog">
+            <h3>切換使用者</h3>
+            <p>你確定要登出嗎？</p>
+            <div class="logout-dialog-buttons">
+                <button class="cancel-button" id="cancelLogout">取消</button>
+                <button class="confirm-button" id="confirmLogout">確認</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('=== Index page DOM loaded ===');
+            
+            // Check if user is logged in
+            const storedUserId = localStorage.getItem('socialUserId');
+            console.log('Stored user ID:', storedUserId);
+            
+            // If no username is stored, show warning but don't redirect immediately
+            if (!storedUserId) {
+                console.log('No user ID found, setting up temporary navigation');
+                // Still set up the navigation buttons, but redirect to input if clicked
+            } else {
+                // Log user entry to Excel
+                logActivityToExcel(storedUserId, 'page_entry', 'index', 'User entered index page');
+            }
+            
+            // Display username
+            const usernameDisplay = document.getElementById('usernameDisplay');
+            console.log('Username display element:', usernameDisplay);
+            
+            if (usernameDisplay) {
+                usernameDisplay.textContent = storedUserId || '用戶';
+            }
+            
+            // === 重要：檢查開始實驗按鈕 ===
+            console.log('=== Searching for start experiment button ===');
+            const startExperimentBtn = document.getElementById('startExperiment');
+            console.log('Start experiment button element:', startExperimentBtn);
+            
+            if (startExperimentBtn) {
+                console.log('Button found! Adding event listener...');
+                console.log('Button computed style:', getComputedStyle(startExperimentBtn));
+                
+                // 添加點擊事件監聽器
+                startExperimentBtn.addEventListener('click', function(event) {
+                    console.log('=== 按鈕點擊事件觸發！ ===');
+                    event.preventDefault();
+                    
+                    // Check if user is logged in
+                    const currentUserId = localStorage.getItem('socialUserId');
+                    console.log('Current user ID:', currentUserId);
+                    
+                    if (!currentUserId) {
+                        console.log('No user ID, redirecting to login');
+                        alert('請先登錄');
+                        window.location.href = '/';
+                        return;
+                    }
+                    
+                    // 記錄實驗開始時間
+                    localStorage.setItem('experimentStartTime', new Date().toISOString());
+                    localStorage.setItem('currentPhase', 'receiver');
+                    
+                    // Log navigation to Excel
+                    logActivityToExcel(currentUserId, 'experiment_start', 'receiver', 'Started experiment - entering receiver phase');
+                    
+                    console.log('跳轉到觀察者頁面');
+                    window.location.href = '/receiver';
+                });
+                
+                console.log('Event listener added successfully');
+            } else {
+                console.error('=== 錯誤：找不到開始實驗按鈕！ ===');
+                // 列出所有可用的按鈕
+                const allButtons = document.querySelectorAll('button');
+                console.log('All buttons found:', allButtons);
+                allButtons.forEach((btn, index) => {
+                    console.log(`Button ${index}:`, btn.id, btn.className, btn.textContent);
+                });
+            }
+            
+            if (usernameDisplay) {
+                usernameDisplay.textContent = storedUserId;
+            }
+            
+            // Handle logout button
+            const logoutButton = document.getElementById('logoutButton');
+            console.log('Logout button:', logoutButton);
+            
+            if (logoutButton) {
+                logoutButton.addEventListener('click', function() {
+                    console.log('Logout button clicked');
+                    showLogoutDialog();
+                });
+            }
+            
+            // Setup logout dialog
+            const cancelLogout = document.getElementById('cancelLogout');
+            const confirmLogout = document.getElementById('confirmLogout');
+            const logoutDialogContainer = document.getElementById('logoutDialogContainer');
+            
+            if (cancelLogout) {
+                cancelLogout.addEventListener('click', function() {
+                    logoutDialogContainer.style.display = 'none';
+                });
+            }
+            
+            if (confirmLogout) {
+                confirmLogout.addEventListener('click', function() {
+                    // Log logout to Excel
+                    logActivityToExcel(storedUserId, 'logout', 'index', 'User logged out from index page');
+                    
+                    // Clear localStorage
+                    localStorage.removeItem('socialUserId');
+                    
+                    // Redirect to login page
+                    setTimeout(() => {
+                        window.location.href = '/';
+                    }, 100); // Small delay to ensure Excel logging completes
+                });
+            }
+            
+            // Handle page navigation buttons - these are the old buttons that we removed
+            const receiverButton = document.getElementById('receiverButton');
+            const senderButton = document.getElementById('senderButton');
+            
+            console.log('Receiver button:', receiverButton);
+            console.log('Sender button:', senderButton);
+            
+            // Note: startExperiment button handler is already added above
+            
+            if (receiverButton) {
+                receiverButton.addEventListener('click', function() {
+                    console.log('Receiver button clicked');
+                    
+                    // Check if user is logged in before navigation
+                    const currentUserId = localStorage.getItem('socialUserId');
+                    if (!currentUserId) {
+                        console.log('No user ID, redirecting to login');
+                        alert('請先登錄');
+                        window.location.href = '/';
+                        return;
+                    }
+                    
+                    // Log navigation to Excel
+                    logActivityToExcel(currentUserId, 'page_navigation', 'receiver', 'Navigate from index to receiver page');
+                    
+                    // Navigate to receiver page
+                    window.location.href = '/receiver';
+                });
+            }
+            
+            if (senderButton) {
+                senderButton.addEventListener('click', function() {
+                    console.log('Sender button clicked');
+                    
+                    // Check if user is logged in before navigation
+                    const currentUserId = localStorage.getItem('socialUserId');
+                    if (!currentUserId) {
+                        console.log('No user ID, redirecting to login');
+                        alert('請先登錄');
+                        window.location.href = '/';
+                        return;
+                    }
+                    
+                    // Log navigation to Excel
+                    logActivityToExcel(currentUserId, 'page_navigation', 'sender', 'Navigate from index to sender page');
+                    
+                    // Navigate to sender page
+                    window.location.href = '/sender';
+                });
+            }
+            
+            // Log this session to Excel only
+            if (storedUserId) {
+                logActivityToExcel(storedUserId, 'page_view', 'index', 'Viewed selection page');
+            }
+        });
+
+        // Show the logout confirmation dialog
+        function showLogoutDialog() {
+            console.log('Showing logout dialog');
+            const logoutDialogContainer = document.getElementById('logoutDialogContainer');
+            if (logoutDialogContainer) {
+                logoutDialogContainer.style.display = 'flex';
+            }
+        }
+
+        // Function to log activity to Excel via API
+        function logActivityToExcel(userId, activityType, page, details = '') {
+            fetch('/api/log-activity', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    user_id: userId,
+                    activity_type: activityType,
+                    page: page,
+                    details: details
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log('Activity logged to Excel:', activityType);
+                } else {
+                    console.error('Failed to log activity to Excel:', data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Error logging activity to Excel:', error);
+            });
+        }
+    </script>
+</body>
+</html>

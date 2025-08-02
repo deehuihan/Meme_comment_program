@@ -1,0 +1,1712 @@
+/* Base styles */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6; /* Light, professional background */
+    overflow: auto; /* Allow scrolling */
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    line-height: 1.6;
+    color: #333; /* Darker, readable text */
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Container */
+.result-container {
+    position: relative;
+    text-align: center; /* 文字置中 */
+    width: 100%;
+    max-width: 1200px;
+    padding: 30px;
+    background: #fff; /* Clean white background */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    max-height: 90vh; /* Ensure the container does not exceed the viewport height */
+    overflow-y: auto; /* Allow vertical scrolling within the container */
+}
+
+/* Headings */
+h1 {
+    text-align: center;
+    margin-bottom: 10px;
+    color: #0056b3; /* Professional blue for headings */
+}
+
+.performance-summary {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.progress-text {
+    font-size: 1.2em;
+    color: #333;
+}
+
+/* Table */
+.analysis-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.thumbnail {
+    width: 80%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.thumbnail:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+/* Progress Bar */
+.progress-bar-container {
+    position: relative;
+    width: 100%;
+    background-color: #f3f3f3;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.progress-bar-wrapper {
+    margin-bottom: 5px;
+    border: 2px solid rgb(255, 255, 255); /* White outline */
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    height: 18px;
+}
+
+.user-choice-wrapper {
+    border-color: #0056b3; /* Blue outline for user choice */
+}
+
+.progress-bar {
+    height: 20px;
+    border-radius: 5px;
+    background-color: #818486; 
+}
+
+.progress-bar-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black; /* Black text color */
+    font-weight: bold;
+    font-size: 0.8em;
+}
+
+/* Block */
+.block {
+    margin: 10px 0;
+    border: none;
+    border-radius: 0;
+    overflow: visible;
+}
+
+.block-header {
+    display: none; /* Hide the block headers */
+}
+
+.block-content {
+    display: block !important; /* Always show content */
+    max-height: none;
+    overflow: visible;
+    padding: 0;
+}
+
+/* Image Grid - make images much smaller and fix column gap */
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr); /* 5 images per row */
+    gap: 0; /* Remove all gaps (both row and column) */
+    row-gap: 0; /* Explicit zero row gap */
+    column-gap: 0; /* Explicit zero column gap */
+    padding: 0;
+    width: 100%;
+}
+
+.image-item {
+    position: relative;
+    background: white;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    overflow: hidden;
+    aspect-ratio: 3/4; /* Portrait orientation */
+    width: 60px; /* Fixed smaller width */
+    margin: 0; /* Remove auto margins that were causing extra spacing */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Thumbnails - smaller but maintain proportions */
+.thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Show full image */
+    border-radius: 0;
+    filter: brightness(0.8);
+    transition: transform 0.2s ease, filter 0.3s ease;
+}
+
+.thumbnail:hover {
+    filter: brightness(1); /* Return to normal brightness on hover */
+    transform: scale(1.05);
+}
+
+/* Create emotion color overlay with updated colors */
+.emotion-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.6; /* Slightly more opaque for better visibility */
+    pointer-events: none; /* Let clicks through to the image */
+}
+
+/* Updated colors using RGB */
+.emotion-contempt { background-color: rgba(0, 0, 255, 0.6); } /* 輕蔑 - Blue */
+.emotion-anger { background-color: rgba(255, 0, 0, 0.6); } /* 憤怒 - Red */
+.emotion-disgust { background-color: rgba(0, 255, 0, 0.6); } /* 厭惡 - Green */
+.emotion-others { background-color: rgba(128, 128, 128, 0.6); } /* 其他 - Gray */
+
+/* Show image number in corner */
+.image-number {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    font-size: 0.6em;
+    padding: 1px 3px;
+    border-radius: 5px;
+    z-index: 2;
+}
+
+/* Make progress bars visible in the grid view */
+.image-grid .progress-bar-container {
+    display: none; /* Hide progress bars by default */
+}
+
+/* Show progress bars on hover */
+.image-item:hover .progress-bar-container {
+    display: block;
+    position: absolute;
+    top: 60px; /* Position below the image */
+    left: 0;
+    width: 100%;
+    background: white;
+    padding: 5px;
+    z-index: 5;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Email Form */
+.footer {
+    margin-top: 40px;
+    padding: 30px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.footer h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.footer p {
+    margin-bottom: 15px;
+    color: #34495e;
+}
+
+.email-container {
+    margin-top: 20px;
+    display: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; /* 增加元素之間的間距 */
+}
+
+#email-form {
+    display: flex;
+    flex-direction: column;   /* 垂直排列 */
+    align-items: center;      /* 水平置中 */
+    justify-content: center;  /* 垂直方向（如果有空間）也置中 */
+    gap: 15px;                /* 每個元素間距 */
+    width: 100%;
+}
+
+#email-input {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+/* Email Popup */
+.email-popup {
+    display: none; /* 默認隱藏 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 半透明背景 */
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.email-popup-content {
+    background: white;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+}
+
+.email-popup-content p {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.popup-buttons button {
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* Remove transitions */
+    transition: none;
+}
+
+.popup-buttons button:hover {
+    background-color: #007bff;
+}
+
+.participation-container {
+    padding: 10px 20px;
+    font-size: 1.0em;
+    color: #333;
+    display: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.participation-container input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.participation-container label {
+    cursor: pointer;
+}
+
+.submit-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* Remove transitions and effects */
+    transition: none;
+    position: static;
+    overflow: visible;
+}
+
+.submit-button:hover {
+    background-color: #007bff;
+    transform: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.submit-button::before {
+    display: none;
+}
+
+/* Submit Button */
+.logout-button {
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.logout-button:hover {
+    background-color: #2980b9;
+}
+
+/* Error Message */
+.error-message {
+    color: red;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Modal styles - improved appearance */
+.image-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content-container {
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.modal-image-container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 20px;
+}
+
+.modal-content {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    /* Remove animation */
+    animation: none;
+}
+
+.modal-progress-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 20px;
+    border-left: 1px solid #746f6f;
+}
+
+.modal-progress-container .progress-bar-wrapper {
+    height: 30px; /* Taller for better readability */
+    margin-bottom: 15px;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border: none;
+}
+
+.modal-progress-container .progress-bar {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.modal-progress-container .progress-bar-text {
+    font-size: 1.1em;
+    font-weight: bold;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close:hover {
+    color: #bbb;
+}
+
+@keyframes zoom-in {
+    from { transform: scale(0.5); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Progress bar title */
+.progress-bars-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Enhanced progress bar title styling */
+.progress-bars-title {
+    margin-bottom: 25px;
+    text-align: center;
+    color: #333;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    position: relative;
+}
+
+.progress-title-main {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 8px;
+    position: relative;
+    display: inline-block;
+}
+
+.progress-title-main::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        rgba(0, 0, 255, 0.7) 0%, 
+        rgba(255, 0, 0, 0.7) 33%, 
+        rgba(0, 255, 0, 0.7) 66%, 
+        rgba(128, 128, 128, 0.7) 100%);
+    border-radius: 2px;
+}
+
+.progress-title-subtitle {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 12px;
+}
+
+/* Mini color swatches for the progress legend */
+.progress-legend {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.mini-swatch {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    position: relative;
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.mini-swatch:hover {
+    transform: scale(1.2);
+}
+
+.mini-swatch.contempt {
+    background-color: rgba(0, 0, 255, 0.6);
+}
+
+.mini-swatch.anger {
+    background-color: rgba(255, 0, 0, 0.6);
+}
+
+.mini-swatch.disgust {
+    background-color: rgba(0, 255, 0, 0.6);
+}
+
+.mini-swatch.others {
+    background-color: rgba(128, 128, 128, 0.6);
+}
+
+/* Add animation for the progress bars */
+.modal-progress-container .progress-bar {
+    animation: progressGrow 1s ease-out;
+    transform-origin: left;
+}
+
+@keyframes progressGrow {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+}
+
+/* Colored progress bars matching emotions */
+.progress-bar-wrapper.contempt-bar .progress-bar {
+    background: rgba(0, 0, 255, 0.4);
+}
+
+.progress-bar-wrapper.anger-bar .progress-bar {
+    background: rgba(255, 0, 0, 0.4);
+}
+
+.progress-bar-wrapper.disgust-bar .progress-bar {
+    background: rgba(0, 255, 0, 0.4);
+}
+
+.progress-bar-wrapper.others-bar .progress-bar {
+    background: rgb(128, 128, 128, 0.9);
+}
+
+/* Match modal progress bar colors with emotion overlays */
+.progress-bar-wrapper.contempt-bar .progress-bar {
+    background-color: rgba(0, 0, 255, 0.6); /* 輕蔑 - Blue */
+}
+
+.progress-bar-wrapper.anger-bar .progress-bar {
+    background-color: rgba(255, 0, 0, 0.6); /* 憤怒 - Red */
+}
+
+.progress-bar-wrapper.disgust-bar .progress-bar {
+    background-color: rgba(0, 255, 0, 0.6); /* 厭惡 - Green */
+}
+
+.progress-bar-wrapper.others-bar .progress-bar {
+    background-color: rgb(128, 128, 128, 0.9); /* 其他 - Gray */
+}
+
+/* Highlight user's choice with a colored border */
+.user-choice-wrapper.contempt-bar {
+    border: 3px solid rgba(0, 0, 255, 0.9);
+}
+
+.user-choice-wrapper.anger-bar {
+    border: 3px solid rgba(255, 0, 0, 0.9);
+}
+
+.user-choice-wrapper.disgust-bar {
+    border: 3px solid rgba(0, 255, 0, 0.9);
+}
+
+.user-choice-wrapper.others-bar {
+    border: 3px solid rgba(128, 128, 128, 0.9);
+}
+
+/* Emotion legend styles */
+.emotion-legend {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.color-swatch {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.color-swatch.contempt {
+    background-color: rgba(0, 0, 255, 0.6);
+}
+
+.color-swatch.anger {
+    background-color: rgba(255, 0, 0, 0.6);
+}
+
+.color-swatch.disgust {
+    background-color: rgba(0, 255, 0, 0.6);
+}
+
+.color-swatch.others {
+    background-color: rgba(128, 128, 128, 0.6);
+}
+
+.legend-text {
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+/* Add emotion tooltip on hover */
+.image-item::before {
+    content: attr(data-emotion);
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.7em;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    z-index: 10;
+    white-space: nowrap;
+}
+
+.image-item:hover::before {
+    opacity: 1;
+}
+
+/* Enhanced emotion legend styles */
+.emotion-legend {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin: 15px 0;
+    flex-wrap: wrap;
+    padding: 10px;
+    background-color: rgba(250, 250, 250, 0.7);
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.legend-item:hover {
+    transform: scale(1.05);
+    background-color: rgba(240, 240, 240, 0.8);
+}
+
+.legend-item.active {
+    background-color: rgba(235, 235, 235, 0.9);
+    border-color: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+
+.color-swatch {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    flex-shrink: 0;
+}
+
+/* Add a color swatch for "all" */
+.color-swatch.all {
+    background: linear-gradient(135deg, 
+        rgba(0, 0, 255, 0.6) 0%, 
+        rgba(0, 0, 255, 0.6) 25%, 
+        rgba(255, 0, 0, 0.6) 25%, 
+        rgba(255, 0, 0, 0.6) 50%, 
+        rgba(0, 255, 0, 0.6) 50%, 
+        rgba(0, 255, 0, 0.6) 75%, 
+        rgba(128, 128, 128, 0.6) 75%, 
+        rgba(128, 128, 128, 0.6) 100%);
+}
+
+.legend-text {
+    font-weight: bold;
+    font-size: 0.95em;
+}
+
+.instructions {
+    margin-top: 10px;
+    font-size: 1.0em;
+    color: #666;
+    padding: 5px;
+}
+
+/* Redesigned Lottery Section */
+.lottery-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.lottery-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(52, 152, 219, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+    z-index: 0;
+}
+
+.lottery-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.prize-icon {
+    font-size: 2.5em;
+    margin-right: 15px;
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.1));
+    animation: gentle-bounce 3s ease-in-out infinite;
+}
+
+@keyframes gentle-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.lottery-header h2 {
+    color: #2c3e50;
+    font-size: 1.8em;
+    margin: 0;
+    position: relative;
+}
+
+.lottery-header h2::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #3498db, #2ecc71);
+    border-radius: 3px;
+}
+
+.lottery-content {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.lottery-content p {
+    color: #34495e;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.lottery-content p:first-of-type {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+}
+
+.lottery-content a {
+    color: #3498db;
+    text-decoration: none;
+    transition: color 0.2s;
+    position: relative;
+}
+
+.lottery-content a:hover {
+    color: #2980b9;
+}
+
+.lottery-content a::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: right;
+}
+
+.lottery-content a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Enhanced Email Form */
+.email-container {
+    margin: 25px auto;
+    max-width: 400px;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border: 2px solid #3498db;
+    border-radius: 10px;
+    padding: 5px 15px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(52, 152, 219, 0.1);
+}
+
+.input-group:focus-within {
+    border-color: #2980b9;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
+    transform: translateY(-2px);
+}
+
+.input-icon {
+    font-size: 1.2em;
+    margin-right: 10px;
+    color: #3498db;
+}
+
+#email-input {
+    flex: 1;
+    padding: 12px 5px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    background: transparent;
+}
+
+/* Custom Checkbox */
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    cursor: pointer;
+    user-select: none;
+    margin-bottom: 20px;
+    font-size: 0.95em;
+    color: #555;
+    text-align: left;
+}
+
+.checkbox-label input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.custom-checkbox {
+    position: relative;
+    display: inline-block;
+    min-width: 20px;
+    height: 20px;
+    background-color: white;
+    border: 2px solid #3498db;
+    border-radius: 4px;
+    margin-right: 10px;
+    margin-top: 2px;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.checkbox-label:hover .custom-checkbox {
+    border-color: #2980b9;
+    background-color: rgba(52, 152, 219, 0.05);
+}
+
+.checkbox-label input:checked ~ .custom-checkbox {
+    background-color: #3498db;
+    border-color: #3498db;
+}
+
+.custom-checkbox:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.checkbox-label input:checked ~ .custom-checkbox:after {
+    display: block;
+}
+
+/* Submit Button */
+.submit-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* Remove transitions and effects */
+    transition: none;
+    position: static;
+    overflow: visible;
+}
+
+.submit-button:hover {
+    background-color: #044386;
+    transform: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.submit-button::before {
+    display: none;
+}
+
+/* Share Button */
+.share-button-container {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0 20px;
+}
+
+.share-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 25px; /* 调整宽度，使按钮更明显 */
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s;
+}
+
+.share-button:hover {
+    background-color: #0056b3;
+}
+
+.share-icon {
+    font-size: 1.3em;
+}
+
+/* Share Result Summary Styling */
+.share-result-summary {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    padding: 15px;
+}
+
+.share-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.share-header h3 {
+    font-size: 1.5em;
+    margin: 0 0 15px;
+    color: #0056b3;
+}
+
+.share-stats {
+    margin-bottom: 20px;
+}
+
+.share-stat-item {
+    margin-bottom: 15px;
+}
+
+.stat-label {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.emotion-bar {
+    height: 30px;
+    border-radius: 15px;
+    display: flex;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-bottom: 8px;
+}
+
+.emotion-segment {
+    height: 100%;
+}
+
+.emotion-segment.contempt {
+    background-color: rgba(0, 0, 255, 0.6);
+}
+
+.emotion-segment.anger {
+    background-color: rgba(255, 0, 0, 0.6);
+}
+
+.emotion-segment.disgust {
+    background-color: rgba(0, 255, 0, 0.6);
+}
+
+.emotion-segment.others {
+    background-color: rgba(128, 128, 128, 0.6);
+}
+
+.emotion-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85em;
+    color: #555;
+}
+
+.share-footer-graphic {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px dashed #ccc;
+}
+
+.share-qr-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.share-qr-code {
+    flex-shrink: 0;
+}
+
+.share-qr-code img {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.share-invitation {
+    font-size: 0.9em;
+    color: #555;
+}
+
+.share-url {
+    font-weight: bold;
+    color: #0056b3;
+}
+
+/* Share Options */
+.share-options {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.share-option {
+    position: relative;
+    flex: 1;
+}
+
+.share-option-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* Remove transitions */
+    transition: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.share-option-btn:active {
+    background-color: #0056b3;
+}
+
+.option-icon {
+    font-size: 1.5em;
+}
+
+.option-feedback {
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.share-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.invite-link {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+.invite-link:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+/* Personality Type Display */
+.personality-result {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 15px 0 25px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.personality-result h2 {
+    color: #333;
+    font-size: 1.6em;
+    margin-bottom: 10px;
+}
+
+.highlight-personality {
+    color: #007bff;
+    font-weight: bold;
+    position: relative;
+    display: inline-block;
+    padding: 0 5px;
+}
+
+.highlight-personality::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        rgba(0, 0, 255, 0.6) 0%, 
+        rgba(255, 0, 0, 0.6) 50%, 
+        rgba(0, 255, 0, 0.6) 100%);
+    border-radius: 2px;
+}
+
+.personality-result p {
+    color: #555;
+    font-size: 1.0em;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.personality-description {
+    color: #555;
+    font-size: 1.1em;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto 15px;
+}
+
+.personality-share-prompt {
+    text-align: center;
+    color: #0056b3;
+    font-size: 1.05em;
+    font-weight: 500;
+    margin-top: 15px;
+    animation: gentle-pulse 2s infinite;
+}
+
+.personality-image-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 200px;
+    height: 200px;
+    margin: 0;
+}
+
+/* 確保圖片保持圓形，並自適應縮放 */
+.personality-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+@keyframes gentle-pulse {
+    0% { opacity: 0.8; }
+    50% { opacity: 1; }
+    100% { opacity: 0.8; }
+}
+
+/* Enhanced Share Result Summary Styling */
+.share-result-summary {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    padding: 20px;
+    border-radius: 12px;
+    background: linear-gradient(to bottom right, #fff, #f8f9fa);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.share-header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.share-personality {
+    margin: 15px 0;
+}
+
+.share-personality h3 {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.personality-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #3498db, #1abc9c);
+    color: white;
+    font-size: 1.8em;
+    font-weight: bold;
+    padding: 10px 25px;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin: 0 auto 15px;
+}
+
+.share-player-name {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+/* Share Images Grid */
+.share-images-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 3px;
+    margin-bottom: 20px;
+    border: 1px solid #eee;
+    padding: 3px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.share-grid-item {
+    aspect-ratio: 1;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.share-grid-img {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.grid-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+}
+
+/* Updated footer layout */
+.share-footer-graphic {
+    text-align: center;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.share-invitation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.share-invitation-text {
+    font-size: 1.1em;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.share-qr-code {
+    margin: 10px 0;
+}
+
+.share-qr-code img {
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.share-url {
+    font-weight: bold;
+    color: #0056b3;
+    font-size: 1.2em;
+    padding: 8px 16px;
+    background: #f1f8ff;
+    border-radius: 20px;
+    display: inline-block;
+    border: 1px dashed #3498db;
+}
+
+/* Simplified share options */
+.share-options {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+/* Results Image Container */
+.results-image-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.results-header {
+    text-align: center;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.results-logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #0056b3;
+    margin-bottom: 10px;
+}
+
+.results-personality-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #3498db, #1abc9c);
+    color: white;
+    font-size: 2em;
+    font-weight: bold;
+    padding: 10px 25px;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin: 0 auto 15px;
+}
+
+.results-player-name {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* Results Images Grid - 10x5 grid */
+.results-images-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 3px;
+    margin: 0 auto 20px;
+    border: 1px solid #eee;
+    padding: 5px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.results-grid-item {
+    aspect-ratio: 1;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.results-grid-img {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+/* Results footer */
+.results-footer {
+    text-align: center;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.results-invitation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.results-qr-code {
+    margin: 10px auto;
+}
+
+.results-qr-code img {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.results-invitation-text {
+    font-size: 1em;
+    color: #333;
+    margin: 10px 0;
+    font-weight: 500;
+}
+
+/* Copy Success Modal */
+.copy-success-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 8px;
+    z-index: 9999;
+    font-size: 1.1em;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.copy-success-content {
+    text-align: center;
+    font-weight: 500;
+}
+
+/* Enhanced Results Container */
+.results-image-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.results-header {
+    text-align: center;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.results-logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #0056b3;
+    margin-bottom: 10px;
+}
+
+.results-personality-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #3498db, #1abc9c);
+    color: white;
+    font-size: 2em;
+    font-weight: bold;
+    padding: 10px 25px;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin: 0 auto 15px;
+}
+
+.results-player-name {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* Results Images Grid - 10x5 grid */
+.results-images-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 3px;
+    margin: 0 auto 20px;
+    border: 1px solid #eee;
+    padding: 5px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.results-grid-item {
+    aspect-ratio: 1;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.results-grid-img {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+/* Results footer */
+.results-footer {
+    text-align: center;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.results-invitation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.results-qr-code {
+    margin: 10px auto;
+}
+
+.results-qr-code img {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.results-invitation-text {
+    font-size: 1em;
+    color: #333;
+    margin: 10px 0;
+    font-weight: 500;
+}
+
+/* Enhanced Share Preview container */
+.share-preview-container {
+    background: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    position: relative;
+    max-height: 450px;
+    overflow-y: auto;
+}
+
+/* Enhanced share modal */
+.share-modal-content {
+    max-width: 850px;
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
+/* Enhanced share options to ensure they stand out */
+.share-option-btn {
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    transition: transform 0.2s ease;
+}
+
+.share-option-btn:active {
+    transform: scale(0.98);
+}
+
+/* Copy Success Modal */
+.copy-success-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 8px;
+    z-index: 9999;
+    font-size: 1.1em;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    display: none;
+    animation: fadeInOut 2.3s;
+    pointer-events: none;
+}
+
+.copy-success-content {
+    text-align: center;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+    10% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    90% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+}
+
+/* Adjust the share-button-container to accommodate multiple buttons */
+.share-button-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 30px;
+}
+

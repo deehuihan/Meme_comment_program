@@ -1,0 +1,29 @@
+[
+  {
+    "timestamp": "2025-07-22T17:39:07.088250",
+    "post_id": "1",
+    "user_type": "receiver",
+    "q1_1_emotion_replacement": 5,
+    "q1_2_aggressiveness": 5,
+    "q1_3_appropriateness": 4,
+    "q1_4_satisfaction": 4
+  },
+  {
+    "timestamp": "2025-07-22T17:39:11.063248",
+    "post_id": "2",
+    "user_type": "receiver",
+    "q1_1_emotion_replacement": 4,
+    "q1_2_aggressiveness": 4,
+    "q1_3_appropriateness": 4,
+    "q1_4_satisfaction": 4
+  },
+  {
+    "timestamp": "2025-07-23T14:16:24.812341",
+    "post_id": "1",
+    "user_type": "receiver",
+    "q1_1_emotion_replacement": 4,
+    "q1_2_aggressiveness": 4,
+    "q1_3_appropriateness": 4,
+    "q1_4_satisfaction": 4
+  }
+]

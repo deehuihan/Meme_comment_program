@@ -1,0 +1,109 @@
+/* Styles specific to the shared result page */
+
+/* Play Button */
+.play-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: #007bff; /* Green for play button */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s;
+    margin: 0 auto;
+}
+
+.play-button:hover {
+    background-color: #044386;
+    transform: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.play-icon {
+    font-size: 1.3em;
+}
+
+/* Invitation Section (replacing lottery section) */
+.invitation-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.invitation-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(40, 167, 69, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+    z-index: 0;
+}
+
+.invitation-text {
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 1;
+}
+
+.invitation-text h3 {
+    color: #0056b3;
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.invitation-text p {
+    color: #495057;
+    font-size: 1.2em;
+}
+
+.invitation-qr {
+    margin: 20px auto;
+    max-width: 200px;
+}
+
+.invitation-qr img {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.invitation-qr p {
+    font-size: 0.9em;
+    color: #6c757d;
+}
+
+/* Bottom play button in the invitation section */
+.invitation-section .play-button {
+    margin: 15px auto 0;
+    font-size: 1.2em;
+    padding: 12px 25px;
+}
+
+/* Disable clickable behavior on images */
+.thumbnail {
+    cursor: default !important;
+}
+
+.thumbnail:hover {
+    transform: none !important;
+    box-shadow: none !important;
+    filter: brightness(0.8) !important;
+}
+
+/* Remove image hover effect */
+.image-item::before {
+    display: none !important;
+}

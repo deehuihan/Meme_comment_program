@@ -1,0 +1,428 @@
+/* Base styles */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Container */
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Description */
+.description {
+    flex: 1;
+    margin-right: 30px;
+    margin-left: 30px;
+}
+
+.description h2 {
+    font-size: 1.5em;
+    color: #0056b3;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+}
+
+.description p, .description ul {
+    font-size: 1em;
+    color: #333;
+}
+
+.description ul {
+    list-style-type: square;
+    padding-left: 20px;
+}
+
+.description li {
+    margin-bottom: 5px;
+}
+
+.left-bottom-note {
+    position: fixed;
+    left: 1vw;
+    bottom: 1vw;
+    font-size: 0.8em;
+    color: #000000;
+}
+
+/* Image Container */
+.image-container {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 100%;
+}
+
+.game-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 1.5vw;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    opacity: 1;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    animation: fadeIn 0.6s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translate(-50%, -50%) scale(0.92); }
+    to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* Right Container */
+.right-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.options-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px; /* 增加间距 */
+}
+
+.option-box {
+    display: grid;
+    grid-template-areas: 
+        ". up ."
+        "left center right"
+        ". down .";
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 15px; /* 增加间距 */
+    width: 240px; /* 增大整体尺寸 */
+    height: 240px;
+    margin-bottom: 50px;
+    transform: translateX(-88px); /* 修改：从-50px改为-60px，往左多移动10px */
+}
+
+/* 基础按钮样式 */
+.option {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9vw; /* 增大字体 */
+    font-weight: bold;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    color: #333;
+    background-color: #f0f0f0;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+.option::after {
+    font-weight: 600;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* 上箭头 - 輕蔑 (Blue) */
+.top-option {
+    grid-area: up;
+    width: 90px;
+    height: 90px;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    background-color: rgba(71, 71, 226, 0.733); /* Standardized blue for 輕蔑 */
+    position: relative;
+}
+
+.top-option::after {
+    content: "輕蔑";
+    position: absolute;
+    top: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
+
+.top-option.selected {
+    background-color: rgba(0, 0, 255, 0.9) !important; /* Darker blue for selected, fixed from purple */
+}
+
+/* 左箭头 */
+.left-option {
+    grid-area: left;
+    width: 90px;
+    height: 90px;
+    clip-path: polygon(0% 50%, 100% 0%, 100% 100%);
+    background-color: #ff50509c; /* Changed to red for 憤怒 */
+}
+
+.left-option::after {
+    content: "憤怒";
+    position: absolute;
+    left: 110%;
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+}
+
+.left-option.selected {
+    background-color: #FF0000 !important; /* Darker red for selected */
+}
+
+/* 右箭头 */
+.right-option {
+    grid-area: right;
+    width: 90px;
+    height: 90px;
+    clip-path: polygon(0% 0%, 0% 100%, 100% 50%);
+    background-color: #50ff50b4; /* Changed to green for 厭惡 */
+}
+
+.right-option::after {
+    content: "厭惡";
+    position: absolute;
+    right: 110%;
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+}
+
+.right-option.selected {
+    background-color: #00FF00 !important; /* Darker green for selected */
+}
+
+/* 下箭头 */
+.bottom-option {
+    grid-area: down;
+    width: 90px;
+    height: 90px;
+    clip-path: polygon(0% 0%, 50% 100%, 100% 0%);
+    background-color: #c9c8c89f;
+
+}
+
+.bottom-option::after {
+    content: "其他";
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
+
+/* 选中状态 */
+.option.selected {
+    background-color: #0056b3;
+    color: white;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(0, 86, 179, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(0, 86, 179, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 86, 179, 0); }
+}
+
+.option.selected::after {
+    font-weight: bold;
+    color: #0056b3;
+}
+
+
+.top-option:hover, .left-option:hover, 
+.right-option:hover, .bottom-option:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+.confirm-button {
+    width: 240px; /* 与方向键盘等宽 */
+    height: 3vw;
+    background: linear-gradient(135deg, #e0e0e0, #c9c8c89f);
+    color: #333;
+    border: none;
+    border-radius: 0.5vw;
+    font-size: 0.9vw;
+    font-weight: bold;
+    cursor: default;
+    transition: background-color 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(-60px); /* 修改：从-50px改为-60px，与方向键保持一致 */
+    pointer-events: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s;
+}
+
+.confirm-button.space-active {
+    background: linear-gradient(135deg, #0056b3, #007bff);
+    color: white;
+    box-shadow: 0 5px 15px rgba(0, 86, 179, 0.3);
+    transform: translateX(-60px) translateY(2px);
+}
+
+.progress-display {
+    position: absolute;
+    top: 1vw;
+    right: 1vw;
+    width: 200px;
+    height: 8px;
+    background: rgba(220, 220, 220, 0.8);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.progress-display::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;  /* 确保从左开始 */
+    height: 100%;
+    width: var(--progress-percent, 0%); /* 使用CSS变量控制进度 */
+    background-color: #0056b3;
+    border-radius: 4px;
+    transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    background: linear-gradient(to right, #0056b3, #00a8ff);
+}
+
+/* 练习提示 */
+.practice-note {
+    position: absolute;
+    top: 3.0vw;
+    right: 1vw;
+    font-size: 1em;
+    color: #333;
+    background: rgba(215, 240, 147, 0.8);
+    padding: 0.5vw 1vw;
+    border-radius: 0.5vw;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+/* 计时器 */
+.timer-display {
+    position: absolute;
+    top: 6.0vw;
+    right: 1vw;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 0.5vw 1vw;
+    border-radius: 0.5vw;
+    font-size: 0.9em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+/* 模态框 - updated to match instruction_2.css */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    background: linear-gradient(to bottom right, #fff, #f8f9fa);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    max-width: 90%;
+    width: 40vw;
+    animation: slideIn 0.4s ease-out;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    color: #333;
+    position: relative;
+    z-index: 2001;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.modal p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    color: #666;
+    line-height: 1.6;
+}
+
+.modal-button {
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* Remove transitions */
+    transition: none;
+    display: inline-block;
+}
+
+.modal-button:hover {
+    background-color: #044386;
+    transform: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.non-reversible-note {
+    margin-top: 0px;
+    font-size: 0.9em;
+    color: #000000; 
+    text-align: center;
+    font-weight: bold;
+    transform: translateX(-60px); 
+
+}
