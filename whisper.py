@@ -4,7 +4,7 @@ import tempfile
 import subprocess
 
 # Import config to get the OpenAI API key
-sys.path.append("C:/Users/deehu/Desktop/Program/socialmediatemplate")
+sys.path.append(r"C:\Users\deehu\Desktop\Program\Meme_comment_program\socialmediatemplate")
 from config import config
 
 # Function to compress audio file
@@ -55,9 +55,12 @@ def compress_audio_file(input_path, max_size_mb=25):
 # Method 1: Using OpenAI API
 def transcribe_with_openai_api(audio_file_path):
     import openai
+    from dotenv import load_dotenv
     
-    # Use the API key from config
-    openai.api_key = config.OPENAI_API_KEY
+    load_dotenv()  # 載入環境變數
+    
+    # Use the API key from environment variables
+    openai.api_key = os.getenv('OPENAI_API_KEY')
     
     # 檢查檔案大小 (OpenAI API 限制為 25MB)
     file_size = os.path.getsize(audio_file_path)
@@ -131,7 +134,7 @@ def transcribe_with_whisper_local(audio_file_path):
 if __name__ == "__main__":
     # 定義要處理的音頻文件列表
     audio_files = [
-        r"C:\Users\deehu\Downloads\20250730_audio.m4a",
+        r"C:\Users\deehu\Downloads\20250813_audio.mp3",
     ]
     
     successful_transcriptions = 0

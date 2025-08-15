@@ -1,0 +1,133 @@
+[33mcommit ee2071c9473599949e058067c4e4083ae576ab7a[m
+Author: deehuihan <deehuihan@gmail.com>
+Date:   Fri Aug 15 22:02:01 2025 +0800
+
+    Initial commit
+
+[1mdiff --git a/socialmediatemplate/__pycache__/claude_sentence_emotion.cpython-38.pyc b/socialmediatemplate/__pycache__/claude_sentence_emotion.cpython-38.pyc[m
+[1mdeleted file mode 100644[m
+[1mindex 930c381..0000000[m
+Binary files a/socialmediatemplate/__pycache__/claude_sentence_emotion.cpython-38.pyc and /dev/null differ
+[1mdiff --git a/socialmediatemplate/__pycache__/comment_manager.cpython-38.pyc b/socialmediatemplate/__pycache__/comment_manager.cpython-38.pyc[m
+[1mindex d7c1556..795af26 100644[m
+Binary files a/socialmediatemplate/__pycache__/comment_manager.cpython-38.pyc and b/socialmediatemplate/__pycache__/comment_manager.cpython-38.pyc differ
+[1mdiff --git a/socialmediatemplate/__pycache__/config.cpython-38.pyc b/socialmediatemplate/__pycache__/config.cpython-38.pyc[m
+[1mindex fde09ec..2ba1a97 100644[m
+Binary files a/socialmediatemplate/__pycache__/config.cpython-38.pyc and b/socialmediatemplate/__pycache__/config.cpython-38.pyc differ
+[1mdiff --git a/socialmediatemplate/__pycache__/excel_manager.cpython-38.pyc b/socialmediatemplate/__pycache__/excel_manager.cpython-38.pyc[m
+[1mindex 4b83302..95a41e2 100644[m
+Binary files a/socialmediatemplate/__pycache__/excel_manager.cpython-38.pyc and b/socialmediatemplate/__pycache__/excel_manager.cpython-38.pyc differ
+[1mdiff --git a/socialmediatemplate/__pycache__/web.cpython-38.pyc b/socialmediatemplate/__pycache__/web.cpython-38.pyc[m
+[1mdeleted file mode 100644[m
+[1mindex 7ff82c4..0000000[m
+Binary files a/socialmediatemplate/__pycache__/web.cpython-38.pyc and /dev/null differ
+[1mdiff --git a/socialmediatemplate/__pycache__/whisper.cpython-38.pyc b/socialmediatemplate/__pycache__/whisper.cpython-38.pyc[m
+[1mdeleted file mode 100644[m
+[1mindex 272e44b..0000000[m
+Binary files a/socialmediatemplate/__pycache__/whisper.cpython-38.pyc and /dev/null differ
+[1mdiff --git a/socialmediatemplate/claude_sentence_emotion.py b/socialmediatemplate/claude_sentence_emotion.py[m
+[1mindex 8264c30..739611b 100644[m
+[1m--- a/socialmediatemplate/claude_sentence_emotion.py[m
+[1m+++ b/socialmediatemplate/claude_sentence_emotion.py[m
+[36m@@ -336,96 +336,278 @@[m [mclass IntegratedMemeRecommender:[m
+ # 使用範例[m
+ # ================================[m
+ [m
+[32m+[m[32mdef demo_mode():[m
+[32m+[m[32m    """演示模式 - 不需要 API Key 的測試功能"""[m
+[32m+[m[41m    [m
+[32m+[m[32m    print("\n=== 演示模式 ===")[m
+[32m+[m[32m    print("這是一個不需要 API Key 的演示版本")[m
+[32m+[m[32m    print("將模擬情緒分析和人身攻擊檢測的結果")[m
+[32m+[m[32m    print("=" * 50)[m
+[32m+[m[41m    [m
+[32m+[m[32m    # 設定 meme 資料庫路徑[m
+[32m+[m[32m    excel_path = "C:/Users/deehu/Desktop/Program/Meme_comment_program/socialmediatemplate/meme_analysis_complete_results.xlsx"[m
+[32m+[m[41m    [m
+[32m+[m[32m    # 檢查檔案[m
+[32m+[m[32m    if not os.path.exists(excel_path):[m
+[32m+[m[32m        print(f"找不到 meme 資料庫檔案: {excel_path}")[m
+[32m+[m[32m        return[m
+[32m+[m[41m    [m
+[32m+[m[32m    # 載入 meme 資料庫[m
+[32m+[m[32m    try:[m
+[32m+[m[32m        meme_database = pd.read_excel(excel_path, sheet_name="Meme_Database_Stable")[m
+[32m+[m[32m        print(f"載入 {len(meme_database)} 個 memes")[m
+[32m+[m[32m    except Exception as e:[m
+[32m+[m[32m        try:[m
+[32m+[m[32m            meme_database = pd.read_excel(excel_path, sheet_name="Meme_Database_All")[m
+[32m+[m[32m            print(f"使用全部 {len(meme_database)} 個 memes")[m
+[32m+[m[32m        except:[m
+[32m+[m[32m            print(f"無法載入 meme 資料庫: {e}")[m
+[32m+[m[32m            return[m
+[32m+[m[41m    [m
+[32m+[m[32m    print("輸入 'quit' 或 'exit' 結束程式")[m
+[32m+[m[41m    [m
+[32m+[m[32m    while True:[m
+[32m+[m[32m        try:[m
+[32m+[m[32m            # 取得使用者輸入[m
+[32m+[m[32m            user_input = input("\n請輸入要分析的句子: ").strip()[m
+[32m+[m[41m            [m
+[32m+[m[32m            # 檢查是否要結束程式[m
+[32m+[m[32m            if user_input.lower() in ['quit', 'exit', 'q']:[m
+[32m+[m[32m                print("感謝使用，再見！")[m
+[32m+[m[32m                break[m
+[32m+[m[41m            [m
+[32m+[m[32m            # 檢查輸入是否為空[m
+[32m+[m[32m            if not user_input:[m
+[32m+[m[32m                print("請輸入有效的句子")[m
+[32m+[m[32m                continue[m
+[32m+[m[41m            [m
+[32m+[m[32m            print(f"\n正在分析: 「{user_input}」")[m
+[32m+[m[32m            print("-" * 50)[m
+[32m+[m[41m            [m
+[32m+[m[32m            # 模擬人身攻擊檢測[m
+[32m+[m[32m            attack_keywords = ['白痴', '死', '笨蛋', '垃圾', '廢物', '蠢', '智障'][m
+[32m+[m[32m            is_attack = any(keyword in user_input for keyword in attack_keywords)[m
+[32m+[m[41m            [m
+[32m+[m[32m            if not is_attack:[m
+[32m+[m[32m                print("人身攻擊：否 - 未檢測到人身攻擊相關詞彙")[m
+[32m+[m[32m                print("\n✅ 結論：此句子不構成人身攻擊，無需進行 meme 推薦")[m
+[32m+[m[32m            else:[m
+[32m+[m[32m                print("人身攻擊：是 - 檢測到攻擊性詞彙")[m
+[32m+[m[41m                [m
+[32m+[m[32m                # 模擬情緒分析結果[m
+[32m+[m[32m                import hashlib[m
+[32m+[m[32m                hash_val = int(hashlib.md5(user_input.encode()).hexdigest(), 16)[m
+[32m+[m[32m                np.random.seed(hash_val % 1000)[m
+[32m+[m[41m                [m
+[32m+[m[32m                contempt = np.random.uniform(0.1, 0.9)[m
+[32m+[m[32m                anger = np.random.uniform(0.1, 0.9)[m
+[32m+[m[32m                disgust = np.random.uniform(0.1, 0.9)[m
+[32m+[m[41m                [m
+[32m+[m[32m                # 正規化[m
+[32m+[m[32m                total = contempt + anger + disgust[m
+[32m+[m[32m                contempt /= total[m
+[32m+[m[32m                anger /= total[m
+[32m+[m[32m                disgust /= total[m
+[32m+[m[41m                [m
+[32m+[m[32m                print(f"\n📊 情緒分析結果（模擬）:")[m
+[32m+[m[32m                print(f"   輕蔑 (Contempt): {contempt:.3f}")[m
+[32m+[m[32m                print(f"   憤怒 (Anger): {anger:.3f}")[m
+[32m+[m[32m                print(f"   厭惡 (Disgust): {disgust:.3f}")[m
+[32m+[m[32m                print(f"   分析理由: 基於文本內容的模擬分析")[m
+[32m+[m[41m                [m
+[32m+[m[32m                # 計算與所有 memes 的相似度[m
+[32m+[m[32m                user_emotion = np.array([contempt, anger, disgust])[m
+[32m+[m[41m                [m
+[32m+[m[32m                similarities = [][m
+[32m+[m[32m                for _, meme_row in meme_database.iterrows():[m
+[32m+[m[32m                    meme_emotion = np.array([meme_row['contempt'], meme_row['anger'], meme_row['disgust']])[m
+[32m+[m[41m                    [m
+[32m+[m[32m                    # Cosine Similarity[m
+[32m+[m[32m                    dot_product = np.dot(user_emotion, meme_emotion)[m
+[32m+[m[32m                    norm_user = np.linalg.norm(user_emotion)[m
+[32m+[m[32m                    norm_meme = np.linalg.norm(meme_emotion)[m
+[32m+[m[41m                    [m
+[32m+[m[32m                    if norm_user > 0 and norm_meme > 0:[m
+[32m+[m[32m                        similarity = dot_product / (norm_user * norm_meme)[m
+[32m+[m[32m                    else:[m
+[32m+[m[32m                        similarity = 0[m
+[32m+[m[41m                    [m
+[32m+[m[32m                    similarities.append({[m
+[32m+[m[32m                        'meme_name': meme_row['meme_name'],[m

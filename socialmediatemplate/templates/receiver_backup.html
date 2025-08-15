@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social - 觀察者頁面</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/receiver.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/context-intro.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='s_logo.png') }}">
+
+</head>
+<body>
+
+    <div id="page-content-wrapper" class="hidden">
+        <!-- 情境說明區域 -->
+        <div id="context-introduction" class="context-intro">
+            <div class="intro-header">
+                <h2><i class="fas fa-eye"></i> 觀察者階段</h2>
+            </div>
+            
+            <div class="intro-content">
+                <div class="scenario-description">
+                    <h3>觀察者情境</h3>
+                    <p>想像一下，您正在瀏覽社群媒體上的新聞。其中留言因包含人身攻擊言論，已被平台自動轉換為迷因圖顯示</p>
+                    
+                    <h4>您的任務：</h4>
+                    <ul>
+                        <li>仔細閱讀每則新聞貼文的內容</li>
+                        <li>觀察其他網友使用迷因圖片的回應方式</li>
+                        <li>根據您的感受填寫每則貼文的評價問卷</li>
+                    </ul>
+                </div>
+                
+            </div>
+            
+            <button class="start-viewing-btn" id="startViewing">
+                <i class="fas fa-arrow-right"></i>
+                開始觀看貼文
+            </button>
+        </div>
+        
+        <main class="horizontal-layout" id="main-content" style="display: none;">
+            <!-- 左側邊欄 -->
+            <div class="left-sidebar">
+                <div class="sidebar-section">
+                    <div class="user-profile">
+                        <div class="user-avatar large">
+                            <img class="random-avatar" data-current-user="true" src="" alt="用戶">
+                        </div>
+                        <div class="user-info">
+                            <div class="username-display">用戶</div>
+                            <div class="user-status">線上</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3>快捷功能</h3>
+                    <div class="sidebar-menu">
+                        <div class="menu-item active">
+                            <i class="fas fa-newspaper"></i>
+                            <span>動態消息</span>
+                        </div>
+                        <div class="menu-item">
+                            <i class="fas fa-users"></i>
+                            <span>朋友</span>
+                        </div>
+                        <div class="menu-item">
+                            <i class="fas fa-bookmark"></i>
+                            <span>我的最愛</span>
+                        </div>
+                        <div class="menu-item">
+                            <i class="fas fa-clock"></i>
+                            <span>回憶</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3>建議聯絡人</h3>
+                    <div class="suggested-friends">
+                        <div class="friend-suggestion">
+                            <div class="user-avatar small">
+                                <img class="random-avatar" data-seed="friend1" src="" alt="建議朋友">
+                            </div>
+                            <div class="friend-info">
+                                <div class="friend-name">李小明</div>
+                                <div class="mutual-friends">2位共同朋友</div>
+                            </div>
+                        </div>
+                        <div class="friend-suggestion">
+                            <div class="user-avatar small">
+                                <img class="random-avatar" data-seed="friend2" src="" alt="建議朋友">
+                            </div>
+                            <div class="friend-info">
+                                <div class="friend-name">王小華</div>
+                                <div class="mutual-friends">3位共同朋友</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 中間：帖文區域 -->
+            <div class="main-content">
+                {% if posts_data %}
+                    {# 固定的打亂順序：避免相同類型的新聞連續出現 #}
+                    {% set fixed_order = [0, 4, 1, 6, 3, 7, 2, 5] %}
+                    {% set shuffled_posts = [] %}
+                    {% for index in fixed_order %}
+                        {% if index < posts_data|length %}
+                            {% set _ = shuffled_posts.append(posts_data[index]) %}
+                        {% endif %}
+                    {% endfor %}
+                    {% for post_data in shuffled_posts %}
+                    <div class="post news-post{% if loop.index0 == 0 %} active{% endif %}" id="post-{{ loop.index0 }}" data-original-post-id="{{ post_data.original_post_id }}" {% if loop.index0 != 0 %}style="display: none;"{% endif %}>
+                        <!-- 帖子標題區域 -->
+                        <div class="post-header">
+                            <div class="user-avatar medium">
+                                <img class="random-avatar news-avatar" data-seed="newsStation{{ loop.index }}" src="" alt="新聞台">
+                            </div>
+                            <div class="post-meta">
+                                <div class="author-name">台灣新聞網</div>
+                                <div class="post-time">{{ loop.index }}小時前 · <i class="fas fa-globe-americas"></i> 公開</div>
+                            </div>
+                            <div class="post-actions">
+                                <button class="action-menu-btn">⋯</button>
+                            </div>
+                        </div>
+
+                        <div class="post-content">
+                            <img class="post-image" src="{{ url_for('static', filename='news/' + post_data.news_file) }}" data-category="news" alt="新聞圖片">
+                        </div>
+
+                        <!-- 帖子互動統計 -->
+                        <div class="post-stats">
+                            <div class="reactions-count">
+                                <span class="reaction-icons">👍❤️😮</span>
+                                <span class="count">{{ 45 + loop.index * 23 }}人</span>
+                            </div>
+                            <div class="comments-shares">
+                                <span class="comments-count">{{ 12 + loop.index * 7 }}則留言</span>
+                                <span class="shares-count">{{ 3 + loop.index * 2 }}次分享</span>
+                            </div>
+                        </div>
+
+                        <!-- 帖子互動按鈕 -->
+                        <div class="post-actions-bar">
+                            <button class="post-action-btn like-btn">
+                                <i class="far fa-thumbs-up"></i>
+                                <span>贊</span>
+                            </button>
+                            <button class="post-action-btn comment-btn">
+                                <i class="far fa-comment"></i>
+                                <span>留言</span>
+                            </button>
+                            <button class="post-action-btn share-btn">
+                                <i class="far fa-share"></i>
+                                <span>分享</span>
+                            </button>
+                        </div>
+
+                        <!-- 網友留言區域 -->
+                        <div class="comments-section">
+                            <!-- 隨機生成的留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter1_{{ loop.index }}" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">張小明</div>
+                                        <div class="comment-text">這個新聞很重要，大家要關注！</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">{{ loop.index + 2 }}小時前</span>
+                                        <button class="comment-action">贊</button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter2_{{ loop.index }}" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">林小芳</div>
+                                        <div class="comment-text">感謝分享這個資訊 👍</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">{{ loop.index + 1 }}小時前</span>
+                                        <button class="comment-action">贊</button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 研究用的特定留言（迷因圖/原始文字） -->
+                            <div class="comment research-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="research_commenter_{{ loop.index }}" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">王大華</div>
+                                        <div class="comment-display">
+                                            <!-- 迷因圖視圖 -->
+                                            <div class="meme-view">
+                                                {% if post_data.recommended_memes and post_data.recommended_memes|length > 0 %}
+                                                <img class="meme-image" 
+                                                     src="{{ url_for('static', filename='meme_50/' + post_data.recommended_memes[0].filename) }}" 
+                                                     alt="{{ post_data.recommended_memes[0].name }}">
+                                                {% else %}
+                                                <div class="text-comment">{{ post_data.comment }}</div>
+                                                {% endif %}
+                                            </div>
+                                            
+                                            <!-- 原始留言視圖 - 隱藏狀態 -->
+                                            <div class="text-view" style="display: none;">
+                                                <div class="original-comment-text">{{ post_data.comment }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="comment-actions">
+                                        <span class="comment-time">{{ loop.index }}小時前</span>
+                                        <button class="comment-action like-comment" data-likes="{{ 5 + loop.index * 3 }}">
+                                            <i class="far fa-thumbs-up"></i> {{ 5 + loop.index * 3 }}
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                        <button class="toggle-comment-btn" data-current-view="meme">
+                                            查看原始留言
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 更多隨機留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter3_{{ loop.index }}" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">陳小美</div>
+                                        <div class="comment-text">有沒有更多相關的資訊？</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">{{ loop.index - 1 }}小時前</span>
+                                        <button class="comment-action">贊</button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 新增留言區域 -->
+                            <div class="add-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-current-user="true" src="" alt="用戶">
+                                </div>
+                                <div class="comment-input-container">
+                                    <input type="text" class="comment-input" placeholder="留下您的想法...">
+                                    <button class="comment-submit">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <!-- 右側邊欄 -->
+            <div class="right-sidebar">
+                <div class="sidebar-section">
+                    <h3>贊助商廣告</h3>
+                    <div class="ad-container">
+                        <img src="https://via.placeholder.com/250x150/e0e0e0/888888?text=廣告" alt="廣告">
+                        <div class="ad-text">
+                            <h4>最新優惠活動</h4>
+                            <p>限時特價中，立即搶購！</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3>熱門話題</h3>
+                    <div class="trending-topics">
+                        <div class="topic-item">
+                            <span class="hashtag">#台灣新聞</span>
+                            <span class="topic-count">12.5K 討論</span>
+                        </div>
+                        <div class="topic-item">
+                            <span class="hashtag">#社會議題</span>
+                            <span class="topic-count">8.3K 討論</span>
+                        </div>
+                        <div class="topic-item">
+                            <span class="hashtag">#生活分享</span>
+                            <span class="topic-count">5.7K 討論</span>
+                        </div>
+                        <div class="topic-item">
+                            <span class="hashtag">#科技新知</span>
+                            <span class="topic-count">4.2K 討論</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3>活動中的朋友</h3>
+                    <div class="online-friends">
+                        <div class="friend-item">
+                            <div class="user-avatar xsmall">
+                                <img class="random-avatar" data-seed="online1" src="" alt="線上朋友">
+                                <div class="online-indicator"></div>
+                            </div>
+                            <span class="friend-name">劉小強</span>
+                        </div>
+                        <div class="friend-item">
+                            <div class="user-avatar xsmall">
+                                <img class="random-avatar" data-seed="online2" src="" alt="線上朋友">
+                                <div class="online-indicator"></div>
+                            </div>
+                            <span class="friend-name">黃小雯</span>
+                        </div>
+                        <div class="friend-item">
+                            <div class="user-avatar xsmall">
+                                <img class="random-avatar" data-seed="online3" src="" alt="線上朋友">
+                                <div class="online-indicator"></div>
+                            </div>
+                            <span class="friend-name">蔡小宇</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 問卷評價區域 -->
+            <div class="right-content"
+        <main class="horizontal-layout" id="main-content" style="display: none;">
+            <!-- 左側：帖文區域 -->
+            <div class="left-content">
+                {% if posts_data %}
+                    {# 固定的打亂順序：避免相同類型的新聞連續出現 #}
+                    {% set fixed_order = [0, 4, 1, 6, 3, 7, 2, 5] %}
+                    {% set shuffled_posts = [] %}
+                    {% for index in fixed_order %}
+                        {% if index < posts_data|length %}
+                            {% set _ = shuffled_posts.append(posts_data[index]) %}
+                        {% endif %}
+                    {% endfor %}
+                    {% for post_data in shuffled_posts %}
+                    <div class="post news-post{% if loop.index0 == 0 %} active{% endif %}" id="post-{{ loop.index0 }}" data-original-post-id="{{ post_data.original_post_id }}" {% if loop.index0 != 0 %}style="display: none;"{% endif %}>
+                        <!-- 帖子標題區域 -->
+                        <div class="post-header">
+                            <div class="user-avatar medium">
+                                <img class="random-avatar" data-seed="newsStation{{ loop.index }}" src="" alt="新聞台">
+                            </div>
+                            <div class="post-meta">
+                                <div class="author-name">新聞台</div>
+                                <div class="post-time">{{ loop.index }}小時前</div>
+                            </div>
+                            <div class="post-actions">
+                                <button class="action-menu-btn">⋯</button>
+                            </div>
+                        </div>
+
+                        <div class="post-content">
+                            <img class="post-image" src="{{ url_for('static', filename='news/' + post_data.news_file) }}" data-category="news" alt="新聞圖片">
+                        </div>
+
+                        <!-- 帖子互動按鈕 -->
+                        <div class="post-actions-bar">
+                            <button class="post-action-btn like-btn">
+                                <i class="far fa-heart"></i>
+                                <span>贊</span>
+                            </button>
+                            <button class="post-action-btn comment-btn">
+                                <i class="far fa-comment"></i>
+                                <span>留言</span>
+                            </button>
+                            <button class="post-action-btn share-btn">
+                                <i class="far fa-share-square"></i>
+                                <span>分享</span>
+                            </button>
+                        </div>
+
+                        <!-- 網友留言區域 -->
+                        <div class="comment-section-left">
+                            <div class="comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter{{ loop.index }}" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-meta">
+                                        <div class="comment-author">網友A</div>
+                                    </div>
+                                    <div class="comment-display">
+                                        <!-- 迷因圖視圖 -->
+                                        <div class="meme-view">
+                                            {% if post_data.recommended_memes and post_data.recommended_memes|length > 0 %}
+                                            <img class="meme-image" 
+                                                 src="{{ url_for('static', filename='meme_50/' + post_data.recommended_memes[0].filename) }}" 
+                                                 alt="{{ post_data.recommended_memes[0].name }}">
+                                            {% else %}
+                                            <div class="text-comment">{{ post_data.comment }}</div>
+                                            {% endif %}
+                                        </div>
+                                        
+                                        <!-- 原始留言視圖 - 放在迷因圖下方 -->
+                                        <div class="text-view" style="display: none;">
+                                            <strong>原始留言：</strong>{{ post_data.comment }}
+                                        </div>
+                                        
+                                        <!-- 按鈕區域 -->
+                                        <div class="comment-actions">
+                                            <button class="action-btn toggle-comment-btn" data-current-view="meme">
+                                                查看原始留言
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <!-- 右側：問卷評價區域 -->
+            <div class="right-content">
+                {% if posts_data %}
+                    {# 使用與左側相同的固定順序 #}
+                    {% set fixed_order = [0, 4, 1, 6, 3, 7, 2, 5] %}
+                    {% set shuffled_posts = [] %}
+                    {% for index in fixed_order %}
+                        {% if index < posts_data|length %}
+                            {% set _ = shuffled_posts.append(posts_data[index]) %}
+                        {% endif %}
+                    {% endfor %}
+                    <!-- Panel 0 -->
+                    <div class="interaction-panel active" id="panel-0">
+                        <div class="receiver-survey-section" data-post-id="{{ shuffled_posts[0].post_id }}">
+                            <div class="survey-header">
+                                <h4>請評價這個迷因圖留言</h4>
+                            </div>
+                            <div class="survey-questions">
+                                <!-- Q1 -->
+                                <div class="question-group">
+                                    <div class="question-text">
+                                        請評估這則原始留言的攻擊性程度
+                                    </div>
+                                    <div class="scale-container">
+                                        <div class="scale-labels">
+                                            <span class="scale-label">1-完全不具攻擊性</span>
+                                            <span class="scale-label">7-極具攻擊性</span>
+                                        </div>
+                                        <div class="scale-controls">
+                                            <input type="range" class="likert-scale" min="1" max="7" value="4" data-question="q1">
+                                            <div class="scale-value">4</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Q2 -->
+                                <div class="question-group">
+                                    <div class="question-text">
+                                        請評估這張迷因版本的攻擊性程度
+                                    </div>
+                                    <div class="scale-container">
+                                        <div class="scale-labels">
+                                            <span class="scale-label">1-完全不具攻擊性</span>
+                                            <span class="scale-label">7-極具攻擊性</span>
+                                        </div>
+                                        <div class="scale-controls">
+                                            <input type="range" class="likert-scale" min="1" max="7" value="4" data-question="q2">
+                                            <div class="scale-value">4</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Q3 -->
+                                <div class="question-group">
+                                    <div class="question-text">
+                                        這張迷因圖所表達的情緒與原始留言是否相符？
+                                    </div>
+                                    <div class="scale-container">
+                                        <div class="scale-labels">
+                                            <span class="scale-label">1-完全不相符</span>
+                                            <span class="scale-label">7-完全相符</span>
+                                        </div>
+                                        <div class="scale-controls">
+                                            <input type="range" class="likert-scale" min="1" max="7" value="4" data-question="q3">
+                                            <div class="scale-value">4</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="survey-submit">
+                                <button class="submit-receiver-survey-btn">提交</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Panel 1-7 -->
+                    {% for i in range(1, shuffled_posts|length) %}
+                    <div class="interaction-panel" id="panel-{{ i }}" style="display: none;">
+                        <div class="receiver-survey-section" data-post-id="{{ shuffled_posts[i].post_id }}">
+                            <div class="survey-header">
+                                <h4>請評價這個迷因圖留言</h4>
+                            </div>
+                            <div class="survey-questions">
+                                <!-- Q1 -->
+                                <div class="question-group">
+                                    <div class="question-text">
+                                        請評估這則原始留言的攻擊性程度
+                                    </div>
+                                    <div class="scale-container">
+                                        <div class="scale-labels">
+                                            <span class="scale-label">1-完全不具攻擊性</span>
+                                            <span class="scale-label">7-極具攻擊性</span>
+                                        </div>
+                                        <div class="scale-controls">
+                                            <input type="range" class="likert-scale" min="1" max="7" value="4" data-question="q1">
+                                            <div class="scale-value">4</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Q2 -->
+                                <div class="question-group">
+                                    <div class="question-text">
+                                        請評估這張迷因版本的攻擊性程度
+                                    </div>
+                                    <div class="scale-container">
+                                        <div class="scale-labels">
+                                            <span class="scale-label">1-完全不具攻擊性</span>
+                                            <span class="scale-label">7-極具攻擊性</span>
+                                        </div>
+                                        <div class="scale-controls">
+                                            <input type="range" class="likert-scale" min="1" max="7" value="4" data-question="q2">
+                                            <div class="scale-value">4</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Q3 -->
+                                <div class="question-group">
+                                    <div class="question-text">
+                                        這張迷因圖所表達的情緒與原始留言是否相符？
+                                    </div>
+                                    <div class="scale-container">
+                                        <div class="scale-labels">
+                                            <span class="scale-label">1-完全不相符</span>
+                                            <span class="scale-label">7-完全相符</span>
+                                        </div>
+                                        <div class="scale-controls">
+                                            <input type="range" class="likert-scale" min="1" max="7" value="4" data-question="q3">
+                                            <div class="scale-value">4</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="survey-submit">
+                                <button class="submit-receiver-survey-btn">提交</button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="interaction-panel active">
+                        <div class="receiver-survey-section">
+                            <h4>目前沒有新聞貼文。請將圖片放入 static/news 資料夾。</h4>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </main>
+
+        <!-- 底部導航 -->
+        <div class="post-navigation">
+            <div class="nav-dots">
+                {% for i in range(8) %}
+                <div class="nav-dot" data-post-index="{{ i }}">
+                    <span class="dot-number">{{ i + 1 }}</span>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="nav-progress">
+                <span class="current-post">1</span> / 8
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        // Check if user is logged in
+        document.addEventListener('DOMContentLoaded', function() {
+            const username = localStorage.getItem('socialUserId');
+            console.log('Receiver page loaded, username:', username);
+            const pageContentWrapper = document.getElementById('page-content-wrapper');
+            
+            if (!username) {
+                // No username, redirect to input page
+                console.log('No username found, redirecting to input');
+                window.location.href = '/';
+                return;
+            }
+            
+            // User has username, show page content
+            console.log('User authenticated, showing receiver content');
+            if (pageContentWrapper) {
+                pageContentWrapper.classList.remove('hidden');
+            }
+        });
+        
+        // 設置切換留言和迷因圖的功能
+        function setupToggleCommentHandlers() {
+            const toggleButtons = document.querySelectorAll('.toggle-comment-btn');
+            
+            toggleButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const commentContent = this.closest('.comment-content');
+                    const memeView = commentContent.querySelector('.meme-view');
+                    const textView = commentContent.querySelector('.text-view');
+                    const currentView = this.dataset.currentView;
+                    
+                    if (currentView === 'meme') {
+                        // 切換到原始留言視圖
+                        memeView.style.display = 'none';
+                        textView.style.display = 'block';
+                        this.textContent = '查看迷因圖';
+                        this.dataset.currentView = 'text';
+                    } else {
+                        // 切換到迷因圖視圖
+                        memeView.style.display = 'block';
+                        textView.style.display = 'none';
+                        this.textContent = '查看原始留言';
+                        this.dataset.currentView = 'meme';
+                    }
+                });
+            });
+        }
+    </script>
+    
+    <script src="{{ url_for('static', filename='js/receiver.js') }}"></script>
+</body>
+</html>

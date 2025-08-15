@@ -8,8 +8,8 @@ class Config:
     SECRET_KEY = 'your_secret_key'
     FIREBASE_DATABASE_URL = 'https://socialmedia-7c038-default-rtdb.asia-southeast1.firebasedatabase.app/'
     FIREBASE_CREDENTIALS_PATH = "C:/Users/deehu/Desktop/Program/socialmediatemplate/socialmedia-7c038-firebase-adminsdk-fbsvc-a3b30f46e1.json"
-    OPENAI_API_KEY = "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"
-    CLAUDE_API_KEY = "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"  # 請替換為您的Claude API Key
+    OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+    CLAUDE_API_KEY = os.getenv('CLAUDE_API_KEY')
     
     # Firebase Web Configuration
     FIREBASE_CONFIG = {

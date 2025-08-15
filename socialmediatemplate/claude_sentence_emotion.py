@@ -336,96 +336,278 @@ class IntegratedMemeRecommender:
 # 使用範例
 # ================================
 
-def main():
-    """主程式範例 - 自動處理 Excel 文件"""
+def demo_mode():
+    """演示模式 - 不需要 API Key 的測試功能"""
     
-    # 設定 API Key
-    api_key = config.CLAUDE_API_KEY
-    if not api_key:
-        api_key = input("請輸入 Anthropic API Key: ")
+    print("\n=== 演示模式 ===")
+    print("這是一個不需要 API Key 的演示版本")
+    print("將模擬情緒分析和人身攻擊檢測的結果")
+    print("=" * 50)
     
-    # 設定路徑
-    excel_path = "C:/Users/deehu/Desktop/Program/socialmediatemplate/meme_analysis_complete_results.xlsx"
-    input_excel_path = "C:/Users/deehu/Desktop/Program/socialmediatemplate/static/Comments_Meme_Similarity.xlsx"
+    # 設定 meme 資料庫路徑
+    excel_path = "C:/Users/deehu/Desktop/Program/Meme_comment_program/socialmediatemplate/meme_analysis_complete_results.xlsx"
     
     # 檢查檔案
     if not os.path.exists(excel_path):
-        print(f"找不到檔案: {excel_path}")
+        print(f"找不到 meme 資料庫檔案: {excel_path}")
         return
-        
-    if not os.path.exists(input_excel_path):
-        print(f"找不到輸入檔案: {input_excel_path}")
+    
+    # 載入 meme 資料庫
+    try:
+        meme_database = pd.read_excel(excel_path, sheet_name="Meme_Database_Stable")
+        print(f"載入 {len(meme_database)} 個 memes")
+    except Exception as e:
+        try:
+            meme_database = pd.read_excel(excel_path, sheet_name="Meme_Database_All")
+            print(f"使用全部 {len(meme_database)} 個 memes")
+        except:
+            print(f"無法載入 meme 資料庫: {e}")
+            return
+    
+    print("輸入 'quit' 或 'exit' 結束程式")
+    
+    while True:
+        try:
+            # 取得使用者輸入
+            user_input = input("\n請輸入要分析的句子: ").strip()
+            
+            # 檢查是否要結束程式
+            if user_input.lower() in ['quit', 'exit', 'q']:
+                print("感謝使用，再見！")
+                break
+            
+            # 檢查輸入是否為空
+            if not user_input:
+                print("請輸入有效的句子")
+                continue
+            
+            print(f"\n正在分析: 「{user_input}」")
+            print("-" * 50)
+            
+            # 模擬人身攻擊檢測
+            attack_keywords = ['白痴', '死', '笨蛋', '垃圾', '廢物', '蠢', '智障']
+            is_attack = any(keyword in user_input for keyword in attack_keywords)
+            
+            if not is_attack:
+                print("人身攻擊：否 - 未檢測到人身攻擊相關詞彙")
+                print("\n✅ 結論：此句子不構成人身攻擊，無需進行 meme 推薦")
+            else:
+                print("人身攻擊：是 - 檢測到攻擊性詞彙")
+                
+                # 模擬情緒分析結果
+                import hashlib
+                hash_val = int(hashlib.md5(user_input.encode()).hexdigest(), 16)
+                np.random.seed(hash_val % 1000)
+                
+                contempt = np.random.uniform(0.1, 0.9)
+                anger = np.random.uniform(0.1, 0.9)
+                disgust = np.random.uniform(0.1, 0.9)
+                
+                # 正規化
+                total = contempt + anger + disgust
+                contempt /= total
+                anger /= total
+                disgust /= total
+                
+                print(f"\n📊 情緒分析結果（模擬）:")
+                print(f"   輕蔑 (Contempt): {contempt:.3f}")
+                print(f"   憤怒 (Anger): {anger:.3f}")
+                print(f"   厭惡 (Disgust): {disgust:.3f}")
+                print(f"   分析理由: 基於文本內容的模擬分析")
+                
+                # 計算與所有 memes 的相似度
+                user_emotion = np.array([contempt, anger, disgust])
+                
+                similarities = []
+                for _, meme_row in meme_database.iterrows():
+                    meme_emotion = np.array([meme_row['contempt'], meme_row['anger'], meme_row['disgust']])
+                    
+                    # Cosine Similarity
+                    dot_product = np.dot(user_emotion, meme_emotion)
+                    norm_user = np.linalg.norm(user_emotion)
+                    norm_meme = np.linalg.norm(meme_emotion)
+                    
+                    if norm_user > 0 and norm_meme > 0:
+                        similarity = dot_product / (norm_user * norm_meme)
+                    else:
+                        similarity = 0
+                    
+                    similarities.append({
+                        'meme_name': meme_row['meme_name'],
+                        'similarity': similarity,
+                        'contempt': meme_row['contempt'],
+                        'anger': meme_row['anger'],
+                        'disgust': meme_row['disgust']
+                    })
+                
+                # 排序並選擇高中低三組
+                recommendations_df = pd.DataFrame(similarities)
+                recommendations_df = recommendations_df.sort_values('similarity', ascending=False)
+                
+                total_memes = len(recommendations_df)
+                
+                # 選擇推薦
+                if total_memes >= 48:
+                    high_indices = [0, 1]  # 排名 1, 2
+                    medium_indices = [23, 24]  # 排名 24, 25
+                    low_indices = [46, 47]  # 排名 47, 48
+                else:
+                    high_indices = [0, 1] if total_memes > 1 else [0]
+                    medium_start = max(2, total_memes // 3)
+                    medium_indices = [medium_start] if total_memes > medium_start else []
+                    low_start = max(total_memes - 1, medium_start + 1) if total_memes > 4 else total_memes - 1
+                    low_indices = [low_start] if total_memes > low_start else []
+                
+                print(f"\n🎭 推薦 Memes:")
+                
+                if high_indices:
+                    high_memes = recommendations_df.iloc[high_indices]
+                    print(f"\n   高相似度組:")
+                    for i, (_, row) in enumerate(high_memes.iterrows(), 1):
+                        rank = recommendations_df.index.get_loc(row.name) + 1
+                        print(f"   {i}. {row['meme_name']} (排名: {rank}, 相似度: {row['similarity']:.3f})")
+                
+                if medium_indices and all(i < total_memes for i in medium_indices):
+                    medium_memes = recommendations_df.iloc[medium_indices]
+                    print(f"\n   中相似度組:")
+                    for i, (_, row) in enumerate(medium_memes.iterrows(), 1):
+                        rank = recommendations_df.index.get_loc(row.name) + 1
+                        print(f"   {i}. {row['meme_name']} (排名: {rank}, 相似度: {row['similarity']:.3f})")
+                
+                if low_indices and all(i < total_memes for i in low_indices):
+                    low_memes = recommendations_df.iloc[low_indices]
+                    print(f"\n   低相似度組:")
+                    for i, (_, row) in enumerate(low_memes.iterrows(), 1):
+                        rank = recommendations_df.index.get_loc(row.name) + 1
+                        print(f"   {i}. {row['meme_name']} (排名: {rank}, 相似度: {row['similarity']:.3f})")
+            
+            print("-" * 50)
+                
+        except KeyboardInterrupt:
+            print("\n\n程式被使用者中斷")
+            break
+        except Exception as e:
+            print(f"\n❌ 分析過程中發生錯誤: {e}")
+
+def main():
+    """主程式 - 終端機互動式輸入分析"""
+    
+    # 詢問使用者要使用哪種模式
+    print("請選擇運行模式:")
+    print("1. 正常模式 (需要有效的 Claude API Key)")
+    print("2. 演示模式 (不需要 API Key，使用模擬結果)")
+    
+    mode = input("請輸入選擇 (1 或 2): ").strip()
+    
+    if mode == "2":
+        demo_mode()
+        return
+    
+    # 設定 API Key
+    api_key = config.CLAUDE_API_KEY
+    if not api_key or api_key == "your_claude_api_key_here":
+        api_key = input("請輸入 Anthropic API Key: ")
+    
+    # 設定 meme 資料庫路徑
+    excel_path = "C:/Users/deehu/Desktop/Program/Meme_comment_program/socialmediatemplate/meme_analysis_complete_results.xlsx"
+    
+    # 檢查檔案
+    if not os.path.exists(excel_path):
+        print(f"找不到 meme 資料庫檔案: {excel_path}")
         return
     
     # 初始化系統
     print("初始化推薦系統...")
-    recommender = IntegratedMemeRecommender(api_key, excel_path)
-    
-    # 讀取輸入 Excel 檔案
-    print("讀取留言數據...")
     try:
-        df = pd.read_excel(input_excel_path)
-        print(f"載入 {len(df)} 個留言")
+        recommender = IntegratedMemeRecommender(api_key, excel_path)
+        print("系統初始化完成！")
     except Exception as e:
-        print(f"讀取 Excel 檔案失敗: {e}")
+        print(f"系統初始化失敗: {e}")
         return
     
-    # 檢查是否有 Comments 欄位
-    if 'Comments' not in df.columns:
-        print("Excel 檔案中找不到 'Comments' 欄位")
-        print(f"可用欄位: {list(df.columns)}")
-        return
+    print("\n=== Claude 情緒分析與 Meme 推薦系統 ===")
+    print("輸入文字進行人身攻擊檢測和情緒分析")
+    print("輸入 'quit' 或 'exit' 結束程式")
+    print("=" * 50)
     
-    # 初始化結果欄位
-    df['G'] = ""  # High similarity
-    df['H'] = ""  # Medium similarity  
-    df['I'] = ""  # Low similarity
-    
-    # 處理每個留言
-    for index, row in df.iterrows():
-        comment = row['Comments']
-        if pd.isna(comment) or comment.strip() == "":
-            print(f"第 {index + 1} 行留言為空，跳過")
-            continue
-            
-        print(f"\n處理第 {index + 1} 行: {comment[:50]}...")
-        
+    # 測試 API Key 是否有效
+    print("\n正在測試 API 連線...")
+    test_result = recommender.emotion_analyzer.detect_personal_attack("測試", max_retries=1)
+    if "Error code: 401" in test_result.raw_response:
+        print("❌ API Key 無效或已過期")
+        api_key = input("請重新輸入有效的 Anthropic API Key: ")
         try:
-            emotion_result, recommendations = recommender.recommend_for_sentence(str(comment))
-            
-            if emotion_result is None:
-                print("不是人身攻擊，跳過推薦")
-                df.at[index, 'G'] = "非人身攻擊"
-                df.at[index, 'H'] = "非人身攻擊"
-                df.at[index, 'I'] = "非人身攻擊"
-            else:
-                # 提取推薦結果
-                high_memes = recommendations['high_similarity']['meme_name'].tolist()
-                medium_memes = recommendations['medium_similarity']['meme_name'].tolist()
-                low_memes = recommendations['low_similarity']['meme_name'].tolist()
-                
-                # 寫入 Excel
-                df.at[index, 'G'] = "; ".join(high_memes) if high_memes else ""
-                df.at[index, 'H'] = "; ".join(medium_memes) if medium_memes else ""
-                df.at[index, 'I'] = "; ".join(low_memes) if low_memes else ""
-                
-                print(f"推薦完成 - 高:{len(high_memes)}, 中:{len(medium_memes)}, 低:{len(low_memes)}")
-                
+            recommender = IntegratedMemeRecommender(api_key, excel_path)
+            print("✅ API Key 更新成功！")
         except Exception as e:
-            print(f"處理第 {index + 1} 行時發生錯誤: {e}")
-            df.at[index, 'G'] = f"錯誤: {str(e)}"
-            df.at[index, 'H'] = f"錯誤: {str(e)}"
-            df.at[index, 'I'] = f"錯誤: {str(e)}"
+            print(f"❌ 仍然無法連接: {e}")
+            return
+    else:
+        print("✅ API 連線正常")
     
-    # 保存結果
-    output_path = "C:/Users/deehu/Desktop/Program/socialmediatemplate/static/Comments_Meme_Similarity_Results.xlsx"
-    try:
-        df.to_excel(output_path, index=False)
-        print(f"\n結果已保存至: {output_path}")
-    except Exception as e:
-        print(f"保存檔案失敗: {e}")
-    
-    print("處理完成！")
+    while True:
+        try:
+            # 取得使用者輸入
+            user_input = input("\n請輸入要分析的句子: ").strip()
+            
+            # 檢查是否要結束程式
+            if user_input.lower() in ['quit', 'exit', 'q']:
+                print("感謝使用，再見！")
+                break
+            
+            # 檢查輸入是否為空
+            if not user_input:
+                print("請輸入有效的句子")
+                continue
+            
+            print(f"\n正在分析: 「{user_input}」")
+            print("-" * 50)
+            
+            # 進行分析
+            emotion_result, recommendations = recommender.recommend_for_sentence(user_input)
+            
+            # 顯示詳細結果
+            if emotion_result is None:
+                print("\n✅ 結論：此句子不構成人身攻擊，無需進行 meme 推薦")
+            else:
+                print(f"\n📊 情緒分析結果:")
+                print(f"   輕蔑 (Contempt): {emotion_result.contempt:.3f}")
+                print(f"   憤怒 (Anger): {emotion_result.anger:.3f}")
+                print(f"   厭惡 (Disgust): {emotion_result.disgust:.3f}")
+                
+                if emotion_result.reasoning:
+                    print(f"   分析理由: {emotion_result.reasoning}")
+                
+                # 顯示推薦的 memes
+                print(f"\n🎭 推薦 Memes:")
+                
+                high_memes = recommendations['high_similarity']
+                medium_memes = recommendations['medium_similarity']
+                low_memes = recommendations['low_similarity']
+                
+                if not high_memes.empty:
+                    print(f"\n   高相似度組:")
+                    for i, (_, row) in enumerate(high_memes.iterrows(), 1):
+                        print(f"   {i}. {row['meme_name']} (相似度: {row['similarity']:.3f})")
+                
+                if not medium_memes.empty:
+                    print(f"\n   中相似度組:")
+                    for i, (_, row) in enumerate(medium_memes.iterrows(), 1):
+                        print(f"   {i}. {row['meme_name']} (相似度: {row['similarity']:.3f})")
+                
+                if not low_memes.empty:
+                    print(f"\n   低相似度組:")
+                    for i, (_, row) in enumerate(low_memes.iterrows(), 1):
+                        print(f"   {i}. {row['meme_name']} (相似度: {row['similarity']:.3f})")
+            
+            print("-" * 50)
+                
+        except KeyboardInterrupt:
+            print("\n\n程式被使用者中斷")
+            break
+        except Exception as e:
+            print(f"\n❌ 分析過程中發生錯誤: {e}")
+            print("請重新輸入或檢查網路連線")
 
 if __name__ == "__main__":
     main()

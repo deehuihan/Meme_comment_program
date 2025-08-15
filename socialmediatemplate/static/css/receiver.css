@@ -4,15 +4,51 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    height: 100vh;
+.user-avatar {
+    border-radius: 50%;
     overflow: hidden;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-avatar.xsmall {
+    width: 24px;
+    height: 24px;
+}
+
+.user-avatar.small {
+    width: 32px;
+    height: 32px;
+}
+
+.user-avatar.medium {
+    width: 40px;
+    height: 40px;
+}
+
+.user-avatar.large {
+    width: 56px;
+    height: 56px;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+    overflow: hidden; /* 確保整個頁面不能滾動 */
+    margin: 0;
+    background-color: #f0f2f5;
+    padding-top: 0;
 }
 
 .page-label {
     position: fixed;
-    top: 10px;
+    top: 66px;
     right: 10px;
     background: #1877f2;
     color: white;
@@ -22,27 +58,1427 @@ body {
     z-index: 1000;
 }
 
+/* 全局佈局 */
 .horizontal-layout {
-    display: flex;
-    height: calc(100vh - 90px);
     width: 100vw;
+    height: 100vh;
     margin: 0;
     padding: 0;
-    gap: 0;
-    align-items: stretch;
-    overflow: hidden;
+    background-color: #f0f2f5;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
-.left-content {
-    width: 70%;
+/* Facebook 頂部導航條 - 全局 */
+.facebook-header {
+    width: 100%;
+    height: 60px;
     background: #ffffff;
-    padding: 10px;
+    border-bottom: 1px solid #dadde1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Facebook header 子元素樣式 */
+.facebook-header .facebook-logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1877f2;
+}
+
+.facebook-header .search-box {
+    width: 240px;
+    height: 40px;
+    padding: 0 16px;
+    border: none;
+    border-radius: 20px;
+    background-color: #f0f2f5;
+    font-size: 15px;
+    outline: none;
+}
+
+.facebook-header .search-box::placeholder {
+    color: #65676b;
+}
+
+.facebook-header .nav-icons {
+    display: flex;
+    gap: 8px;
+}
+
+.facebook-header .nav-icon {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background-color: #e4e6ea;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.facebook-header .nav-icon:hover {
+    background-color: #d8dadf;
+}
+
+/* 主要頁面內容區域 */
+.page-content {
+    display: flex;
+    margin-top: 60px; /* 為 header 留出空間 */
+    height: calc(100vh - 60px);
+    background-color: #f0f2f5;
+}
+
+/* 側邊欄 */
+.sidebar {
+    width: 280px;
+    background: #ffffff;
+    padding: 20px 8px;
+    overflow-y: auto;
+    height: 100%;
+    box-sizing: border-box;
+    border-right: 1px solid #dadde1;
+}
+
+/* 側邊欄區塊 */
+.sidebar .sidebar-section {
+    margin-bottom: 20px;
+    padding: 0 12px;
+}
+
+.sidebar .sidebar-section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #65676b;
+    margin: 0 0 8px 0;
+}
+
+/* 用戶資料 */
+.sidebar .user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.sidebar .user-profile:hover {
+    background-color: #f2f3f5;
+}
+
+.sidebar .user-info {
+    flex: 1;
+}
+
+.sidebar .username-display {
+    font-weight: 600;
+    color: #050505;
+    font-size: 15px;
+}
+
+.sidebar .user-status {
+    color: #65676b;
+    font-size: 13px;
+}
+
+/* 側邊欄選單 */
+.sidebar .sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.sidebar .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 15px;
+    color: #050505;
+}
+
+.sidebar .menu-item:hover {
+    background-color: #f2f3f5;
+}
+
+.sidebar .menu-item.active {
+    background-color: #e3f2fd;
+    color: #1877f2;
+}
+
+.sidebar .menu-item i {
+    width: 20px;
+    text-align: center;
+}
+
+/* 主要內容區域 */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #f0f2f5;
+}
+
+/* 左側：社交媒體內容區 - Facebook風格 */
+.left-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #f0f2f5;
+    height: 100vh;
+    padding-right: 0;
+}
+
+/* 主要內容區域 - 簡化佈局 */
+.main-content-area {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #f0f2f5;
+    height: 100vh;
+    padding-right: 0;
+}
+
+/* left-content内的content-wrapper - Facebook三栏布局 */
+.left-content .content-wrapper,
+.main-content-area .content-wrapper {
+    display: flex;
+    gap: 16px;
+    flex: 1;
+    height: calc(100vh - 60px);
+}
+
+/* 左側的側邊欄 - Facebook白色主题 */
+.left-content .social-sidebar,
+.main-content-area .social-sidebar {
+    width: 280px;
+    background: #ffffff;
+    padding: 20px 8px;
+    overflow-y: auto;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+/* left-content sidebar sections - ?�色主�? */
+.left-content .social-sidebar .sidebar-section {
+    background: transparent;
+    border-radius: 0;
+    padding: 0;
+    margin-bottom: 20px;
+    box-shadow: none;
+    border-bottom: 1px solid #dadde1;
+    padding-bottom: 16px;
+}
+
+.left-content .social-sidebar .sidebar-section:last-child {
+    border-bottom: none;
+}
+
+.left-content .social-sidebar .sidebar-section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #65676b;
+    margin-bottom: 12px;
+    margin-top: 0;
+}
+
+/* user profile in sidebar - ?�色主�? */
+.left-content .social-sidebar .user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+
+.left-content .social-sidebar .user-profile:hover {
+    background: #f0f2f5;
+}
+
+.left-content .social-sidebar .username-display {
+    color: #1c1e21;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.left-content .social-sidebar .user-status {
+    color: #42b72a;
+    font-size: 12px;
+}
+
+/* menu items in sidebar - ?�色主�? */
+.left-content .social-sidebar .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-weight: 500;
+    color: #1c1e21;
+    margin-bottom: 4px;
+}
+
+.left-content .social-sidebar .menu-item:hover {
+    background: #f0f2f5;
+}
+
+.left-content .social-sidebar .menu-item.active {
+    background: #e7f3ff;
+    color: #1877f2;
+}
+
+.left-content .social-sidebar .menu-item i {
+    width: 20px;
+    text-align: center;
+    font-size: 16px;
+    color: #1877f2;
+}
+
+/* friend suggestions in sidebar - ?�色主�? */
+.left-content .social-sidebar .friend-suggestion {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-bottom: 8px;
+}
+
+.left-content .social-sidebar .friend-suggestion:hover {
+    background: #f0f2f5;
+}
+
+.left-content .social-sidebar .friend-name {
+    color: #1c1e21;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.left-content .social-sidebar .mutual-friends {
+    color: #65676b;
+    font-size: 12px;
+}
+
+/* Facebook?�部導航條風??- ?�色主�? */
+.left-content .facebook-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border-bottom: 1px solid #dadde1;
+    padding: 8px 16px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: 100%;
+    box-sizing: border-box;
+    height: 56px;
+}
+
+/* left-content?�facebook-header?�logo */
+.left-content .facebook-header .facebook-logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1877f2;
+    margin-right: 16px;
+    flex-shrink: 0;
+}
+
+/* left-content?�facebook-header?��?索�? - ?�色主�? */
+.left-content .facebook-header .search-box {
+    background: #f0f2f5;
+    border: none;
+    border-radius: 20px;
+    padding: 6px 12px;
+    flex: 1;
+    max-width: 200px;
+    font-size: 14px;
+    outline: none;
+    color: #1c1e21;
+}
+
+.left-content .facebook-header .search-box::placeholder {
+    color: #65676b;
+}
+
+/* left-content?�facebook-header?�导?�图??*/
+.left-content .facebook-header .nav-icons {
+    margin-left: auto;
+    display: flex;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+/* left-content?�facebook-header?�导?�图?��???- ?�色主�? */
+.left-content .facebook-header .nav-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f0f2f5;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 16px;
+    color: #65676b;
+}
+
+.left-content .facebook-header .nav-icon:hover {
+    background: #e4e6ea;
+}
+
+.facebook-logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1877f2;
+    margin-right: 24px;
+}
+
+.search-box {
+    background: #f0f2f5;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 16px;
+    width: 240px;
+    font-size: 15px;
+    outline: none;
+}
+
+.nav-icons {
+    margin-left: auto;
+    display: flex;
+    gap: 8px;
+}
+
+.nav-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f0f2f5;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.nav-icon:hover {
+    background: #e4e6ea;
+}
+.facebook-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+    background: #ffffff;
+    border-bottom: 1px solid #dadde1;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.facebook-logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1877f2;
+    margin-right: 24px;
+}
+
+.search-box {
+    background: #f0f2f5;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 16px;
+    width: 240px;
+    font-size: 15px;
+    outline: none;
+}
+
+.nav-icons {
+    margin-left: auto;
+    display: flex;
+    gap: 8px;
+}
+
+.nav-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f0f2f5;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.nav-icon:hover {
+    background: #e4e6ea;
+}
+
+/* 左側?��? */
+.left-sidebar, .social-sidebar {
+    width: 280px;
+    background: transparent;
+    padding: 0;
+    overflow-y: auto;
+    position: sticky;
+    top: 16px;
+    height: calc(100vh - 104px);
+}
+
+.sidebar-section {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.sidebar-section h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #1c1e21;
+    margin-bottom: 12px;
+    margin-top: 0;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-info {
+    flex: 1;
+}
+
+.user-status {
+    font-size: 12px;
+    color: #42b72a;
+    font-weight: 500;
+}
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-weight: 500;
+}
+
+.menu-item:hover {
+    background-color: #f2f3f4;
+}
+
+.menu-item.active {
+    background-color: #e7f3ff;
+    color: #1877f2;
+}
+
+.menu-item i {
+    width: 20px;
+    text-align: center;
+    font-size: 16px;
+}
+
+/* 中央主要内容区域 - Facebook风格，固定不滾動 */
+.main-content {
+    flex: 1;
+    background: #f0f2f5;
+    overflow: hidden; /* 禁止主要內容區域滾動 */
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    overflow-y: auto;
+    padding: 20px 8px;
+    max-width: none;
+    margin: 0;
+    margin-bottom: 71px; /* 調整為 66px(navigation高度) + 5px(間距) = 71px */
+    height: calc(100vh - 120px); /* 增加高度，為留言區域提供更多空間 */
+    padding-bottom: 20px;
 }
 
+/* ?�侧边�? - Facebook风格 */
+.left-content .right-sidebar {
+    width: 280px;
+    background: #ffffff;
+    padding: 20px 8px;
+    overflow-y: auto;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+/* ?�侧边�? sections */
+.left-content .right-sidebar .sidebar-section {
+    background: transparent;
+    border-radius: 0;
+    padding: 0;
+    margin-bottom: 20px;
+    box-shadow: none;
+    border-bottom: 1px solid #dadde1;
+    padding-bottom: 16px;
+}
+
+.left-content .right-sidebar .sidebar-section:last-child {
+    border-bottom: none;
+}
+
+.left-content .right-sidebar .sidebar-section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #65676b;
+    margin-bottom: 12px;
+    margin-top: 0;
+}
+
+/* 赞助?�容?��? */
+.sponsored-content .ad-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-bottom: 12px;
+}
+
+.sponsored-content .ad-item:hover {
+    background: #f0f2f5;
+}
+
+.sponsored-content .ad-image img {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.sponsored-content .ad-text {
+    flex: 1;
+}
+
+.sponsored-content .ad-title {
+    font-weight: 600;
+    font-size: 14px;
+    color: #1c1e21;
+    margin-bottom: 2px;
+}
+
+.sponsored-content .ad-description {
+    font-size: 12px;
+    color: #65676b;
+    margin-bottom: 2px;
+}
+
+.sponsored-content .ad-sponsor {
+    font-size: 11px;
+    color: #8a8d91;
+}
+
+/* ?�侧边�?好�?建议?��? */
+.left-content .right-sidebar .friend-suggestion {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+    margin-bottom: 8px;
+}
+
+.left-content .right-sidebar .friend-suggestion:hover {
+    background: #f0f2f5;
+}
+
+.left-content .right-sidebar .friend-info {
+    flex: 1;
+}
+
+.left-content .right-sidebar .friend-name {
+    color: #1c1e21;
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+
+.left-content .right-sidebar .mutual-friends {
+    color: #65676b;
+    font-size: 12px;
+}
+
+.add-friend-btn {
+    background: #1877f2;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.add-friend-btn:hover {
+    background: #166fe5;
+}
+
+/* 线�?好�??��? */
+.left-content .right-sidebar .friend-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-bottom: 4px;
+}
+
+.left-content .right-sidebar .friend-item:hover {
+    background: #f0f2f5;
+}
+
+.left-content .right-sidebar .friend-item .friend-name {
+    color: #1c1e21;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.online-indicator {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 12px;
+    height: 12px;
+    background: #42b72a;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+/* 問卷內容區域 - 懸停彈出設計 */
+.survey-content {
+    width: 350px;
+    background: #ffffff;
+    padding: 16px;
+    overflow-y: auto;
+    position: fixed;
+    top: 60px;
+    right: -330px; /* 默認隱藏在右側邊緣外 */
+    height: calc(100vh - 80px);
+    z-index: 1000;
+    border-radius: 8px 0 0 8px;
+    box-shadow: -4px 0 15px rgba(0,0,0,0.15);
+    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 右下角觸發區域 */
+.bottom-right-trigger {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 100px;
+    height: 100px;
+    background: transparent;
+    z-index: 998;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+/* 添加視覺提示 - 右下角小圖示 */
+.bottom-right-trigger::after {
+    content: '📋';
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 24px;
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.bottom-right-trigger:hover::after {
+    opacity: 0.8;
+}
+
+
+
+
+
+/* 懸停右下角時顯示問卷區域 */
+.bottom-right-trigger:hover ~ .survey-content {
+    right: 0 !important;
+}
+
+.survey-content:hover {
+    right: 0 !important;
+}
+
+/* 確�??�卷?�?�內?�內容可以正常交�?*/
+.right-content * {
+    pointer-events: auto;
+}
+
+/* 確�??�卷?�?��?設�??�隱??*/
+.right-content {
+    visibility: visible;
+}
+
+.post-container {
+    width: 100%;
+    background: transparent;
+    padding: 0;
+}
+
+.post {
+    width: 100%;
+    max-width: 500px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    margin-bottom: 24px;
+    overflow: visible; /* 允許內容溢出以適應更大的留言區域 */
+    height: auto; /* 自動調整高度以適應內容 */
+    max-height: calc(100vh - 150px); /* 設置最大高度以避免過高 */
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    gap: 8px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.post-meta {
+    flex: 1;
+}
+
+.author-name {
+    font-weight: 600;
+    font-size: 15px;
+    color: #1c1e21;
+    margin: 0 0 2px 0;
+    line-height: 1.2;
+}
+
+.post-time {
+    font-size: 13px;
+    color: #65676b;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.action-menu-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #65676b;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+.action-menu-btn:hover {
+    background-color: #f0f2f5;
+}
+
+.post-content {
+    width: 100%;
+    padding: 0 16px 12px 16px;
+}
+
+.post-text {
+    font-size: 15px;
+    line-height: 1.33;
+    color: #1c1e21;
+    margin: 0 0 12px 0;
+}
+
+.post-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    margin: 12px 0 0 0;
+    border-radius: 0;
+}
+
+.post-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px 8px 16px;
+    border-bottom: 1px solid #e4e6ea;
+    font-size: 15px;
+    color: #65676b;
+}
+
+.reactions-count {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.reaction-icons {
+    display: flex;
+    margin-right: 6px;
+}
+
+.reaction-icon {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    margin-left: -2px;
+    border: 1px solid #ffffff;
+}
+
+.like-icon {
+    background: #1877f2;
+    color: white;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.love-icon {
+    background: #e41e3f;
+    color: white;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.comments-shares {
+    display: flex;
+    gap: 8px;
+}
+
+.post-actions-bar {
+    display: flex;
+    padding: 4px 16px 8px 16px;
+    justify-content: space-around;
+}
+
+.post-action-btn {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    color: #65676b;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+.post-action-btn:hover {
+    background-color: #f0f2f5;
+}
+
+.post-action-btn.liked {
+    color: #1877f2;
+}
+
+.post-action-btn.shared {
+    color: #42b883;
+}
+
+.post-action-btn i {
+    font-size: 18px;
+}
+
+/* 留言区域 - 只有這裡可以滾動，其他地方都固定 */
+.comments-section {
+    padding: 0 16px 0 16px; /* 完全移除上下 padding，只保留左右 padding */
+    min-height: 180px;
+    max-height: 400px; /* 調整為適中的高度 */
+    height: 220px; /* 調整為適中的固定高度 */
+    overflow-y: auto; /* 只有留言區域可以滾動 */
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: #1877f2 #f0f2f5;
+    border: none;
+    background: transparent;
+    position: relative;
+    box-sizing: border-box; /* 確保 padding 不會影響滾動 */
+}
+
+/* 移除滾動提示，節省更多空間 */
+
+/* 确保最后一个留言能完整显示，適當的底部空間 */
+.comments-section .comment:last-child {
+    margin-bottom: 40px; /* 適當的底部空間確保最後留言可見 */
+}
+
+/* 自定义滚动条样式 (Webkit) - 更明顯的滾動條 */
+.comments-section::-webkit-scrollbar {
+    width: 12px;
+}
+
+.comments-section::-webkit-scrollbar-track {
+    background: #f0f2f5;
+    border-radius: 6px;
+    border: 1px solid #e4e6ea;
+}
+
+.comments-section::-webkit-scrollbar-thumb {
+    background: #1877f2;
+    border-radius: 6px;
+    transition: background 0.2s ease;
+    border: 2px solid #f0f2f5;
+}
+
+.comments-section::-webkit-scrollbar-thumb:hover {
+    background: #166fe5;
+}
+
+.comment {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px; /* 減少留言間距以節省空間 */
+    padding: 2px 0; /* 減少內部 padding */
+}
+
+/* 第一個留言減少上邊距 */
+.comments-section .comment:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.comment-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.comment-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.comment-bubble {
+    background-color: #f0f2f5;
+    border-radius: 16px;
+    padding: 8px 12px;
+    margin-bottom: 4px;
+    display: inline-block;
+    max-width: 100%;
+    word-wrap: break-word;
+}
+
+.comment-author {
+    font-weight: 600;
+    font-size: 13px;
+    color: #1c1e21;
+    margin: 0 0 2px 0;
+    line-height: 1.2;
+}
+
+.comment-text {
+    font-size: 14px;
+    color: #1c1e21;
+    line-height: 1.33;
+    margin: 0;
+}
+
+.comment-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    padding-left: 12px;
+}
+
+.comment-time {
+    color: #65676b;
+    font-weight: 600;
+}
+
+.comment-action {
+    background: none;
+    border: none;
+    color: #65676b;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 12px;
+    padding: 0;
+    text-decoration: none;
+}
+
+.comment-action:hover {
+    text-decoration: underline;
+}
+
+/* ?�究?��?言?�特殊樣�?*/
+.research-comment .comment-bubble {
+    background-color: #f0f2f5;
+    border: none;
+}
+
+.meme-image {
+    max-width: 200px;
+    height: auto;
+    border-radius: 8px;
+    cursor: pointer; /* 添加手指指標，表示可點擊 */
+    transition: opacity 0.2s ease; /* 添加過渡效果 */
+}
+
+.meme-image:hover {
+    opacity: 0.8; /* 滑鼠懸停時稍微變透明，提示可點擊 */
+}
+
+/* 迷因圖片放大模態框樣式 */
+.meme-modal {
+    display: none; /* 默認隱藏 */
+    position: fixed;
+    z-index: 9999; /* 確保在最上層 */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* 半透明黑色背景 */
+    backdrop-filter: blur(2px); /* 背景模糊效果 */
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+}
+
+.meme-modal-content {
+    position: relative; /* 改為相對定位 */
+    max-width: 90vw;
+    max-height: 90vh;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    animation: modalZoomIn 0.3s ease-out;
+    display: flex; /* 添加flex布局 */
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+}
+
+@keyframes modalZoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.meme-modal-image {
+    width: auto;
+    height: auto;
+    display: block;
+    max-width: 80vw;
+    max-height: 80vh;
+    object-fit: contain;
+    margin: auto; /* 確保圖片居中 */
+}
+
+.meme-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+    z-index: 10000;
+}
+
+.meme-modal-close:hover {
+    background: rgba(0, 0, 0, 0.7);
+    transform: scale(1.1);
+}
+
+/* 點擊背景關閉的提示 */
+.meme-modal::before {
+    content: '點擊背景或按ESC關閉';
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 14px;
+    opacity: 0.7;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 8px 16px;
+    border-radius: 20px;
+    pointer-events: none;
+}
+
+.original-comment-text {
+    font-size: 14px;
+    color: #1c1e21;
+    line-height: 1.33; /* 与其他留言文本保持一致 */
+    margin: 0; /* 确保没有额外的边距 */
+}
+
+.toggle-comment-btn {
+    background: #1877f2;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s, opacity 0.2s;
+}
+
+.toggle-comment-btn:hover {
+    background: #166fe5;
+}
+
+.toggle-comment-btn:disabled {
+    background: #8a8d91;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.toggle-comment-btn:disabled:hover {
+    background: #8a8d91;
+}
+
+/* ?��??��??�??*/
+.add-comment {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    align-items: center;
+}
+
+.comment-input-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background-color: #f0f2f5;
+    border-radius: 20px;
+    padding: 8px 15px;
+}
+
+.comment-input {
+    flex: 1;
+    border: none;
+    background: none;
+    outline: none;
+    font-size: 14px;
+    padding: 4px 0;
+}
+
+.comment-submit {
+    background: #1877f2;
+    border: none;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 8px;
+    transition: background-color 0.2s;
+}
+
+.comment-submit:hover {
+    background: #166fe5;
+}
+
+/* ?�側?��?�??（現?�用?��??��??��? */
+.right-sidebar, .right-content {
+    width: 320px;
+    background: transparent;
+    padding: 0;
+    overflow-y: auto;
+    position: sticky;
+    top: 16px;
+    height: calc(100vh - 104px);
+}
+
+.right-sidebar .sidebar-section, .right-content .sidebar-section {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.right-sidebar .sidebar-section h3, .right-content .sidebar-section h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #1c1e21;
+    margin: 0 0 12px 0;
+}
+
+.ad-container {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    margin-bottom: 16px;
+}
+
+.ad-container img {
+    width: 100%;
+    height: auto;
+}
+
+.ad-text {
+    padding: 12px;
+}
+
+.ad-text h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+    color: #1c1e21;
+    line-height: 1.2;
+}
+
+.ad-text p {
+    font-size: 13px;
+    color: #65676b;
+    line-height: 1.33;
+    margin: 0;
+}
+
+.trending-topics, .online-friends, .suggested-friends {
+    background: white;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    margin-bottom: 16px;
+}
+
+.topic-item, .friend-item, .friend-suggestion {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #e4e6ea;
+}
+
+.topic-item:last-child, .friend-item:last-child, .friend-suggestion:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.hashtag {
+    font-weight: 600;
+    color: #1877f2;
+    font-size: 14px;
+}
+
+.topic-count {
+    font-size: 12px;
+    color: #65676b;
+}
+
+.friend-item {
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.friend-name {
+    font-size: 14px;
+    color: #1c1e21;
+    font-weight: 500;
+}
+
+.online-indicator {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 8px;
+    height: 8px;
+    background: #42b72a;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.friend-suggestion {
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.friend-info {
+    flex: 1;
+}
+
+.mutual-friends {
+    font-size: 12px;
+    color: #65676b;
+}
+
+/* ?�側?�卷?�??*/
 .right-content {
     width: 30%;
     background: white;
@@ -60,9 +1496,14 @@ body {
     padding: 0;
     width: 100%;
     max-width: 600px;
-    max-height: 750px;
     display: flex;
     flex-direction: column;
+    margin-bottom: 24px;
+}
+
+/* 确保最后一个帖子有足够的底部空间 */
+.post:last-child {
+    margin-bottom: 40px;
 }
 
 .post-header {
@@ -285,14 +1726,15 @@ body {
     width: 100%;
     max-width: 100%;
     height: auto;
-    max-height: 90vh;
+    max-height: calc(100vh - 120px);
     display: flex;
     flex-direction: column;
     background: white;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    padding: 10px;
+    padding: 16px;
     overflow-y: auto;
+    margin-bottom: 16px;
 }
 
 .interaction-panel:not(.active) {
@@ -300,11 +1742,11 @@ body {
 }
 
 .receiver-survey-section {
-    margin: 4px 0;
-    padding: 8px;
-    background-color: #f0f2f5;
+    margin: 0;
+    padding: 12px;
+    background-color: #f8f9fa;
     border-radius: 8px;
-    border: 1px solid #d0d0d0;
+    border: 1px solid #e3e6ea;
     width: 100%;
     max-width: 100%;
 }
@@ -467,10 +1909,10 @@ body {
     right: 0;
     transform: none;
     background: white;
-    padding: 12px 8px;
+    padding: 8px 8px; /* 減少上下 padding 從 12px 到 8px */
     box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
     z-index: 1000;
-    height: 70px;
+    height: 66px; /* 對應減少高度從 70px 到 66px */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -531,15 +1973,14 @@ body {
 }
 
 .text-view {
-    background: #f8f9fa;
-    border: 1px solid #e9ecef;
-    border-radius: 0.5rem;
-    padding: clamp(0.5rem, 2vw, 0.75rem);
-    font-size: clamp(0.75rem, 2.5vw, 0.875rem);
-    line-height: 1.4;
-    color: #495057;
-    margin-top: 0.5rem;
-    border-left: 0.1875rem solid #007bff;
+    background: #f0f2f5; /* 与留言泡泡相同的背景色 */
+    border: none; /* 移除边框 */
+    border-radius: 16px; /* 与留言泡泡相同的圆角 */
+    padding: 8px 12px; /* 与留言泡泡相同的内边距 */
+    font-size: 14px; /* 与留言文字相同的字体大小 */
+    line-height: 1.33; /* 与留言文字相同的行高 */
+    color: #1c1e21; /* 与留言文字相同的颜色 */
+    margin-top: 0; /* 移除上边距 */
 }
 
 .comment-actions {
@@ -581,4 +2022,87 @@ body {
 
 .hidden {
     display: none !important;
+}
+
+/* ?��?義右?��???*/
+.custom-context-menu {
+    position: absolute;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 10000;
+    min-width: 180px;
+    overflow: hidden;
+    display: none;
+}
+
+.context-menu-item {
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 14px;
+    color: #333;
+}
+
+.context-menu-item:hover {
+    background-color: #f5f5f5;
+}
+
+.context-menu-item i {
+    width: 16px;
+    text-align: center;
+    color: #1877f2;
+}
+
+/* ?�覽模�?下�??�表?��?素�?�?? */
+.preview-mode input:disabled,
+.preview-mode button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ?�覽模�?下�?導航點樣�?*/
+.nav-dot[title*="?�覽"] {
+    cursor: pointer !important;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.nav-dot[title*="?�覽"]:hover {
+    transform: scale(1.1);
+    box-shadow: 0 2px 8px rgba(24, 119, 242, 0.3);
+}
+
+/* ?�畫?��? */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ?��??��?�?*/
+.number-key-hint {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-size: 12px;
+    z-index: 1000;
+    animation: fadeInOut 3s ease-in-out;
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0; }
+    20%, 80% { opacity: 1; }
 }

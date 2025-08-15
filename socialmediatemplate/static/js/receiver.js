@@ -1,6 +1,45 @@
 // 全域變數
 let currentQuestionnaireIndex = 0;
-let currentPostIndex = 0;
+// 全局變量來跟蹤已提交的帖文
+let submittedPosts = new Set();
+
+// 檢查帖文是否可以訪問
+function canAccessPost(postIndex) {
+    if (postIndex === 0) return true; // 第一個帖文總是可以訪問
+    
+    // 檢查前一個帖文是否已提交
+    for (let i = 0; i < postIndex; i++) {
+        if (!submittedPosts.has(i)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+// 更新navigation dots的狀態
+function updateNavigationStatus() {
+    const navigationDots = document.querySelectorAll('.nav-dot');
+    navigationDots.forEach((dot, index) => {
+        if (canAccessPost(index)) {
+            dot.classList.remove('locked');
+            dot.style.opacity = '1';
+            dot.style.cursor = 'pointer';
+            dot.title = '';
+        } else {
+            dot.classList.add('locked');
+            dot.style.opacity = '0.3';
+            dot.style.cursor = 'not-allowed';
+            dot.title = '請先完成前面的帖文';
+        }
+        
+        // 標記已提交的帖文
+        if (submittedPosts.has(index)) {
+            dot.classList.add('completed');
+        }
+    });
+}
+
+let currentPost = 0;
 const totalPosts = 8;
 const completedPosts = new Set();
 let hasShownCompletionAlert = false; // 記錄是否已經顯示過完成alert
@@ -480,52 +519,68 @@ function setupCommentToggles() {
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Receiver page DOM loaded');
     
-    // Get current user
+    // Get current user and phase
     const username = localStorage.getItem('socialUserId');
+    const currentPhase = localStorage.getItem('currentPhase');
+    
     if (!username) {
         console.error('未找到用戶名，重定向到登入頁面');
         window.location.href = '/';
         return;
     }
     
-    console.log('當前用戶:', username);
+    console.log('當前用戶:', username, 'phase:', currentPhase);
     const pageContentWrapper = document.getElementById('page-content-wrapper');
     
     if (pageContentWrapper) {
         pageContentWrapper.classList.remove('hidden');
         
-        // 處理情境說明顯示
-        const startViewingBtn = document.getElementById('startViewing');
-        const contextIntro = document.getElementById('context-introduction');
-        const mainContent = document.getElementById('main-content');
-        const postNavigation = document.querySelector('.post-navigation');
-        
-        // 在情境說明階段隱藏底部導航
-        if (postNavigation && contextIntro && contextIntro.style.display !== 'none') {
-            postNavigation.style.display = 'none';
-        }
-        
-        if (startViewingBtn) {
-            startViewingBtn.addEventListener('click', function() {
-                // 隱藏情境說明，顯示主要內容
-                if (contextIntro) {
-                    contextIntro.style.display = 'none';
-                }
-                if (mainContent) {
-                    mainContent.style.display = 'flex';
-                }
-                
-                // 顯示底部導航
-                if (postNavigation) {
-                    postNavigation.style.display = 'flex';
-                }
-                
-                // 記錄用戶開始觀看的時間
-                localStorage.setItem('receiverViewingStartTime', new Date().toISOString());
-                
-                // 初始化主要功能
-                initializeMainContent();
-            });
+        // Check if we should skip introduction and go directly to main content
+        if (currentPhase === 'receiver-preview') {
+            // Skip introduction, go directly to preview mode
+            const contextIntro = document.getElementById('context-introduction');
+            const mainContent = document.getElementById('main-content');
+            const postNavigation = document.querySelector('.post-navigation');
+            
+            if (contextIntro) contextIntro.style.display = 'none';
+            if (mainContent) mainContent.style.display = 'flex';
+            if (postNavigation) postNavigation.style.display = 'flex';
+            
+            initializeMainContent();
+        } else {
+            // Normal flow - show introduction first
+            const startViewingBtn = document.getElementById('startViewing');
+            const contextIntro = document.getElementById('context-introduction');
+            const mainContent = document.getElementById('main-content');
+            const postNavigation = document.querySelector('.post-navigation');
+            
+            // 在情境說明階段隱藏底部導航
+            if (postNavigation && contextIntro && contextIntro.style.display !== 'none') {
+                postNavigation.style.display = 'none';
+            }
+            
+            if (startViewingBtn) {
+                startViewingBtn.addEventListener('click', function() {
+                    // 隱藏情境說明，顯示主要內容
+                    if (contextIntro) {
+                        contextIntro.style.display = 'none';
+                    }
+                    if (mainContent) {
+                        mainContent.style.display = 'flex';
+                    }
+                    
+                    // 顯示底部導航
+                    if (postNavigation) {
+                        postNavigation.style.display = 'flex';
+                    }
+                    
+                    // 記錄用戶開始觀看的時間
+                    localStorage.setItem('receiverViewingStartTime', new Date().toISOString());
+                    
+                    // 初始化主要功能
+                    initializeMainContent();
+                });
+            }
         }
     }
 });
@@ -533,6 +588,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // 將原本的初始化邏輯移到這個函數中
 function initializeMainContent() {
     const username = localStorage.getItem('socialUserId');
+    const currentPhase = localStorage.getItem('currentPhase');
     
     // 初始化navigation功能
     initializeNavigation();
@@ -598,10 +654,7 @@ function initializeMainContent() {
     }
     
     // Set up comment toggle functionality
-    setupCommentToggles();
-    
-    // Set up toggle comment handlers
-    setupToggleCommentHandlers();
+    setupToggleCommentHandlers(); // 啟用查看原始留言功能
     
     // Set up questionnaire submission functionality
     setupQuestionnaireSubmission();
@@ -609,11 +662,25 @@ function initializeMainContent() {
     // Set up Likert scale value updates
     setupLikertScaleUpdates();
     
+    // Set up meme image modal functionality - 移到其他功能設置之後
+    setupMemeImageModal();
+    
     // Listen for scroll events to save position
     window.addEventListener('scroll', debouncedSaveState);
     
     // Restore previous state
     restoreUserState();
+    
+    // 設置箭頭鍵導航（總是啟用）
+    setupArrowKeyNavigation();
+    
+    // 檢查是否在預覽模式
+    if (currentPhase === 'receiver-preview') {
+        // 延遲進入預覽模式，確保DOM已加載
+        setTimeout(() => {
+            enterPreviewMode();
+        }, 100);
+    }
 }
 
 // Create and append logout dialog HTML
@@ -844,6 +911,9 @@ function showPost(index) {
         currentPanel.style.opacity = '';
     }
     
+    // 更新切換按鈕的狀態和文字
+    // updateToggleButtonStates(index); // 不再需要根據帖文限制功能
+    
     updateNavigationDots();
 }
 
@@ -870,9 +940,17 @@ function updateNavigationDots() {
 }
 
 // 設置導航事件
+// 設置導航事件
 function setupNavigationEvents() {
-    // 移除導航點點擊事件 - 只作為進度指示器，不允許跳轉
-    // 導航點現在純粹用於顯示進度，不響應點擊
+    // 在正常模式下禁用導航點點擊 - 只作為進度指示器
+    const dots = document.querySelectorAll('.nav-dot');
+    dots.forEach(dot => {
+        dot.style.cursor = 'default';
+        dot.title = '完成後可用於預覽';
+        
+        // 移除任何現有的點擊事件
+        dot.removeEventListener('click', handleDotClick);
+    });
 }
 
 // 標記當前帖文為已完成並移到下一個
@@ -884,20 +962,18 @@ function completeCurrentPost() {
     if (nextPost !== -1) {
         showPost(nextPost);
     } else {
-        // 所有帖文完成 - 只在第一次完成時顯示alert並進入發送者模式
+        // 所有帖文完成 - 只在第一次完成時顯示alert並進入預覽模式
         if (!hasShownCompletionAlert) {
             hasShownCompletionAlert = true;
             
             // 記錄觀察者階段完成時間
             localStorage.setItem('receiverPhaseCompleted', new Date().toISOString());
-            localStorage.setItem('currentPhase', 'sender');
+            localStorage.setItem('currentPhase', 'receiver-preview');
             
             alert('完成！');
             
-            // 自動跳轉到發送者頁面
-            setTimeout(() => {
-                window.location.href = '/sender';
-            }, 1000);
+            // 進入預覽模式，不自動跳轉
+            enterPreviewMode();
         }
     }
 }
@@ -917,7 +993,10 @@ function setupToggleCommentHandlers() {
     const toggleButtons = document.querySelectorAll('.toggle-comment-btn');
     
     toggleButtons.forEach(btn => {
-        btn.addEventListener('click', function() {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
             const commentContent = this.closest('.comment-content');
             const memeView = commentContent.querySelector('.meme-view');
             const textView = commentContent.querySelector('.text-view');
@@ -927,7 +1006,7 @@ function setupToggleCommentHandlers() {
                 // 切換到原始留言視圖
                 memeView.style.display = 'none';
                 textView.style.display = 'block';
-                this.textContent = '查看迷因圖';
+                this.textContent = '查看迷因';
                 this.dataset.currentView = 'text';
             } else {
                 // 切換到迷因圖視圖
@@ -937,6 +1016,40 @@ function setupToggleCommentHandlers() {
                 this.dataset.currentView = 'meme';
             }
         });
+    });
+}
+
+// 更新切換按鈕的狀態和文字
+function updateToggleButtonStates(postIndex) {
+    const toggleButtons = document.querySelectorAll('.toggle-comment-btn');
+    const canViewOriginalComment = postIndex % 2 === 0;
+    
+    toggleButtons.forEach(btn => {
+        if (canViewOriginalComment) {
+            // 偶數索引 (0, 2, 4, 6) - 可以查看原始留言
+            btn.style.opacity = '1';
+            btn.style.cursor = 'pointer';
+            btn.disabled = false;
+            btn.title = '點擊切換查看模式';
+        } else {
+            // 奇數索引 (1, 3, 5, 7) - 不能查看原始留言
+            btn.style.opacity = '0.5';
+            btn.style.cursor = 'not-allowed';
+            btn.disabled = true;
+            btn.title = '此帖文不提供原始留言查看功能';
+        }
+        
+        // 重置到迷因圖視圖
+        const commentContent = btn.closest('.comment-content');
+        const memeView = commentContent.querySelector('.meme-view');
+        const textView = commentContent.querySelector('.text-view');
+        
+        if (memeView && textView) {
+            memeView.style.display = 'block';
+            textView.style.display = 'none';
+            btn.textContent = '查看原始留言';
+            btn.dataset.currentView = 'meme';
+        }
     });
 }
 
@@ -963,5 +1076,233 @@ function setupLikertScaleUpdates() {
                 scaleValueDisplay.textContent = this.value;
             });
         }
+    });
+}
+
+// 進入預覽模式
+function enterPreviewMode() {
+    // 禁用所有表單元素
+    const forms = document.querySelectorAll('.receiver-survey-section');
+    forms.forEach(form => {
+        const inputs = form.querySelectorAll('input, button');
+        inputs.forEach(input => {
+            if (!input.classList.contains('preview-allowed')) {
+                input.disabled = true;
+            }
+        });
+    });
+    
+    // 啟用導航點擊功能用於預覽
+    setupPreviewNavigation();
+    
+    // 設置數字鍵導航
+    setupNumberKeyNavigation();
+    
+    // 設置右鍵上下文菜單
+    setupContextMenu();
+    
+    // 設置箭頭鍵導航
+    setupArrowKeyNavigation();
+}
+
+// 設置預覽模式下的導航功能
+function setupPreviewNavigation() {
+    const dots = document.querySelectorAll('.nav-dot');
+    
+    dots.forEach((dot, index) => {
+        // 移除之前可能存在的點擊事件監聽器
+        dot.removeEventListener('click', handleDotClick);
+        
+        // 添加預覽模式的點擊事件
+        dot.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (localStorage.getItem('currentPhase') === 'receiver-preview') {
+                // 只在預覽模式下允許點擊導航
+                showPost(index);
+            }
+        });
+        
+        // 添加視覺提示表明可以點擊
+        dot.style.cursor = 'pointer';
+        dot.title = `預覽第 ${index + 1} 個帖文`;
+    });
+}
+
+// 通用的導航點點擊處理函數
+function handleDotClick(e) {
+    // 這個函數可以在需要時被其他地方使用
+    e.preventDefault();
+}
+
+// 設置數字鍵導航（1-8）
+function setupNumberKeyNavigation() {
+    document.addEventListener('keydown', function(e) {
+        // 檢查是否在預覽模式
+        if (localStorage.getItem('currentPhase') === 'receiver-preview') {
+            const key = parseInt(e.key);
+            if (key >= 1 && key <= 8) {
+                e.preventDefault();
+                showPost(key - 1); // 轉換為0-based索引
+            }
+        }
+    });
+}
+
+// 設置右鍵上下文菜單
+function setupContextMenu() {
+    document.addEventListener('contextmenu', function(e) {
+        if (localStorage.getItem('currentPhase') === 'receiver-preview') {
+            e.preventDefault();
+            
+            // 創建自定義右鍵菜單
+            let contextMenu = document.querySelector('.custom-context-menu');
+            if (!contextMenu) {
+                contextMenu = document.createElement('div');
+                contextMenu.className = 'custom-context-menu';
+                contextMenu.innerHTML = `
+                    <div class="context-menu-item" data-action="next-phase">
+                        <i class="fas fa-arrow-right"></i>
+                        進入發送者階段
+                    </div>
+                `;
+                document.body.appendChild(contextMenu);
+                
+                // 添加點擊事件
+                contextMenu.addEventListener('click', function(e) {
+                    const action = e.target.closest('.context-menu-item')?.dataset.action;
+                    if (action === 'next-phase') {
+                        localStorage.setItem('currentPhase', 'sender');
+                        window.location.href = '/sender';
+                    }
+                    hideContextMenu();
+                });
+            }
+            
+            // 顯示菜單
+            contextMenu.style.display = 'block';
+            contextMenu.style.left = e.pageX + 'px';
+            contextMenu.style.top = e.pageY + 'px';
+            
+            // 點擊其他地方隱藏菜單
+            setTimeout(() => {
+                document.addEventListener('click', hideContextMenu, { once: true });
+            }, 0);
+        }
+    });
+}
+
+// 隱藏右鍵菜單
+function hideContextMenu() {
+    const contextMenu = document.querySelector('.custom-context-menu');
+    if (contextMenu) {
+        contextMenu.style.display = 'none';
+    }
+}
+
+// 設置箭頭鍵導航
+function setupArrowKeyNavigation() {
+    document.addEventListener('keydown', function(e) {
+        // 檢查是否按下左右箭頭鍵
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+            e.preventDefault();
+            
+            const currentPhase = localStorage.getItem('currentPhase');
+            
+            if (e.key === 'ArrowLeft') {
+                // 左箭頭：回到上一個階段
+                if (currentPhase === 'sender' || currentPhase === 'sender-preview') {
+                    localStorage.setItem('currentPhase', 'receiver-preview');
+                    window.location.href = '/receiver';
+                } else if (currentPhase === 'receiver-preview' || currentPhase === 'receiver') {
+                    // 回到輸入頁面
+                    window.location.href = '/';
+                }
+            } else if (e.key === 'ArrowRight') {
+                // 右箭頭：前往下一個階段
+                if (currentPhase === 'receiver-preview' || currentPhase === 'receiver') {
+                    localStorage.setItem('currentPhase', 'sender');
+                    window.location.href = '/sender';
+                } else if (currentPhase === 'sender') {
+                    localStorage.setItem('currentPhase', 'sender-preview');
+                    // 如果有更多階段，在這裡添加
+                }
+            }
+        }
+    });
+}
+
+// 設置迷因圖模態框功能
+function setupMemeImageModal() {
+    // 創建模態框HTML（如果不存在）
+    if (!document.getElementById('memeModal')) {
+        const modalHTML = `
+            <div id="memeModal" class="meme-modal" style="display: none;">
+                <span class="meme-modal-close">&times;</span>
+                <img class="meme-modal-image" id="memeModalImage" src="" alt="">
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+    }
+    
+    const modal = document.getElementById('memeModal');
+    const modalImg = document.getElementById('memeModalImage');
+    const closeBtn = document.querySelector('.meme-modal-close');
+    
+    // 確保模態框初始狀態是隱藏的
+    modal.style.display = 'none';
+    
+    // 為所有迷因圖片添加點擊事件
+    function addMemeClickHandlers() {
+        const memeImages = document.querySelectorAll('.meme-image');
+        memeImages.forEach(img => {
+            img.addEventListener('click', function(e) {
+                e.stopPropagation(); // 防止事件冒泡
+                modal.style.display = 'flex'; // 使用 flex 佈局來居中
+                modalImg.src = this.src;
+                modalImg.alt = this.alt;
+                document.body.style.overflow = 'hidden'; // 防止背景滾動
+            });
+        });
+    }
+    
+    // 關閉模態框
+    function closeModal() {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto'; // 恢復滾動
+    }
+    
+    // 點擊關閉按鈕
+    closeBtn.addEventListener('click', closeModal);
+    
+    // 點擊背景或圖片旁邊區域關閉
+    modal.addEventListener('click', function(e) {
+        // 只要點擊的不是圖片本身，就關閉模態框
+        if (e.target !== modalImg) {
+            closeModal();
+        }
+    });
+    
+    // ESC鍵關閉
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.style.display === 'flex') {
+            closeModal();
+        }
+    });
+    
+    // 初始化點擊處理器
+    addMemeClickHandlers();
+    
+    // 監聽DOM變化，為新添加的迷因圖片添加點擊事件
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.type === 'childList') {
+                addMemeClickHandlers();
+            }
+        });
+    });
+    
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
     });
 }

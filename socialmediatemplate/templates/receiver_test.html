@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>測試模板</title>
+</head>
+<body>
+    {% if posts_data %}
+        {% set fixed_order = [0, 4, 1, 6, 3, 7, 2, 5] %}
+        {% set shuffled_posts = [] %}
+        {% for index in fixed_order %}
+            {% if index < posts_data|length %}
+                {% set _ = shuffled_posts.append(posts_data[index]) %}
+            {% endif %}
+        {% endfor %}
+        
+        {% for post_data in shuffled_posts %}
+            <div class="post">
+                <h3>帖子 {{ loop.index0 }}</h3>
+                {% if loop.index0 == 0 %}
+                    <p>第一篇帖子</p>
+                {% elif loop.index0 == 1 %}
+                    <p>第二篇帖子</p>
+                {% elif loop.index0 == 2 %}
+                    <p>第三篇帖子</p>
+                {% elif loop.index0 == 3 %}
+                    <p>第四篇帖子</p>
+                {% elif loop.index0 == 4 %}
+                    <p>第五篇帖子</p>
+                {% elif loop.index0 == 5 %}
+                    <p>第六篇帖子</p>
+                {% elif loop.index0 == 6 %}
+                    <p>第七篇帖子</p>
+                {% elif loop.index0 == 7 %}
+                    <p>第八篇帖子</p>
+                {% else %}
+                    <p>其他帖子</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

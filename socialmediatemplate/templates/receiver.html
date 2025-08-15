@@ -1,37 +1,33 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Social - 觀察者頁面</title>
+    <title>Social - 觀察者頁面 - 已更新版本</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/receiver.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/context-intro.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='s_logo.png') }}">
-
 </head>
 <body>
-
     <div id="page-content-wrapper" class="hidden">
         <!-- 情境說明區域 -->
         <div id="context-introduction" class="context-intro">
             <div class="intro-header">
-                <h2><i class="fas fa-eye"></i> 觀察者階段</h2>
+                <h2><i class="fas fa-eye"></i> 發言者階段</h2>
             </div>
             
             <div class="intro-content">
                 <div class="scenario-description">
-                    <h3>觀察者情境</h3>
-                    <p>想像一下，您正在瀏覽社群媒體上的新聞。其中留言因包含人身攻擊言論，已被平台自動轉換為迷因圖顯示</p>
+                    <h3>發言者情境</h3>
+                    <p>想像一下，您正在發言，其中留言因包含人身攻擊言論，已被平台自動轉換為迷因圖顯示</p>
                     
                     <h4>您的任務：</h4>
                     <ul>
-                        <li>仔細閱讀每則新聞貼文的內容</li>
-                        <li>觀察其他網友使用迷因圖片的回應方式</li>
-                        <li>根據您的感受填寫每則貼文的評價問卷</li>
+                        <li>修改內容</li>
+                        
                     </ul>
                 </div>
-                
             </div>
             
             <button class="start-viewing-btn" id="startViewing">
@@ -41,11 +37,64 @@
         </div>
         
         <main class="horizontal-layout" id="main-content" style="display: none;">
-            <!-- 左側：帖文區域 -->
-            <div class="left-content">
+            <!-- Facebook風格的頂部導航條 - 全局 -->
+            <header class="facebook-header">
+                <div class="facebook-logo">Social</div>
+                <input type="text" class="search-box" placeholder="搜尋Social">
+                <div class="nav-icons">
+                    <button class="nav-icon">🏠</button>
+                    <button class="nav-icon">👥</button>
+                    <button class="nav-icon">📹</button>
+                    <button class="nav-icon">🛒</button>
+                    <button class="nav-icon">🎮</button>
+                    <button class="nav-icon">⚙️</button>
+                </div>
+            </header>
+
+            <!-- 主要內容區域 -->
+            <div class="page-content">
+                <!-- 側邊欄 -->
+                <div class="sidebar">
+                    <div class="sidebar-section">
+                        <div class="user-profile">
+                            <div class="user-avatar large">
+                                <img class="random-avatar" data-current-user="true" src="" alt="用戶">
+                            </div>
+                            <div class="user-info">
+                                <div class="username-display">用戶</div>
+                                <div class="user-status">線上</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3>快捷功能</h3>
+                        <div class="sidebar-menu">
+                            <div class="menu-item active">
+                                <i class="fas fa-newspaper"></i>
+                                <span>動態消息</span>
+                            </div>
+                            <div class="menu-item">
+                                <i class="fas fa-users"></i>
+                                <span>朋友</span>
+                            </div>
+                            <div class="menu-item">
+                                <i class="fas fa-bookmark"></i>
+                                <span>我的最愛</span>
+                            </div>
+                            <div class="menu-item">
+                                <i class="fas fa-clock"></i>
+                                <span>回憶</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 主要內容區域 -->
+                <div class="main-content">
                 {% if posts_data %}
                     {# 固定的打亂順序：避免相同類型的新聞連續出現 #}
-                    {% set fixed_order = [0, 4, 1, 6, 3, 7, 2, 5] %}
+                    {% set fixed_order = [0, 7, 2, 5, 4, 3, 6, 1] %}
                     {% set shuffled_posts = [] %}
                     {% for index in fixed_order %}
                         {% if index < posts_data|length %}
@@ -57,11 +106,11 @@
                         <!-- 帖子標題區域 -->
                         <div class="post-header">
                             <div class="user-avatar medium">
-                                <img class="random-avatar" data-seed="newsStation{{ loop.index }}" src="" alt="新聞台">
+                                <img class="random-avatar news-avatar" data-seed="newsStation{{ loop.index }}" src="" alt="新聞台">
                             </div>
                             <div class="post-meta">
-                                <div class="author-name">新聞台</div>
-                                <div class="post-time">{{ loop.index }}小時前</div>
+                                <div class="author-name">台灣新聞網</div>
+                                <div class="post-time">2天前 · <i class="fas fa-globe-americas"></i> 公開</div>
                             </div>
                             <div class="post-actions">
                                 <button class="action-menu-btn">⋯</button>
@@ -72,66 +121,2007 @@
                             <img class="post-image" src="{{ url_for('static', filename='news/' + post_data.news_file) }}" data-category="news" alt="新聞圖片">
                         </div>
 
+                        <!-- 帖子互動統計 -->
+                        <div class="post-stats">
+                            <div class="reactions-count">
+                                <div class="reaction-icons">
+                                    <span class="reaction-icon like-icon">👍</span>
+                                    <span class="reaction-icon love-icon">❤️</span>
+                                </div>
+                                <span class="count">{{ 45 + loop.index * 23 }}人</span>
+                            </div>
+                            <div class="other-stats">
+                                <span class="comments-count">{{ 12 + loop.index * 7 }}則留言</span>
+                                <span class="shares-count">{{ 3 + loop.index * 2 }}次分享</span>
+                            </div>
+                        </div>
+
                         <!-- 帖子互動按鈕 -->
                         <div class="post-actions-bar">
                             <button class="post-action-btn like-btn">
-                                <i class="far fa-heart"></i>
-                                <span>贊</span>
+                                <i class="far fa-thumbs-up"></i>
+                                <span>讚</span>
                             </button>
                             <button class="post-action-btn comment-btn">
                                 <i class="far fa-comment"></i>
                                 <span>留言</span>
                             </button>
                             <button class="post-action-btn share-btn">
-                                <i class="far fa-share-square"></i>
+                                <i class="fas fa-share-alt"></i>
                                 <span>分享</span>
                             </button>
                         </div>
 
                         <!-- 網友留言區域 -->
-                        <div class="comment-section-left">
-                            <div class="comment">
+                        <div class="comments-section">
+                            {% if loop.index0 == 0 %}
+                            <!-- 第一篇帖文的留言 (10則: 6文字 + 2 meme_not_label + 2 meme_50) -->
+                            
+                            <!-- 第1則留言 - 文字 -->
+                            <div class="comment random-comment">
                                 <div class="user-avatar small">
-                                    <img class="random-avatar" data-seed="commenter{{ loop.index }}" src="" alt="留言者">
+                                    <img class="random-avatar" data-seed="commenter1_post1" src="" alt="留言者">
                                 </div>
                                 <div class="comment-content">
-                                    <div class="comment-meta">
-                                        <div class="comment-author">網友A</div>
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">李振花</div>
+                                        <div class="comment-text">這種幼兒園該停招，這麼嚴重的事，應該公佈施暴者</div>
                                     </div>
-                                    <div class="comment-display">
-                                        <!-- 迷因圖視圖 -->
-                                        <div class="meme-view">
-                                            {% if post_data.recommended_memes and post_data.recommended_memes|length > 0 %}
-                                            <img class="meme-image" 
-                                                 src="{{ url_for('static', filename='meme_50/' + post_data.recommended_memes[0].filename) }}" 
-                                                 alt="{{ post_data.recommended_memes[0].name }}">
-                                            {% else %}
-                                            <div class="text-comment">{{ post_data.comment }}</div>
-                                            {% endif %}
-                                        </div>
-                                        
-                                        <!-- 原始留言視圖 - 放在迷因圖下方 -->
-                                        <div class="text-view" style="display: none;">
-                                            <strong>原始留言：</strong>{{ post_data.comment }}
-                                        </div>
-                                        
-                                        <!-- 按鈕區域 -->
-                                        <div class="comment-actions">
-                                            <button class="action-btn toggle-comment-btn" data-current-view="meme">
-                                                查看原始留言
-                                            </button>
-                                        </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="45">
+                                            <i class="far fa-thumbs-up"></i> 45
+                                        </button>
+                                        <button class="comment-action">回覆</button>
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- 第2則留言 - 文字 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter2_post1" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">李言雅</div>
+                                        <div class="comment-text">為什麼都不能公布老師的姓名長相…</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="38">
+                                            <i class="far fa-thumbs-up"></i> 38
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 第3則留言 - meme_not_label -->
+                            <div class="comment meme-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="meme_commenter3_post1" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">林君婷</div>
+                                        <div class="comment-display">
+                                            <img class="meme-image" 
+                                                 src="{{ url_for('static', filename='meme_not_label/Flex-Tape.jpeg') }}" 
+                                                 alt="迷因圖">
+                                        </div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="52">
+                                            <i class="far fa-thumbs-up"></i> 52
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第4則留言 - 文字 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter4_post1" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">高麗麗</div>
+                                        <div class="comment-text">永不得從事教育相關工作。請問是何教育學院畢業、還說這是照護員？</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="67">
+                                            <i class="far fa-thumbs-up"></i> 67
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 第5則留言 - meme_50 -->
+                            <div class="comment meme-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="meme_commenter5_post1" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content" style="position: relative;">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">黃志明</div>
+                                        <div class="comment-display">
+                                            <div class="meme-view" style="display: block;">
+                                                <img class="meme-image" 
+                                                     src="{{ url_for('static', filename='meme_50/Thats-a-paddlin.jpg') }}" 
+                                                     alt="迷因圖">
+                                            </div>
+                                            <div class="text-view" style="display: none;">
+                                                <div class="original-comment-text">活著幹嘛，給我去死</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="toggle-comment-btn" data-current-view="meme" style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.7); color: white; border: none; padding: 4px 8px; border-radius: 4px; font-size: 12px; cursor: pointer; z-index: 10;">查看原始留言</button>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="49">
+                                            <i class="far fa-thumbs-up"></i> 49
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第6則留言 - 文字 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter6_post1" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">Tina Yen</div>
+                                        <div class="comment-text">這不用馬賽克吧！</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="34">
+                                            <i class="far fa-thumbs-up"></i> 34
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第7則留言 - meme_not_label -->
+                            <div class="comment meme-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="meme_commenter7_post1" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">陳美靈</div>
+                                        <div class="comment-display">
+                                            <img class="meme-image" 
+                                                 src="{{ url_for('static', filename='meme_not_label/Will-Smith-Slap.jpg') }}" 
+                                                 alt="迷因圖">
+                                        </div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="41">
+                                            <i class="far fa-thumbs-up"></i> 41
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第8則留言 - 文字 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter8_post1" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">林志秦</div>
+                                        <div class="comment-text">到底發生什麼事⋯怎麼可以這樣對待3歲孩子⋯⋯也會害死其他幼兒園老師啊</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="56">
+                                            <i class="far fa-thumbs-up"></i> 56
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第9則留言 - meme_50 -->
+                            <div class="comment meme-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="meme_commenter9_post1" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content" style="position: relative;">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">劉建黃</div>
+                                        <div class="comment-display">
+                                            <div class="meme-view" style="display: block;">
+                                                <img class="meme-image" 
+                                                     src="{{ url_for('static', filename='meme_50/Batman-Slapping-Robin.jpg') }}" 
+                                                     alt="迷因圖">
+                                            </div>
+                                            <div class="text-view" style="display: none;">
+                                                <div class="original-comment-text">死全家啦！</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="toggle-comment-btn" data-current-view="meme" style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.7); color: white; border: none; padding: 4px 8px; border-radius: 4px; font-size: 12px; cursor: pointer; z-index: 10;">查看原始留言</button>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="43">
+                                            <i class="far fa-thumbs-up"></i> 43
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第10則留言 - 文字 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter10_post1" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">葉家騰</div>
+                                        <div class="comment-text">害我都不敢跟托嬰中心的老師大小聲</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="29">
+                                            <i class="far fa-thumbs-up"></i> 29
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% elif loop.index0 == 1 %}
+                            <!-- 第二篇帖文的留言 (10則: 6文字 + 2 meme_not_label + 2 meme_50) -->
+                            <!-- 第1則留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter1_post6" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">楊明明</div>
+                                        <div class="comment-text">怕曬就不要騎車出門</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action">讚</button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 第2則留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter2_post6" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">蕭汝</div>
+                                        <div class="comment-text">最近上班都遇到這種，一綠燈就直接騎，也不看看後面有沒有來車，真的三寶</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action">讚</button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 研究用的特定留言（迷因圖/原始文字） -->
+                            <div class="comment research-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="research_commenter_post6" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">林志博</div>
+                                        <div class="comment-display">
+                                            {% if post_data.recommended_memes and post_data.recommended_memes|length > 0 %}
+                                            <img class="meme-image" 
+                                                 src="{{ url_for('static', filename='meme_50/Nuclear-Explosion.jpg') }}" 
+                                                 alt="{{ post_data.recommended_memes[0].name }}">
+                                            {% else %}
+                                            <div class="text-comment">白痴，智商不到位，駕照一定是雞腿換來的</div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="{{ 5 + loop.index * 3 }}">
+                                            <i class="far fa-thumbs-up"></i> {{ 5 + loop.index * 3 }}
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 第4則留言 - 一般迷因留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter4_post6" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">林國</div>
+                                        <div class="comment-display">
+                                            <img class="meme-image" 
+                                                 src="{{ url_for('static', filename='meme_not_label/Chef-Gordon-Ramsay.jpg') }}" 
+                                                 alt="Chef Gordon Ramsay">
+                                        </div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="8">
+                                            <i class="far fa-thumbs-up"></i> 8
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第5則留言 - 一般迷因留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter5_post6" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">李妙</div>
+                                        <div class="comment-text">很熱我知道，但不應該停那麼遠啊</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action">讚</button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第6則留言 - 一般迷因留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter6_post6" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">陳黃芪</div>
+                                        <div class="comment-text">別啊，這樣會害到別人</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action">讚</button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第7則留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter7_post6" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">李雅婷</div>
+                                        <div class="comment-text">真的要注意交通安全，尤其是夏天視線容易被遮擋</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action">讚</button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第8則留言 - meme_not_label -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter8_post6" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">張志明</div>
+                                        <div class="comment-display">
+                                            <img class="meme-image" 
+                                                 src="{{ url_for('static', filename='meme_not_label/Spongebob-Waiting.jpg') }}" 
+                                                 alt="迷因圖">
+                                        </div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="11">
+                                            <i class="far fa-thumbs-up"></i> 11
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第9則留言 - meme_50 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter9_post6" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">劉小芬</div>
+                                        <div class="comment-display">
+                                            <img class="meme-image" 
+                                                 src="{{ url_for('static', filename='meme_50/For-the-better-right-blank.jpg') }}" 
+                                                 alt="迷因圖">
+                                        </div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="15">
+                                            <i class="far fa-thumbs-up"></i> 15
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            {% elif loop.index0 == 2 %}
+                            <!-- 第三篇帖文的留言 (10則: 6文字 + 2 meme_not_label + 2 meme_50) -->
+                            <!-- 第1則留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter1_post7" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">郭齊霖</div>
+                                        <div class="comment-text">抽個菸身價就飆升至39億，比魔獸霍華德還值錢</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action">讚</button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 第2則留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter2_post7" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">劉聖章</div>
+                                        <div class="comment-text">注意看，小帥隨手丟了煙頭，不出意外就出意外了</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action">讚</button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第3則留言 - 一般迷因留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter3_post7" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">李致遠</div>
+                                        <div class="comment-display">
+                                            <img class="meme-image" 
+                                                 src="{{ url_for('static', filename='meme_not_label/Waiting-Skeleton.jpg') }}" 
+                                                 alt="Waiting Skeleton">
+                                        </div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="14">
+                                            <i class="far fa-thumbs-up"></i> 14
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 研究用的特定留言（迷因圖/原始文字） -->
+                            <div class="comment research-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="research_commenter_post7" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content" style="position: relative;">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">彥程旭</div>
+                                        <div class="comment-display">
+                                            <!-- 迷因圖視圖 -->
+                                            <div class="meme-view" style="display: block;">
+                                                {% if post_data.recommended_memes and post_data.recommended_memes|length > 0 %}
+                                                <img class="meme-image" 
+                                                     src="{{ url_for('static', filename='meme_50/Leonardo-Dicaprio-Wolf-Of-Wall-Street.jpg') }}" 
+                                                     alt="{{ post_data.recommended_memes[0].name }}">
+                                                {% else %}
+                                                <div class="text-comment">自殺投胎換個新帳號登入比較快還清哦，你爸媽該為你感到榮幸哈哈哈哈哈</div>
+                                                {% endif %}
+                                            </div>
+                                            
+                                            <!-- 原始留言視圖 - 隱藏狀態 -->
+                                            <div class="text-view" style="display: none;">
+                                                <div class="original-comment-text">自殺投胎換個新帳號登入比較快還清哦，你爸媽該為你感到榮幸哈哈哈哈哈</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="toggle-comment-btn" data-current-view="meme" style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.7); color: white; border: none; padding: 4px 8px; border-radius: 4px; font-size: 12px; cursor: pointer; z-index: 10;">查看原始留言</button>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="{{ 5 + loop.index * 3 }}">
+                                            <i class="far fa-thumbs-up"></i> {{ 5 + loop.index * 3 }}
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 第4則留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter4_post7" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">羽婕</div>
+                                        <div class="comment-text">這是被推出來揹黑鍋的吧？一根煙可以燒掉整個家樂福？因為非店家疏失、保險才會賠嗎？</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action">讚</button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第5則留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter5_post7" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">Edward Lin</div>
+                                        <div class="comment-text">就算真的是一根菸蒂起的火頭, 可是才剛啟用沒幾個月那麼大一個物流中心居然能夠因為這樣就整間燒得精光, 都沒有防火設備? 消防安檢是怎麼過的?</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action">讚</button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第6則留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter6_post7" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">呂映宏</div>
+                                        <div class="comment-text">活生生的戒菸教材啊</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action">讚</button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第7則留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter7_post7" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">芳宇騰</div>
+                                        <div class="comment-text">成為一個連銀行都害怕的男人了!</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action">讚</button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第8則留言 - meme_50 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter8_post7" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content" style="position: relative;">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">張力偉</div>
+                                        <div class="comment-display">
+                                            <div class="meme-view" style="display: block;">
+                                                <img class="meme-image" 
+                                                     src="{{ url_for('static', filename='meme_50/Disappointed-Man.jpg') }}" 
+                                                     alt="迷因圖">
+                                            </div>
+                                            <div class="text-view" style="display: none;">
+                                                <div class="original-comment-text">抽煙的人都該死，看到這種真的很爽，都去死一死</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="toggle-comment-btn" data-current-view="meme" style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.7); color: white; border: none; padding: 4px 8px; border-radius: 4px; font-size: 12px; cursor: pointer; z-index: 10;">查看原始留言</button>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="16">
+                                            <i class="far fa-thumbs-up"></i> 16
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第9則留言 - meme_not_label -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter10_post7" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">博思玉</div>
+                                        <div class="comment-display">
+                                            <img class="meme-image" 
+                                                 src="{{ url_for('static', filename='meme_not_label/Megamind-peeking.jpeg') }}" 
+                                                 alt="迷因圖">
+                                        </div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="19">
+                                            <i class="far fa-thumbs-up"></i> 19
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+                            {% elif loop.index0 == 3 %}
+                            <!-- 第四篇帖文的留言 (10則: 6文字 + 2 meme_not_label + 2 meme_50) -->
+                            <!-- 第1則留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter1_post8" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">Vivian Li</div>
+                                        <div class="comment-text">這真的時有所聞，有時研究生太好用了！還故意留人不給畢業呢</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action">讚</button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 第2則留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter2_post8" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">賴寶珠</div>
+                                        <div class="comment-text">這已經是流氓行為了欸！竟然還長期放任他耍流氓，這間學校😑</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action">讚</button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第3則留言 - 一般迷因留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter3_post8" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">鄭秋元</div>
+                                        <div class="comment-text">媽媽，我不想上大學了</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action">讚</button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 研究用的特定留言（迷因圖/原始文字） -->
+                            <div class="comment research-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="research_commenter_post8" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">博彥婷</div>
+                                        {% if post_data.recommended_memes and post_data.recommended_memes|length > 0 %}
+                                        <img class="meme-image" 
+                                             src="{{ url_for('static', filename='meme_50/Hold-fart.jpg') }}" 
+                                             alt="{{ post_data.recommended_memes[0].name }}">
+                                        {% else %}
+                                        <div class="text-comment">為什麼要隱忍？面對暴力霸凌，早就該反擊了！學校的處置方式應該要公正，學生團體也要發出不平則鳴的力量！</div>
+                                        {% endif %}
+                                    </div>
+                                    
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="{{ 5 + loop.index * 3 }}">
+                                            <i class="far fa-thumbs-up"></i> {{ 5 + loop.index * 3 }}
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 第4則留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter4_post8" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">張明蓮</div>
+                                        <div class="comment-text">這是什麼教授？誇張到極點，五年學校完全都不知情嗎？還是對於暴力視而不見？</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action">讚</button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第5則留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter5_post8" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">Tso Sheng Yu</div>
+                                        <div class="comment-text">海大很硬喔，只用停聘而不是永不聘用</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action">讚</button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第6則留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter6_post8" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">林珊妃</div>
+                                        <div class="comment-text">聽說很多學校的研究所都有這種狀況呢～教授咆哮、往臉丟研究報告……以前聽系辦說這是常態~</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action">讚</button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第7則留言 - 一般迷因留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter7_post8" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">海樂華</div>
+                                        <img class="meme-image" 
+                                             src="{{ url_for('static', filename='meme_not_label/Jack-Torrance-axe-shining.jpg') }}" 
+                                             alt="Jack Torrance Axe Shining">
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="25">
+                                            <i class="far fa-thumbs-up"></i> 25
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第8則留言 - 一般迷因留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter8_post8" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">博桑柳</div>
+                                        <img class="meme-image" 
+                                             src="{{ url_for('static', filename='meme_not_label/TED.jpg') }}" 
+                                             alt="TED">
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="18">
+                                            <i class="far fa-thumbs-up"></i> 18
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第9則留言 - meme_50 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter9_post8" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">嚴朱琪</div>
+                                        <div class="comment-display">
+                                            <img class="meme-image" 
+                                                 src="{{ url_for('static', filename='meme_50/Hide-the-Pain-Harold.jpg') }}" 
+                                                 alt="迷因圖">
+                                        </div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="23">
+                                            <i class="far fa-thumbs-up"></i> 23
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第10則留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter10_post8" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">黃黎鎮</div>
+                                        <div class="comment-text">為母校感到羞恥，希望校方能徹底檢討改進</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action">讚</button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+
+                            {% elif loop.index0 == 4 %}
+                            <!-- 第五篇帖文的特定留言 -->
+                            <!-- 第1則留言 - 文字 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter1_post2" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">Eric Lu</div>
+                                        <div class="comment-text">現在學校素質真是….,請這種人去演講，教學生把所有獎狀都丟掉嗎？</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="48">
+                                            <i class="far fa-thumbs-up"></i> 48
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第2則留言 - 文字 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter2_post2" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">Alex Tsau</div>
+                                        <div class="comment-text">道德比專業還重要，這也顯示家教有待加強</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="35">
+                                            <i class="far fa-thumbs-up"></i> 35
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第3則留言 - meme_not_label -->
+                            <div class="comment meme-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="meme_commenter3_post2" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">張玲</div>
+                                        <div class="comment-display">
+                                            <img class="meme-image" 
+                                                 src="{{ url_for('static', filename='meme_not_label/Computer-Guy-Facepalm.jpg') }}" 
+                                                 alt="迷因圖">
+                                        </div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="52">
+                                            <i class="far fa-thumbs-up"></i> 52
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第4則留言 - 文字 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter4_post2" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">Eva Din</div>
+                                        <div class="comment-text">基本的尊重都學不會，即使擁有再多專業也沒有用</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="63">
+                                            <i class="far fa-thumbs-up"></i> 63
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第5則留言 - meme_50 -->
+                            <div class="comment meme-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="meme_commenter5_post2" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">李建成</div>
+                                        <div class="comment-display">
+                                            <img class="meme-image" 
+                                                 src="{{ url_for('static', filename='meme_50/Disappointed-Man.jpg') }}" 
+                                                 alt="迷因圖">
+                                        </div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="41">
+                                            <i class="far fa-thumbs-up"></i> 41
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第6則留言 - 文字 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter6_post2" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">Hung Yutong</div>
+                                        <div class="comment-text">書讀到哪裡去了？連最基本的尊重都不懂，還想當講師，還是不要殘害別人家的孩子吧！</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="57">
+                                            <i class="far fa-thumbs-up"></i> 57
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第7則留言 - meme_not_label -->
+                            <div class="comment meme-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="meme_commenter7_post2" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">陳志林</div>
+                                        <div class="comment-display">
+                                            <img class="meme-image" 
+                                                 src="{{ url_for('static', filename='meme_not_label/Steve-Harvey-Laughing-Serious.jpg') }}" 
+                                                 alt="迷因圖">
+                                        </div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="39">
+                                            <i class="far fa-thumbs-up"></i> 39
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第8則留言 - 文字 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter8_post2" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">李八哲</div>
+                                        <div class="comment-text">那些東西，的確日後是垃圾。但是，現在那是你的榮耀。</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="44">
+                                            <i class="far fa-thumbs-up"></i> 44
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第9則留言 - meme_50 -->
+                            <div class="comment meme-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="meme_commenter9_post2" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">黃文智</div>
+                                        <div class="comment-display">
+                                            <img class="meme-image" 
+                                                 src="{{ url_for('static', filename='meme_50/Drake-NoYes.jpg') }}" 
+                                                 alt="迷因圖">
+                                        </div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="36">
+                                            <i class="far fa-thumbs-up"></i> 36
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第10則留言 - 文字 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter10_post2" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">陳星君</div>
+                                        <div class="comment-text">有些東西確實不需要留，但丟得這麼目中無人的還真是挺白目的</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="71">
+                                            <i class="far fa-thumbs-up"></i> 71
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% elif loop.index0 == 5 %}
+                            <!-- 第六篇帖文的特定留言 -->
+                            <!-- 第1則留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter1_post5" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">于品蓁</div>
+                                        <div class="comment-text">一時疏忽造成一輩子的遺憾</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action">讚</button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 第2則留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter2_post5" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">劉庭潔</div>
+                                        <div class="comment-text">照顧小孩要有耐心和細心，一不小心就會發生憾事</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action">讚</button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第3則留言 - 一般迷因留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter3_post5" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">王力雲</div>
+                                        <div class="comment-display">
+                                            <img class="meme-image" 
+                                                 src="{{ url_for('static', filename='meme_not_label/Crying-cat.jpg') }}" 
+                                                 alt="Crying Cat">
+                                        </div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="9">
+                                            <i class="far fa-thumbs-up"></i> 9
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 研究用的特定留言（迷因圖/原始文字） -->
+                            <div class="comment research-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="research_commenter_post5" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content" style="position: relative;">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">林志隆</div>
+                                        <div class="comment-display">
+                                            <!-- 迷因圖視圖 -->
+                                            <div class="meme-view" style="display: block;">
+                                                {% if post_data.recommended_memes and post_data.recommended_memes|length > 0 %}
+                                                <img class="meme-image" 
+                                                     src="{{ url_for('static', filename='meme_50/Im-The-Captain-Now.jpg') }}" 
+                                                     alt="{{ post_data.recommended_memes[0].name }}">
+                                                {% else %}
+                                                <div class="text-comment">傻逼，當父母的人了，腦袋裝屎啊</div>
+                                                {% endif %}
+                                            </div>
+                                            
+                                            <!-- 原始留言視圖 - 隱藏狀態 -->
+                                            <div class="text-view" style="display: none;">
+                                                <div class="original-comment-text">傻逼，當父母的人了，腦袋裝屎啊</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="toggle-comment-btn" data-current-view="meme" style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.7); color: white; border: none; padding: 4px 8px; border-radius: 4px; font-size: 12px; cursor: pointer; z-index: 10;">查看原始留言</button>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="{{ 5 + loop.index * 3 }}">
+                                            <i class="far fa-thumbs-up"></i> {{ 5 + loop.index * 3 }}
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 第4則留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter4_post5" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">李品嬋</div>
+                                        <div class="comment-text">一個人照顧1、3歲，有經驗的，覺得自己游刃有餘的再責備吧！</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action">讚</button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第5則留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter5_post5" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">林姮岑</div>
+                                        <div class="comment-text">這個世界上最辛苦又沒有薪水的工作就是媽媽這個職位，從懷孕的那一刻開始就一直擔心孩子到長大…孩子還小的時候，真的連一秒鐘都不可以離開…更別說5-10分鐘了。因為意外就是一瞬間的事情而已…不要心存僥幸…真的要警惕自己，當媽媽的真的很不輕鬆…請這位媽媽節哀…</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action">讚</button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第6則留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter6_post5" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">趙若妘</div>
+                                        <div class="comment-text">悲劇的發生就是，不要因為離開一下而已覺得應該沒關係，成了終生遺憾，一切就來不及了</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action">讚</button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第7則留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter7_post5" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">林小妏</div>
+                                        <div class="comment-text">不要以為小朋友有伴就會沒事，要嘛就趕快把小朋友洗起來，也絕對不要讓小朋友單獨在浴室！我的小孩兩歲半我連要拿一個浴巾都要千叮嚀萬囑咐，不可以離開澡盆而且離開時間絕對不會超過10秒真的很可怕！意外隨時都來得很突然！</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action">讚</button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第8則留言 - 一般迷因留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter8_post5" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">權值龍</div>
+                                        <img class="meme-image" 
+                                             src="{{ url_for('static', filename='meme_not_label/Surprised-Koala.jpg') }}" 
+                                             alt="Surprised Koala">
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="13">
+                                            <i class="far fa-thumbs-up"></i> 13
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第9則留言 - meme_50 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter9_post5" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content" style="position: relative;">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">李豐隱</div>
+                                        <div class="comment-display">
+                                            <div class="meme-view" style="display: block;">
+                                                <img class="meme-image" 
+                                                     src="{{ url_for('static', filename='meme_50/Happy--Shock.jpg') }}" 
+                                                     alt="迷因圖">
+                                            </div>
+                                            <div class="text-view" style="display: none;">
+                                                <div class="original-comment-text">笑死，有夠白痴和無知</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="toggle-comment-btn" data-current-view="meme" style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.7); color: white; border: none; padding: 4px 8px; border-radius: 4px; font-size: 12px; cursor: pointer; z-index: 10;">查看原始留言</button>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="18">
+                                            <i class="far fa-thumbs-up"></i> 18
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第10則留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter10_post5" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">劉德圓</div>
+                                        <div class="comment-text">為這個家庭祈禱，希望媽媽能夠走出陰霾</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action">讚</button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            {% elif loop.index0 == 6 %}
+                            <!-- 第七篇帖文的特定留言 -->
+                            <!-- 第1則留言 - 文字 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter1_post4" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">陳群展</div>
+                                        <div class="comment-text">直接斷絕母女關係！父親：為什麼？父親看完影片後：無言以對。</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="32">
+                                            <i class="far fa-thumbs-up"></i> 32
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 第2則留言 - meme_not_label -->
+                            <div class="comment meme-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="meme_commenter2_post4" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">米妮</div>
+                                        <div class="comment-display">
+                                            <img class="meme-image" 
+                                                 src="{{ url_for('static', filename='meme_not_label/Narcos-waiting.jpg') }}" 
+                                                 alt="迷因圖">
+                                        </div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="28">
+                                            <i class="far fa-thumbs-up"></i> 28
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第3則留言 - 文字 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter3_post4" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">陳陽</div>
+                                        <div class="comment-text">母女都能載到打架？女載母？母開走車？打到親媽不是媽/女兒不是親身似的..……</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="21">
+                                            <i class="far fa-thumbs-up"></i> 21
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第4則留言 - meme_50 -->
+                            <div class="comment meme-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="meme_commenter4_post4" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">李若彤</div>
+                                        <div class="comment-display">
+                                            <img class="meme-image" 
+                                                 src="{{ url_for('static', filename='meme_50/DJ-Pauly-D.jpg') }}" 
+                                                 alt="迷因圖">
+                                        </div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="19">
+                                            <i class="far fa-thumbs-up"></i> 19
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第5則留言 - 文字 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter5_post4" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">吳鐘聖</div>
+                                        <div class="comment-text">媽媽先丟女兒手機 是媽媽問題比較大</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="15">
+                                            <i class="far fa-thumbs-up"></i> 15
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第6則留言 - meme_not_label -->
+                            <div class="comment meme-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="meme_commenter6_post4" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">晨孔</div>
+                                        <div class="comment-display">
+                                            <img class="meme-image" 
+                                                 src="{{ url_for('static', filename='meme_not_label/Disloyal-Boyfriend.jpg') }}" 
+                                                 alt="迷因圖">
+                                        </div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="26">
+                                            <i class="far fa-thumbs-up"></i> 26
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第7則留言 - 文字 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter7_post4" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">李芸萱</div>
+                                        <div class="comment-text">那平時這母女....🤔🤔 那女兒能活到26歲，真不容易😄😄</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="18">
+                                            <i class="far fa-thumbs-up"></i> 18
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第8則留言 - meme_50 -->
+                            <div class="comment meme-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="meme_commenter8_post4" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">王大芳</div>
+                                        <div class="comment-display">
+                                            <img class="meme-image" 
+                                                 src="{{ url_for('static', filename='meme_50/You-The-Real-MVP.jpg') }}" 
+                                                 alt="迷因圖">
+                                        </div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="23">
+                                            <i class="far fa-thumbs-up"></i> 23
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第9則留言 - 文字 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter9_post4" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">蔡雅芬</div>
+                                        <div class="comment-text">母女關係不好嗎，就為了聽音樂，互丟手機，奇怪的母女關係！</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="14">
+                                            <i class="far fa-thumbs-up"></i> 14
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第10則留言 - 文字 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter10_post4" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">陳小謙</div>
+                                        <div class="comment-text">希望她們能和好，畢竟是母女關係</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="11">
+                                            <i class="far fa-thumbs-up"></i> 11
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% elif loop.index0 == 7 %}
+                            <!-- 第八篇帖文的特定留言 -->
+                            <!-- 第1則留言 - 文字 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter1_post3" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">穎軒</div>
+                                        <div class="comment-text">太扯了啦 以後殺人被抓到就說自己有病就好了啊</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="38">
+                                            <i class="far fa-thumbs-up"></i> 38
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 第2則留言 - meme_not_label -->
+                            <div class="comment meme-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="meme_commenter2_post3" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">饅頭</div>
+                                        <div class="comment-display">
+                                            <img class="meme-image" 
+                                                 src="{{ url_for('static', filename='meme_not_label/Neil-deGrasse-Tyson.jpg') }}" 
+                                                 alt="迷因圖">
+                                        </div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="42">
+                                            <i class="far fa-thumbs-up"></i> 42
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第3則留言 - 文字 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter3_post3" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">Ted Liu</div>
+                                        <div class="comment-text">現在殺人就一句我有病，當免死金牌，到底是什麼社會</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="29">
+                                            <i class="far fa-thumbs-up"></i> 29
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第4則留言 - meme_50 -->
+                            <div class="comment meme-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="meme_commenter4_post3" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content" style="position: relative;">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">林茂特</div>
+                                        <div class="comment-display">
+                                            <div class="meme-view" style="display: block;">
+                                                <img class="meme-image" 
+                                                     src="{{ url_for('static', filename='meme_50/Kevin-Hart.jpg') }}" 
+                                                     alt="迷因圖">
+                                            </div>
+                                            <div class="text-view" style="display: none;">
+                                                <div class="original-comment-text">死人渣砍死你</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="toggle-comment-btn" data-current-view="meme" style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.7); color: white; border: none; padding: 4px 8px; border-radius: 4px; font-size: 12px; cursor: pointer; z-index: 10;">查看原始留言</button>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="35">
+                                            <i class="far fa-thumbs-up"></i> 35
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第5則留言 - 文字 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter5_post3" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">湯包瑄</div>
+                                        <div class="comment-text">太扯了😡😡連三歲小孩也不放過😡😡</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="22">
+                                            <i class="far fa-thumbs-up"></i> 22
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第6則留言 - meme_not_label -->
+                            <div class="comment meme-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="meme_commenter6_post3" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">宏思明</div>
+                                        <div class="comment-display">
+                                            <img class="meme-image" 
+                                                 src="{{ url_for('static', filename='meme_not_label/Girls-gossiping.jpg') }}" 
+                                                 alt="迷因圖">
+                                        </div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="31">
+                                            <i class="far fa-thumbs-up"></i> 31
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第7則留言 - 文字 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter7_post3" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">陳齊璇</div>
+                                        <div class="comment-text">沒死刑，可教化，真的是台灣司法最大的笑話，建議大家隨身攜帶防身用品</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="27">
+                                            <i class="far fa-thumbs-up"></i> 27
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第8則留言 - meme_50 -->
+                            <div class="comment meme-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="meme_commenter8_post3" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content" style="position: relative;">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">邁力密</div>
+                                        <div class="comment-display">
+                                            <div class="meme-view" style="display: block;">
+                                                <img class="meme-image" 
+                                                     src="{{ url_for('static', filename='meme_50/Picard-Wtf.jpg') }}" 
+                                                     alt="迷因圖">
+                                            </div>
+                                            <div class="text-view" style="display: none;">
+                                                <div class="original-comment-text">最毒婦人，祝全家被刺死</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="toggle-comment-btn" data-current-view="meme" style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.7); color: white; border: none; padding: 4px 8px; border-radius: 4px; font-size: 12px; cursor: pointer; z-index: 10;">查看原始留言</button>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="33">
+                                            <i class="far fa-thumbs-up"></i> 33
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第9則留言 - 文字 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter9_post3" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">Yong Tu</div>
+                                        <div class="comment-text">我帶女兒出門，身上一定帶防身用品！瘋子太多了！</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="19">
+                                            <i class="far fa-thumbs-up"></i> 19
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第10則留言 - 文字 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter10_post3" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">Dori Tos</div>
+                                        <div class="comment-text">怎麼會對年幼的孩子做這種事啊！！！！！！</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="25">
+                                            <i class="far fa-thumbs-up"></i> 25
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+
+
+                            {% else %}
+                            <!-- 其他帖文的預設留言 -->
+                            <!-- 第1則留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter1_{{ loop.index }}" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">Selina Ya</div>
+                                        <div class="comment-text">永不得從事教育相關工作。請問是何教育學院畢業、還說這是照護員？惡劣賤人、欺負幼兒、以其人之道 還治其人之身。</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action">讚</button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 第2則留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter2_{{ loop.index }}" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">李振提</div>
+                                        <div class="comment-text">這種幼兒園該停招，這麼嚴重的事，應該公佈施暴者</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action">讚</button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 研究用的特定留言（迷因圖/原始文字） -->
+                            <div class="comment research-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="research_commenter_{{ loop.index }}" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">林志隆</div>
+                                        <div class="comment-display">
+                                            <!-- 迷因圖視圖 -->
+                                            <div class="meme-view">
+                                                {% if post_data.recommended_memes and post_data.recommended_memes|length > 0 %}
+                                                <img class="meme-image" 
+                                                     src="{{ url_for('static', filename='meme_50/' + post_data.recommended_memes[0].filename) }}" 
+                                                     alt="{{ post_data.recommended_memes[0].name }}">
+                                                {% else %}
+                                                <div class="text-comment">要是敢動我小孩，我一定衝到學校把妳腿打斷</div>
+                                                {% endif %}
+                                            </div>
+                                            
+                                            <!-- 原始留言視圖 - 隱藏狀態 -->
+                                            <div class="text-view" style="display: none;">
+                                                <div class="original-comment-text">要是敢動我小孩，我一定衝到學校把妳腿打斷</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action like-comment" data-likes="{{ 5 + loop.index * 3 }}">
+                                            <i class="far fa-thumbs-up"></i> {{ 5 + loop.index * 3 }}
+                                        </button>
+                                        <button class="comment-action">回覆</button>
+                                        <button class="toggle-comment-btn" data-current-view="meme">
+                                            查看原始留言
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 第4則留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter3_{{ loop.index }}" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">Tina Ging</div>
+                                        <div class="comment-text">這不用馬賽克吧！</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action">讚</button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第5則留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter4_{{ loop.index }}" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">葉家亨</div>
+                                        <div class="comment-text">害我都不敢跟托嬰中心的老師大小聲</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action">讚</button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第6則留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter6_{{ loop.index }}" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">王棋棋</div>
+                                        <div class="comment-text">一堆垃圾～這種人不用馬賽克請直接亮相</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action">讚</button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第7則留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter7_{{ loop.index }}" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">盧筑均</div>
+                                        <div class="comment-text">看了心好痛</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action">讚</button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第8則留言 -->
+                            <div class="comment random-comment">
+                                <div class="user-avatar small">
+                                    <img class="random-avatar" data-seed="commenter8_{{ loop.index }}" src="" alt="留言者">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">簡辛品</div>
+                                        <div class="comment-text">沒耐心沒愛心沒修養 就請別任職這行業！</div>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <span class="comment-time">2小時</span>
+                                        <button class="comment-action">讚</button>
+                                        <button class="comment-action">回覆</button>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            
                         </div>
                     </div>
                     {% endfor %}
                 {% endif %}
+                </div>
             </div>
-
-            <!-- 右側：問卷評價區域 -->
-            <div class="right-content">
+            
+            <!-- 右下角觸發區域 -->
+            <div class="bottom-right-trigger"></div>
+            
+            <!-- 問卷評價區域 -->
+            <div class="survey-content">
+                <div class="survey-panel-header" style="display: none;">
+                    <h3 style="color: #1877f2; margin: 0 0 16px 0; text-align: center; font-size: 16px;">
+                        <i class="fas fa-clipboard-list"></i> 問卷評價
+                    </h3>
+                </div>
                 {% if posts_data %}
                     {# 使用與左側相同的固定順序 #}
                     {% set fixed_order = [0, 4, 1, 6, 3, 7, 2, 5] %}
@@ -185,12 +2175,12 @@
                                 <!-- Q3 -->
                                 <div class="question-group">
                                     <div class="question-text">
-                                        這張迷因圖所表達的情緒與原始留言是否相符？
+                                        您認為迷因版本比原始留言更容易被接受嗎？
                                     </div>
                                     <div class="scale-container">
                                         <div class="scale-labels">
-                                            <span class="scale-label">1-完全不相符</span>
-                                            <span class="scale-label">7-完全相符</span>
+                                            <span class="scale-label">1-完全不同意</span>
+                                            <span class="scale-label">7-完全同意</span>
                                         </div>
                                         <div class="scale-controls">
                                             <input type="range" class="likert-scale" min="1" max="7" value="4" data-question="q3">
@@ -250,12 +2240,12 @@
                                 <!-- Q3 -->
                                 <div class="question-group">
                                     <div class="question-text">
-                                        這張迷因圖所表達的情緒與原始留言是否相符？
+                                        您認為迷因版本比原始留言更容易被接受嗎？
                                     </div>
                                     <div class="scale-container">
                                         <div class="scale-labels">
-                                            <span class="scale-label">1-完全不相符</span>
-                                            <span class="scale-label">7-完全相符</span>
+                                            <span class="scale-label">1-完全不同意</span>
+                                            <span class="scale-label">7-完全同意</span>
                                         </div>
                                         <div class="scale-controls">
                                             <input type="range" class="likert-scale" min="1" max="7" value="4" data-question="q3">
@@ -270,30 +2260,23 @@
                         </div>
                     </div>
                     {% endfor %}
-                {% else %}
-                    <div class="interaction-panel active">
-                        <div class="receiver-survey-section">
-                            <h4>目前沒有新聞貼文。請將圖片放入 static/news 資料夾。</h4>
-                        </div>
-                    </div>
                 {% endif %}
             </div>
-        </main>
-
-        <!-- 底部導航 -->
-        <div class="post-navigation">
-            <div class="nav-dots">
-                {% for i in range(8) %}
-                <div class="nav-dot" data-post-index="{{ i }}">
-                    <span class="dot-number">{{ i + 1 }}</span>
+            
+            <!-- 底部導航 -->
+            <div class="post-navigation">
+                <div class="nav-dots">
+                    {% for i in range(8) %}
+                    <div class="nav-dot" data-post-index="{{ i }}">
+                        <span class="dot-number">{{ i + 1 }}</span>
+                    </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
+                <div class="nav-progress">
+                    <span class="current-post">1</span> / 8
+                </div>
             </div>
-            <div class="nav-progress">
-                <span class="current-post">1</span> / 8
-            </div>
-        </div>
-    </div>
+        </main>
     </div>
 
     <script>
@@ -344,8 +2327,81 @@
                 });
             });
         }
+        
+        // 問卷觸發區域的交互功能
+        function setupSurveyTrigger() {
+            const trigger = document.querySelector('.bottom-right-trigger');
+            const surveyContent = document.querySelector('.survey-content');
+            const panelHeader = document.querySelector('.survey-panel-header');
+            let isForceShown = false;
+            
+            if (trigger && surveyContent) {
+                // 確保初始狀態是隱藏的
+                surveyContent.style.right = '-330px';
+                if (panelHeader) {
+                    panelHeader.style.display = 'none';
+                }
+                
+                // 懸停效果（右下角區域觸發）
+                trigger.addEventListener('mouseenter', function() {
+                    if (!isForceShown) {
+                        surveyContent.style.right = '0';
+                        if (panelHeader) {
+                            panelHeader.style.display = 'block';
+                        }
+                    }
+                });
+                
+                trigger.addEventListener('mouseleave', function() {
+                    if (!isForceShown) {
+                        // 延遲隱藏，給用戶時間移動到問卷區域
+                        setTimeout(() => {
+                            if (!surveyContent.matches(':hover') && !isForceShown) {
+                                surveyContent.style.right = '-330px';
+                                if (panelHeader) {
+                                    panelHeader.style.display = 'none';
+                                }
+                            }
+                        }, 200);
+                    }
+                });
+                
+                // 點擊觸發區域切換顯示/隱藏
+                trigger.addEventListener('click', function() {
+                    if (isForceShown) {
+                        surveyContent.style.right = '-330px';
+                        if (panelHeader) {
+                            panelHeader.style.display = 'none';
+                        }
+                        isForceShown = false;
+                    } else {
+                        surveyContent.style.right = '0';
+                        if (panelHeader) {
+                            panelHeader.style.display = 'block';
+                        }
+                        isForceShown = true;
+                    }
+                });
+                
+                // 問卷區域的鼠標事件
+                surveyContent.addEventListener('mouseleave', function() {
+                    if (!isForceShown) {
+                        surveyContent.style.right = '-330px';
+                        if (panelHeader) {
+                            panelHeader.style.display = 'none';
+                        }
+                    }
+                });
+            }
+        }
+        
+        // 在頁面加載時設置所有功能
+        document.addEventListener('DOMContentLoaded', function() {
+            setupSurveyTrigger();
+        });
     </script>
     
     <script src="{{ url_for('static', filename='js/receiver.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/post-navigation-control.js') }}"></script>
 </body>
 </html>

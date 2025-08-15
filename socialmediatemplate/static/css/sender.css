@@ -4,23 +4,1618 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    height: 100vh;
+.user-avatar {
+    border-radius: 50%;
     overflow: hidden;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-avatar.xsmall {
+    width: 24px;
+    height: 24px;
+}
+
+.user-avatar.small {
+    width: 32px;
+    height: 32px;
+}
+
+.user-avatar.medium {
+    width: 40px;
+    height: 40px;
+}
+
+.user-avatar.large {
+    width: 56px;
+    height: 56px;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+    overflow: hidden; /* 確保整個頁面不能滾動 */
+    margin: 0;
+    background-color: #f0f2f5;
+    padding-top: 0;
 }
 
 .page-label {
     position: fixed;
-    top: 0.625rem;
-    right: 0.625rem;
-    background: #42b72a;
+    top: 66px;
+    right: 10px;
+    background: #1877f2;
     color: white;
     padding: 5px 10px;
     border-radius: 5px;
     font-size: 12px;
-    font-weight: bold;
     z-index: 1000;
+}
+
+/* 全局佈局 */
+.horizontal-layout {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Facebook 頂部導航條 - 全局 */
+.facebook-header {
+    width: 100%;
+    height: 60px;
+    background: #ffffff;
+    border-bottom: 1px solid #dadde1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Facebook header 子元素樣式 */
+.facebook-header .facebook-logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1877f2;
+}
+
+.facebook-header .search-box {
+    width: 240px;
+    height: 40px;
+    padding: 0 16px;
+    border: none;
+    border-radius: 20px;
+    background-color: #f0f2f5;
+    font-size: 15px;
+    outline: none;
+}
+
+.facebook-header .search-box::placeholder {
+    color: #65676b;
+}
+
+.facebook-header .nav-icons {
+    display: flex;
+    gap: 8px;
+}
+
+.facebook-header .nav-icon {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background-color: #e4e6ea;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.facebook-header .nav-icon:hover {
+    background-color: #d8dadf;
+}
+
+/* 主要頁面內容區域 */
+.page-content {
+    display: flex;
+    margin-top: 60px; /* 為 header 留出空間 */
+    height: calc(100vh - 60px);
+    background-color: #f0f2f5;
+}
+
+/* 側邊欄 */
+.sidebar {
+    width: 280px;
+    background: #ffffff;
+    padding: 20px 8px;
+    overflow-y: auto;
+    height: 100%;
+    box-sizing: border-box;
+    border-right: 1px solid #dadde1;
+}
+
+/* 側邊欄區塊 */
+.sidebar .sidebar-section {
+    margin-bottom: 20px;
+    padding: 0 12px;
+}
+
+.sidebar .sidebar-section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #65676b;
+    margin: 0 0 8px 0;
+}
+
+/* 用戶資料 */
+.sidebar .user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.sidebar .user-profile:hover {
+    background-color: #f2f3f5;
+}
+
+.sidebar .user-info {
+    flex: 1;
+}
+
+.sidebar .username-display {
+    font-weight: 600;
+    color: #050505;
+    font-size: 15px;
+}
+
+.sidebar .user-status {
+    color: #65676b;
+    font-size: 13px;
+}
+
+/* 側邊欄選單 */
+.sidebar .sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.sidebar .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 15px;
+    color: #050505;
+}
+
+.sidebar .menu-item:hover {
+    background-color: #f2f3f5;
+}
+
+.sidebar .menu-item.active {
+    background-color: #e3f2fd;
+    color: #1877f2;
+}
+
+.sidebar .menu-item i {
+    width: 20px;
+    text-align: center;
+}
+
+/* 主要內容區域 */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #f0f2f5;
+}
+
+/* 左側：社交媒體內容區 - Facebook風格 */
+.left-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #f0f2f5;
+    height: 100vh;
+    padding-right: 0;
+}
+
+/* 主要內容區域 - 簡化佈局 */
+.main-content-area {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #f0f2f5;
+    height: 100vh;
+    padding-right: 0;
+}
+
+/* left-content内的content-wrapper - Facebook三栏布局 */
+.left-content .content-wrapper,
+.main-content-area .content-wrapper {
+    display: flex;
+    gap: 16px;
+    flex: 1;
+    height: calc(100vh - 60px);
+}
+
+/* 左側的側邊欄 - Facebook白色主题 */
+.left-content .social-sidebar,
+.main-content-area .social-sidebar {
+    width: 280px;
+    background: #ffffff;
+    padding: 20px 8px;
+    overflow-y: auto;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+/* left-content sidebar sections - ?�色主�? */
+.left-content .social-sidebar .sidebar-section {
+    background: transparent;
+    border-radius: 0;
+    padding: 0;
+    margin-bottom: 20px;
+    box-shadow: none;
+    border-bottom: 1px solid #dadde1;
+    padding-bottom: 16px;
+}
+
+.left-content .social-sidebar .sidebar-section:last-child {
+    border-bottom: none;
+}
+
+.left-content .social-sidebar .sidebar-section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #65676b;
+    margin-bottom: 12px;
+    margin-top: 0;
+}
+
+/* user profile in sidebar - ?�色主�? */
+.left-content .social-sidebar .user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+
+.left-content .social-sidebar .user-profile:hover {
+    background: #f0f2f5;
+}
+
+.left-content .social-sidebar .username-display {
+    color: #1c1e21;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.left-content .social-sidebar .user-status {
+    color: #42b72a;
+    font-size: 12px;
+}
+
+/* menu items in sidebar - ?�色主�? */
+.left-content .social-sidebar .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-weight: 500;
+    color: #1c1e21;
+    margin-bottom: 4px;
+}
+
+.left-content .social-sidebar .menu-item:hover {
+    background: #f0f2f5;
+}
+
+.left-content .social-sidebar .menu-item.active {
+    background: #e7f3ff;
+    color: #1877f2;
+}
+
+.left-content .social-sidebar .menu-item i {
+    width: 20px;
+    text-align: center;
+    font-size: 16px;
+    color: #1877f2;
+}
+
+/* friend suggestions in sidebar - ?�色主�? */
+.left-content .social-sidebar .friend-suggestion {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-bottom: 8px;
+}
+
+.left-content .social-sidebar .friend-suggestion:hover {
+    background: #f0f2f5;
+}
+
+.left-content .social-sidebar .friend-name {
+    color: #1c1e21;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.left-content .social-sidebar .mutual-friends {
+    color: #65676b;
+    font-size: 12px;
+}
+
+/* Facebook?�部導航條風??- ?�色主�? */
+.left-content .facebook-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border-bottom: 1px solid #dadde1;
+    padding: 8px 16px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: 100%;
+    box-sizing: border-box;
+    height: 56px;
+}
+
+/* left-content?�facebook-header?�logo */
+.left-content .facebook-header .facebook-logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1877f2;
+    margin-right: 16px;
+    flex-shrink: 0;
+}
+
+/* left-content?�facebook-header?��?索�? - ?�色主�? */
+.left-content .facebook-header .search-box {
+    background: #f0f2f5;
+    border: none;
+    border-radius: 20px;
+    padding: 6px 12px;
+    flex: 1;
+    max-width: 200px;
+    font-size: 14px;
+    outline: none;
+    color: #1c1e21;
+}
+
+.left-content .facebook-header .search-box::placeholder {
+    color: #65676b;
+}
+
+/* left-content?�facebook-header?�导?�图??*/
+.left-content .facebook-header .nav-icons {
+    margin-left: auto;
+    display: flex;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+/* left-content?�facebook-header?�导?�图?��???- ?�色主�? */
+.left-content .facebook-header .nav-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f0f2f5;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 16px;
+    color: #65676b;
+}
+
+.left-content .facebook-header .nav-icon:hover {
+    background: #e4e6ea;
+}
+
+.facebook-logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1877f2;
+    margin-right: 24px;
+}
+
+.search-box {
+    background: #f0f2f5;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 16px;
+    width: 240px;
+    font-size: 15px;
+    outline: none;
+}
+
+.nav-icons {
+    margin-left: auto;
+    display: flex;
+    gap: 8px;
+}
+
+.nav-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f0f2f5;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.nav-icon:hover {
+    background: #e4e6ea;
+}
+.facebook-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+    background: #ffffff;
+    border-bottom: 1px solid #dadde1;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.facebook-logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1877f2;
+    margin-right: 24px;
+}
+
+.search-box {
+    background: #f0f2f5;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 16px;
+    width: 240px;
+    font-size: 15px;
+    outline: none;
+}
+
+.nav-icons {
+    margin-left: auto;
+    display: flex;
+    gap: 8px;
+}
+
+.nav-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f0f2f5;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.nav-icon:hover {
+    background: #e4e6ea;
+}
+
+/* 左側?��? */
+.left-sidebar, .social-sidebar {
+    width: 280px;
+    background: transparent;
+    padding: 0;
+    overflow-y: auto;
+    position: sticky;
+    top: 16px;
+    height: calc(100vh - 104px);
+}
+
+.sidebar-section {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.sidebar-section h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #1c1e21;
+    margin-bottom: 12px;
+    margin-top: 0;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-info {
+    flex: 1;
+}
+
+.user-status {
+    font-size: 12px;
+    color: #42b72a;
+    font-weight: 500;
+}
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-weight: 500;
+}
+
+.menu-item:hover {
+    background-color: #f2f3f4;
+}
+
+.menu-item.active {
+    background-color: #e7f3ff;
+    color: #1877f2;
+}
+
+.menu-item i {
+    width: 20px;
+    text-align: center;
+    font-size: 16px;
+}
+
+/* 中央主要内容区域 - Facebook风格，固定不滾動 */
+.main-content {
+    flex: 1;
+    background: #f0f2f5;
+    overflow: hidden; /* 禁止主要內容區域滾動 */
+    display: flex;
+    justify-content: center;
+    padding: 20px 8px;
+    max-width: none;
+    margin: 0;
+    margin-bottom: 71px; /* 調整為 66px(navigation高度) + 5px(間距) = 71px */
+    height: calc(100vh - 120px); /* 增加高度，為留言區域提供更多空間 */
+    padding-bottom: 20px;
+}
+
+/* ?�侧边�? - Facebook风格 */
+.left-content .right-sidebar {
+    width: 280px;
+    background: #ffffff;
+    padding: 20px 8px;
+    overflow-y: auto;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+/* ?�侧边�? sections */
+.left-content .right-sidebar .sidebar-section {
+    background: transparent;
+    border-radius: 0;
+    padding: 0;
+    margin-bottom: 20px;
+    box-shadow: none;
+    border-bottom: 1px solid #dadde1;
+    padding-bottom: 16px;
+}
+
+.left-content .right-sidebar .sidebar-section:last-child {
+    border-bottom: none;
+}
+
+.left-content .right-sidebar .sidebar-section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #65676b;
+    margin-bottom: 12px;
+    margin-top: 0;
+}
+
+/* 赞助?�容?��? */
+.sponsored-content .ad-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-bottom: 12px;
+}
+
+.sponsored-content .ad-item:hover {
+    background: #f0f2f5;
+}
+
+.sponsored-content .ad-image img {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.sponsored-content .ad-text {
+    flex: 1;
+}
+
+.sponsored-content .ad-title {
+    font-weight: 600;
+    font-size: 14px;
+    color: #1c1e21;
+    margin-bottom: 2px;
+}
+
+.sponsored-content .ad-description {
+    font-size: 12px;
+    color: #65676b;
+    margin-bottom: 2px;
+}
+
+.sponsored-content .ad-sponsor {
+    font-size: 11px;
+    color: #8a8d91;
+}
+
+/* ?�侧边�?好�?建议?��? */
+.left-content .right-sidebar .friend-suggestion {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+    margin-bottom: 8px;
+}
+
+.left-content .right-sidebar .friend-suggestion:hover {
+    background: #f0f2f5;
+}
+
+.left-content .right-sidebar .friend-info {
+    flex: 1;
+}
+
+.left-content .right-sidebar .friend-name {
+    color: #1c1e21;
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+
+.left-content .right-sidebar .mutual-friends {
+    color: #65676b;
+    font-size: 12px;
+}
+
+.add-friend-btn {
+    background: #1877f2;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.add-friend-btn:hover {
+    background: #166fe5;
+}
+
+/* 线�?好�??��? */
+.left-content .right-sidebar .friend-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-bottom: 4px;
+}
+
+.left-content .right-sidebar .friend-item:hover {
+    background: #f0f2f5;
+}
+
+.left-content .right-sidebar .friend-item .friend-name {
+    color: #1c1e21;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.online-indicator {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 12px;
+    height: 12px;
+    background: #42b72a;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+/* 問卷內容區域 - 懸停彈出設計 */
+.survey-content {
+    width: 350px;
+    background: #ffffff;
+    padding: 16px;
+    overflow-y: auto;
+    position: fixed;
+    top: 60px;
+    right: -330px; /* 默認隱藏在右側邊緣外 */
+    height: calc(100vh - 80px);
+    z-index: 1000;
+    border-radius: 8px 0 0 8px;
+    box-shadow: -4px 0 15px rgba(0,0,0,0.15);
+    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 右下角觸發區域 */
+.bottom-right-trigger {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 100px;
+    height: 100px;
+    background: transparent;
+    z-index: 998;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+/* 添加視覺提示 - 右下角小圖示 */
+.bottom-right-trigger::after {
+    content: '📋';
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 24px;
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.bottom-right-trigger:hover::after {
+    opacity: 0.8;
+}
+
+
+
+
+
+/* 懸停右下角時顯示問卷區域 */
+.bottom-right-trigger:hover ~ .survey-content {
+    right: 0 !important;
+}
+
+.survey-content:hover {
+    right: 0 !important;
+}
+
+/* 確�??�卷?�?�內?�內容可以正常交�?*/
+.right-content * {
+    pointer-events: auto;
+}
+
+/* 確�??�卷?�?��?設�??�隱??*/
+.right-content {
+    visibility: visible;
+}
+
+.post-container {
+    width: 100%;
+    background: transparent;
+    padding: 0;
+}
+
+.post {
+    width: 100%;
+    max-width: 500px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    margin-bottom: 24px;
+    overflow: visible; /* 允許內容溢出以適應更大的留言區域 */
+    height: auto; /* 自動調整高度以適應內容 */
+    max-height: calc(100vh - 150px); /* 設置最大高度以避免過高 */
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    gap: 8px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.post-meta {
+    flex: 1;
+}
+
+.author-name {
+    font-weight: 600;
+    font-size: 15px;
+    color: #1c1e21;
+    margin: 0 0 2px 0;
+    line-height: 1.2;
+}
+
+.post-time {
+    font-size: 13px;
+    color: #65676b;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.action-menu-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #65676b;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+.action-menu-btn:hover {
+    background-color: #f0f2f5;
+}
+
+.post-content {
+    width: 100%;
+    padding: 0 16px 12px 16px;
+}
+
+.post-text {
+    font-size: 15px;
+    line-height: 1.33;
+    color: #1c1e21;
+    margin: 0 0 12px 0;
+}
+
+.post-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    margin: 12px 0 0 0;
+    border-radius: 0;
+}
+
+.post-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px 8px 16px;
+    border-bottom: 1px solid #e4e6ea;
+    font-size: 15px;
+    color: #65676b;
+}
+
+.reactions-count {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.reaction-icons {
+    display: flex;
+    margin-right: 6px;
+}
+
+.reaction-icon {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    margin-left: -2px;
+    border: 1px solid #ffffff;
+}
+
+.like-icon {
+    background: #1877f2;
+    color: white;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.love-icon {
+    background: #e41e3f;
+    color: white;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.comments-shares {
+    display: flex;
+    gap: 8px;
+}
+
+.post-actions-bar {
+    display: flex;
+    padding: 4px 16px 8px 16px;
+    justify-content: space-around;
+}
+
+.post-action-btn {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    color: #65676b;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+.post-action-btn:hover {
+    background-color: #f0f2f5;
+}
+
+.post-action-btn.liked {
+    color: #1877f2;
+}
+
+.post-action-btn.shared {
+    color: #42b883;
+}
+
+.post-action-btn i {
+    font-size: 18px;
+}
+
+/* 留言区域 - 只有這裡可以滾動，其他地方都固定 */
+.comments-section {
+    padding: 0 16px 0 16px; /* 完全移除上下 padding，只保留左右 padding */
+    min-height: 180px;
+    max-height: 400px; /* 調整為適中的高度 */
+    height: 220px; /* 調整為適中的固定高度 */
+    overflow-y: auto; /* 只有留言區域可以滾動 */
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: #1877f2 #f0f2f5;
+    border: none;
+    background: transparent;
+    position: relative;
+    box-sizing: border-box; /* 確保 padding 不會影響滾動 */
+}
+
+/* 移除滾動提示，節省更多空間 */
+
+/* 确保最后一个留言能完整显示，適當的底部空間 */
+.comments-section .comment:last-child {
+    margin-bottom: 40px; /* 適當的底部空間確保最後留言可見 */
+}
+
+/* 自定义滚动条样式 (Webkit) - 更明顯的滾動條 */
+.comments-section::-webkit-scrollbar {
+    width: 12px;
+}
+
+.comments-section::-webkit-scrollbar-track {
+    background: #f0f2f5;
+    border-radius: 6px;
+    border: 1px solid #e4e6ea;
+}
+
+.comments-section::-webkit-scrollbar-thumb {
+    background: #1877f2;
+    border-radius: 6px;
+    transition: background 0.2s ease;
+    border: 2px solid #f0f2f5;
+}
+
+.comments-section::-webkit-scrollbar-thumb:hover {
+    background: #166fe5;
+}
+
+.comment {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px; /* 減少留言間距以節省空間 */
+    padding: 2px 0; /* 減少內部 padding */
+}
+
+/* 第一個留言減少上邊距 */
+.comments-section .comment:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.comment-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.comment-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.comment-bubble {
+    background-color: #f0f2f5;
+    border-radius: 16px;
+    padding: 8px 12px;
+    margin-bottom: 4px;
+    display: inline-block;
+    max-width: 100%;
+    word-wrap: break-word;
+}
+
+.comment-author {
+    font-weight: 600;
+    font-size: 13px;
+    color: #1c1e21;
+    margin: 0 0 2px 0;
+    line-height: 1.2;
+}
+
+.comment-text {
+    font-size: 14px;
+    color: #1c1e21;
+    line-height: 1.33;
+    margin: 0;
+}
+
+.comment-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    padding-left: 12px;
+}
+
+.comment-time {
+    color: #65676b;
+    font-weight: 600;
+}
+
+.comment-action {
+    background: none;
+    border: none;
+    color: #65676b;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 12px;
+    padding: 0;
+    text-decoration: none;
+}
+
+.comment-action:hover {
+    text-decoration: underline;
+}
+
+/* ?�究?��?言?�特殊樣�?*/
+.research-comment .comment-bubble {
+    background-color: #f0f2f5;
+    border: none;
+}
+
+.meme-image {
+    max-width: 200px;
+    height: auto;
+    border-radius: 8px;
+    cursor: pointer; /* 添加手指指標，表示可點擊 */
+    transition: opacity 0.2s ease; /* 添加過渡效果 */
+}
+
+.meme-image:hover {
+    opacity: 0.8; /* 滑鼠懸停時稍微變透明，提示可點擊 */
+}
+
+/* 迷因圖片放大模態框樣式 */
+.meme-modal {
+    display: none; /* 默認隱藏 */
+    position: fixed;
+    z-index: 9999; /* 確保在最上層 */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* 半透明黑色背景 */
+    backdrop-filter: blur(2px); /* 背景模糊效果 */
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+}
+
+.meme-modal-content {
+    position: relative; /* 改為相對定位 */
+    max-width: 90vw;
+    max-height: 90vh;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    animation: modalZoomIn 0.3s ease-out;
+    display: flex; /* 添加flex布局 */
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+}
+
+@keyframes modalZoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.meme-modal-image {
+    width: auto;
+    height: auto;
+    display: block;
+    max-width: 80vw;
+    max-height: 80vh;
+    object-fit: contain;
+    margin: auto; /* 確保圖片居中 */
+}
+
+.meme-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+    z-index: 10000;
+}
+
+.meme-modal-close:hover {
+    background: rgba(0, 0, 0, 0.7);
+    transform: scale(1.1);
+}
+
+/* 點擊背景關閉的提示 */
+.meme-modal::before {
+    content: '點擊背景或按ESC關閉';
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 14px;
+    opacity: 0.7;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 8px 16px;
+    border-radius: 20px;
+    pointer-events: none;
+}
+
+.original-comment-text {
+    font-size: 14px;
+    color: #1c1e21;
+    line-height: 1.33; /* 与其他留言文本保持一致 */
+    margin: 0; /* 确保没有额外的边距 */
+}
+
+.toggle-comment-btn {
+    background: #1877f2;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s, opacity 0.2s;
+}
+
+.toggle-comment-btn:hover {
+    background: #166fe5;
+}
+
+.toggle-comment-btn:disabled {
+    background: #8a8d91;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.toggle-comment-btn:disabled:hover {
+    background: #8a8d91;
+}
+
+/* ?��??��??�??*/
+.add-comment {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    align-items: center;
+}
+
+.comment-input-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background-color: #f0f2f5;
+    border-radius: 20px;
+    padding: 8px 15px;
+}
+
+.comment-input {
+    flex: 1;
+    border: none;
+    background: none;
+    outline: none;
+    font-size: 14px;
+    padding: 4px 0;
+}
+
+.comment-submit {
+    background: #1877f2;
+    border: none;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 8px;
+    transition: background-color 0.2s;
+}
+
+.comment-submit:hover {
+    background: #166fe5;
+}
+
+/* ?�側?��?�??（現?�用?��??��??��? */
+.right-sidebar, .right-content {
+    width: 320px;
+    background: transparent;
+    padding: 0;
+    overflow-y: auto;
+    position: sticky;
+    top: 16px;
+    height: calc(100vh - 104px);
+}
+
+.right-sidebar .sidebar-section, .right-content .sidebar-section {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.right-sidebar .sidebar-section h3, .right-content .sidebar-section h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #1c1e21;
+    margin: 0 0 12px 0;
+}
+
+.ad-container {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    margin-bottom: 16px;
+}
+
+.ad-container img {
+    width: 100%;
+    height: auto;
+}
+
+.ad-text {
+    padding: 12px;
+}
+
+.ad-text h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+    color: #1c1e21;
+    line-height: 1.2;
+}
+
+.ad-text p {
+    font-size: 13px;
+    color: #65676b;
+    line-height: 1.33;
+    margin: 0;
+}
+
+.trending-topics, .online-friends, .suggested-friends {
+    background: white;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    margin-bottom: 16px;
+}
+
+.topic-item, .friend-item, .friend-suggestion {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #e4e6ea;
+}
+
+.topic-item:last-child, .friend-item:last-child, .friend-suggestion:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.hashtag {
+    font-weight: 600;
+    color: #1877f2;
+    font-size: 14px;
+}
+
+.topic-count {
+    font-size: 12px;
+    color: #65676b;
+}
+
+.friend-item {
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.friend-name {
+    font-size: 14px;
+    color: #1c1e21;
+    font-weight: 500;
+}
+
+.online-indicator {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 8px;
+    height: 8px;
+    background: #42b72a;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.friend-suggestion {
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.friend-info {
+    flex: 1;
+}
+
+.mutual-friends {
+    font-size: 12px;
+    color: #65676b;
+}
+
+/* ?�側?�卷?�??*/
+.right-content {
+    width: 30%;
+    background: white;
+    padding: 12px;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.post {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 0;
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+}
+
+/* 确保最后一个帖子有足够的底部空间 */
+.post:last-child {
+    margin-bottom: 40px;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid #e4e6ea;
+}
+
+.post-meta {
+    flex: 1;
+    margin-left: 10px;
+}
+
+.author-name {
+    font-weight: 600;
+    color: #1c1e21;
+    font-size: 14px;
+}
+
+.post-time {
+    color: #65676b;
+    font-size: 12px;
+    margin-top: 2px;
+}
+
+.action-menu-btn {
+    background: none;
+    border: none;
+    color: #65676b;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.action-menu-btn:hover {
+    background: #f2f3f4;
+}
+
+.post-content {
+    padding: 0;
+}
+
+.post-actions-bar {
+    display: flex;
+    justify-content: space-around;
+    padding: 5px 8px;
+    border-bottom: 1px solid #e4e6ea;
+}
+
+.post-action-btn {
+    background: none;
+    border: none;
+    color: #65676b;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    flex: 1;
+    justify-content: center;
+}
+
+.post-action-btn:hover {
+    background: #f2f3f4;
+}
+
+.post-action-btn i {
+    font-size: 14px;
+}
+
+.like-btn:hover {
+    color: #e91e63;
+}
+
+.comment-btn:hover {
+    color: #1877f2;
+}
+
+.share-btn:hover {
+    color: #42a5f5;
+}
+
+.like-btn.active {
+    color: #e91e63;
+}
+
+.like-btn.active i {
+    font-weight: 900;
+}
+
+.post:not(.active) {
+    display: none;
+}
+
+.post-image {
+    width: 100%;
+    max-height: 350px;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-bottom: 2px;
+    background: #e9ecef;
 }
 
 .user-avatar {
@@ -46,1406 +1641,152 @@ body {
 }
 
 .user-avatar.medium {
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
 }
 
 .user-avatar.large {
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
 }
 
+.comment-section-left {
+    padding: 12px 16px;
+}
 
-.post-header {
+.comment-header {
     display: flex;
+    justify-content: flex-start;
     align-items: center;
-    padding: 15px 20px;
-    border-bottom: 1px solid #e4e6ea;
+    margin-bottom: 8px;
 }
 
-.post-info {
-    flex: 1;
-    margin-left: 12px;
-}
-
-.post-info h3 {
-    font-weight: 600;
-    color: #1c1e21;
-    font-size: 15px;
-    margin: 0;
-}
-
-.post-content {
-    padding: 15px 20px;
-}
-
-.post-actions {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 8px 20px;
-    border-top: 1px solid #e4e6ea;
-}
-
-.action {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.2s;
+.comment-count {
     color: #65676b;
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 600;
-}
-
-.action:hover {
-    background-color: #f0f2f5;
-}
-
-.action i {
-    font-size: 16px;
-}
-
-.comments-section {
-    padding: 0 20px 15px;
 }
 
 .comment {
     display: flex;
     align-items: flex-start;
-    gap: 8px;
+    gap: 10px;
     margin-bottom: 8px;
 }
 
 .comment-content {
     flex: 1;
     background: #f0f2f5;
-    border-radius: 16px;
-    padding: 8px 12px;
+    padding: 10px;
+    border-radius: 14px;
+    position: relative;
+}
+
+.comment-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 5px;
 }
 
 .comment-author {
     font-weight: 600;
-    color: #050505;
-    font-size: 13px;
-    margin-bottom: 2px;
-}
-
-.comment-text {
-    color: #050505;
-    font-size: 14px;
-    line-height: 1.33;
-}
-
-
-.post-image {
-    width: 100%;
-    max-width: 400px;
-    max-height: 400px;
-    object-fit: contain; 
-    border-radius: 8px;
-    margin-bottom: 2px;
-    background: #e9ecef; 
-}
-
-.post-image.compact {
-    max-height: 400px;
-    object-fit: contain;
-}
-
-
-.random-avatar {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-}
-
-
-.news-avatar {
-    position: relative;
-}
-
-
-
-
-
-main {
-    padding: 0; 
-    overflow-x: hidden;
-}
-
-
-.main-content {
-    padding: 0;
-    min-height: 100vh;
-    max-width: 100%;
-    overflow: hidden;
-}
-
-
-.post .post-actions {
-    opacity: 1;
-}
-
-.post .comments-section {
-    display: block;
-}
-
-
-.news-post .comment-content {
-    background-color: #f8f9fa;
-    
-}
-
-.news-post .comment-content h4 {
-    color: #333;
-    font-weight: 600;
-}
-
-
-.news-post {
-    
-    
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-/* .news-post:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-} */
-
-
-#page-content-wrapper.hidden {
-    display: none;
-}
-
-
-.news-avatar::after {
-    content: "?��?";
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    background-color: #e53935;
-    color: white;
-    font-size: 8px;
-    padding: 2px 4px;
-    border-radius: 3px;
-    z-index: 2;
-}
-
-
-.comments-list {
-    
-    padding-right: 12px; 
-    margin-bottom: 20px; 
-    
-}
-
-
-.post .comments-section {
-    display: block;
-    padding: 15px; 
-}
-
-
-.comment-content {
-    font-size: 16px; 
-    line-height: 1.0; 
-    padding: 12px; 
-}
-
-
-.comments-list::-webkit-scrollbar,
-.comments-list::-webkit-scrollbar-track,
-.comments-list::-webkit-scrollbar-thumb,
-.comments-list::-webkit-scrollbar-thumb:hover {
-    
-    display: none;
-}
-
-
-.comments-list::before,
-.comments-list::after {
-    display: none;
-}
-
-
-main {
-    margin-top: 60px;
-    padding-bottom: 70px;
-}
-
-
-.left-sidebar, .right-sidebar {
-    position: sticky;
-    top: 70px;
-    max-height: calc(100vh - 70px);
-    overflow-y: auto;
-}
-
-
-.post-content img {
-    width: 100%;
-    height: auto;
-    object-fit: contain; 
-    max-height: 500px; 
-    border-radius: 8px;
-    display: block;
-    margin: 10px 0;
-}
-
-
-.system-alert {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    background-color: #fff3cd;
-    border: 1px solid #ffeaa7;
-    border-left: 4px solid #f39c12;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 15px;
-}
-
-.alert-icon {
-    color: #f39c12;
-    font-size: 20px;
-    margin-top: 2px;
-}
-
-.alert-content h4 {
-    color: #856404;
-    margin: 0 0 8px 0;
-    font-size: 16px;
-}
-
-.alert-content p {
-    color: #856404;
-    margin: 0;
-    line-height: 1.5;
-    font-size: 14px;
-}
-
-
-.user-comment-section {
-    margin-bottom: 20px;
-}
-
-.user-comment-section .comment {
-    background-color: #ffffff;
-    border: 1px solid #e1e8ed;
-    border-radius: 8px;
-    padding: 12px;
-}
-
-.user-comment-section .comment-content h4 {
-    color: #1da1f2;
-    font-weight: 600;
-    margin: 0 0 5px 0;
-}
-
-.user-comment-section .comment-content p {
-    color: #495057;
-    margin: 0;
-    line-height: 1.4;
-}
-
-
-.content-review-notice {
-    display: flex;
-    align-items: flex-start;
-    background-color: #fff3cd;
-    border: 1px solid #ffeaa7;
-    border-left: 4px solid #f39c12;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 20px;
-}
-
-.review-icon {
-    margin-right: 12px;
-    color: #f39c12;
-    font-size: 18px;
-    margin-top: 2px;
-}
-
-.review-content h4 {
-    color: #856404;
-    font-weight: 600;
-    margin: 0 0 8px 0;
-    font-size: 16px;
-}
-
-.review-content p {
-    color: #856404;
-    margin: 0;
-    line-height: 1.4;
-    font-size: 14px;
-}
-
-
-.meme-selection-area {
-    background-color: #f8f9fa;
-    border: 1px solid #dee2e6;
-    border-radius: 8px;
-    padding: px;
-}
-
-.meme-selection-area h4 {
-    color: #495057;
-    font-size: 15px;
-}
-
-.selection-instruction {
-    color: #6c757d;
-    font-size: 13px;
-}
-
-.meme-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 4px; 
-    margin: 4px 0; 
-    padding: 4px; 
-    max-height: none; 
-    overflow: visible; 
-}
-
-.meme-item {
-    position: relative;
-    cursor: pointer;
-    border: 2px solid transparent; 
-    border-radius: 6px; 
-    overflow: hidden;
-    transition: all 0.3s ease;
-    aspect-ratio: 1;
-    background-color: white;
-    
-    transform: scale(0.8); 
-    margin: 2px; 
-}
-
-.meme-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; 
-    background-color: #f8f9fa; 
-    
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-}
-
-.meme-item:hover {
-    border-color: #007bff;
-    transform: scale(0.9); 
-    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4); 
-    z-index: 2; 
-}
-
-.meme-item.selected {
-    border-color: #28a745;
-    transform: scale(1.0); 
-    box-shadow: 0 6px 20px rgba(40, 167, 69, 0.5); 
-    z-index: 2; 
-}
-
-.meme-overlay {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.meme-item.selected .meme-overlay {
-    opacity: 1;
-    background-color: #28a745;
-    color: white;
-}
-
-.selection-actions {
-    display: flex;
-    justify-content: center;
-    margin-top: 15px;
-}
-
-.btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 600;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.btn-primary {
-    background-color: #007bff;
-    color: white;
-}
-
-.btn-primary:hover:not(:disabled) {
-    background-color: #0056b3;
-    transform: translateY(-1px);
-}
-
-.btn-primary:disabled {
-    background-color: #6c757d;
-    cursor: not-allowed;
-    transform: none;
-}
-
-
-.result-area {
-    background-color: #d4edda;
-    border: 1px solid #c3e6cb;
-    border-left: 4px solid #28a745;
-    border-radius: 8px;
-    padding: 20px;
-}
-
-.success-message {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #155724;
-    font-weight: 600;
-    margin-bottom: 15px;
-}
-
-.success-message i {
-    color: #28a745;
-    font-size: 18px;
-}
-
-.final-comment {
-    background-color: white;
-    border: 1px solid #c3e6cb;
-    border-radius: 8px;
-    padding: 12px;
-}
-
-.selected-meme-image {
-    max-width: 280px; 
-    height: auto;
-    border-radius: 8px;
-    margin: 15px auto; 
-    display: block; 
-    
-    object-fit: contain;
-    background-color: #f8f9fa; 
-    
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-}
-
-.fade-in {
-    animation: fadeIn 0.5s ease-in;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
-#page-content-wrapper.hidden {
-    display: none;
-}
-
-
-.user-avatar.dropdown {
-    position: relative;
-    cursor: pointer;
-}
-
-.dropdown-menu {
-    display: none;
-    position: absolute;
-    right: 0;
-    top: 100%;
-    background-color: white;
-    min-width: 180px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    padding: 8px 0;
-    z-index: 1000;
-    margin-top: 10px;
-}
-
-.user-avatar.dropdown:hover .dropdown-menu,
-.dropdown-menu:hover {
-    display: block;
-}
-
-.dropdown-item {
-    padding: 8px 16px;
-    color: #050505;
-    font-size: 14px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-}
-
-.dropdown-item:hover {
-    background-color: #f0f2f5;
-}
-
-.dropdown-item i {
-    margin-right: 10px;
-    color: #1877f2;
-    width: 20px;
-    text-align: center;
-}
-
-.dropdown-divider {
-    height: 1px;
-    background-color: #dadde1;
-    margin: 4px 0;
-}
-
-.username-display {
-    font-weight: bold;
-    color: #1877f2;
-    cursor: default;
-}
-
-
-.dropdown-menu::before {
-    content: '';
-    position: absolute;
-    top: -8px;
-    right: 12px;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid white;
-}
-
-
-.user-avatar.dropdown {
-    position: relative;
-    cursor: pointer;
-}
-
-.dropdown-menu {
-    display: none;
-    position: absolute;
-    right: 0;
-    top: 100%;
-    background-color: white;
-    min-width: 180px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    padding: 8px 0;
-    z-index: 1000;
-    margin-top: 10px;
-}
-
-.user-avatar.dropdown:hover .dropdown-menu,
-.dropdown-menu:hover {
-    display: block;
-}
-
-.dropdown-item {
-    padding: 8px 16px;
-    color: #050505;
-    font-size: 14px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-}
-
-.dropdown-item:hover {
-    background-color: #f0f2f5;
-}
-
-.dropdown-item i {
-    margin-right: 10px;
-    color: #1877f2;
-    width: 20px;
-    text-align: center;
-}
-
-.dropdown-divider {
-    height: 1px;
-    background-color: #dadde1;
-    margin: 4px 0;
-}
-
-.username-display {
-    font-weight: bold;
-    color: #1877f2;
-    cursor: default;
-}
-
-
-.dropdown-menu::before {
-    content: '';
-    position: absolute;
-    top: -8px;
-    right: 12px;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid white;
-}
-
-
-.logout-dialog-container {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 2000;
-    align-items: center;
-    justify-content: center;
-}
-
-.logout-dialog {
-    background-color: white;
-    border-radius: 8px;
-    padding: 20px;
-    width: 90%;
-    max-width: 400px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-.logout-dialog h3 {
-    margin-top: 0;
-    color: #1877f2;
-}
-
-.logout-dialog-buttons {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 20px;
-    gap: 10px;
-}
-
-.logout-dialog-buttons button {
-    padding: 8px 16px;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-}
-
-.cancel-button {
-    background-color: #e4e6eb;
-    color: #050505;
-}
-
-.confirm-button {
-    background-color: #1877f2;
-    color: white;
-}
-
-
-.attack-detection-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.6);
-    z-index: 9999;
-    align-items: center;
-    justify-content: center;
-}
-
-.attack-detection-content {
-    background-color: white;
-    width: 90%;
-    max-width: 450px;
-    border-radius: 8px;
-    padding: 24px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-    animation: fadeInUp 0.3s ease;
-}
-
-.attack-detection-content h3 {
-    color: #e53935;
-    margin-top: 0;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-}
-
-.attack-detection-content h3:before {
-    content: "\f071";
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    margin-right: 10px;
-    color: #e53935;
-}
-
-.suggestion-content {
-    background-color: #f8f9fa;
-    padding: 15px;
-    border-radius: 6px;
-    margin: 15px 0;
-    border-left: 4px solid #1877f2;
-}
-
-.suggestion-text {
-    margin-bottom: 10px;
-}
-
-.original-text {
-    margin-bottom: 0;
-    color: #666;
-    font-size: 0.9em;
-    border-top: 1px solid #ddd;
-    padding-top: 10px;
-    margin-top: 10px;
-}
-
-.attack-modal-buttons {
-    display: flex;
-    justify-content: flex-end;
-    gap: 12px;
-    margin-top: 20px;
-}
-
-.btn {
-    padding: 8px 16px;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-    font-weight: 500;
-    transition: background-color 0.2s ease;
-}
-
-.btn-secondary {
-    background-color: #e4e6eb;
-    color: #050505;
-}
-
-.btn-primary {
-    background-color: #1877f2;
-    color: white;
-}
-
-.btn:hover {
-    opacity: 0.9;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
-.notification {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-    padding: 0;
-    max-width: 300px;
-    z-index: 1000;
-    transform: translateY(100px);
-    opacity: 0;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    overflow: hidden;
-}
-
-.notification.show {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-.notification.success .notification-content {
-    border-color: #43a047;
-}
-
-.notification.error .notification-content {
-    border-color: #e53935;
-}
-
-.notification.info .notification-content {
-    border-color: #1877f2;
-}
-
-.notification-content {
-    display: flex;
-    align-items: center;
-    padding: 12px 16px;
-    border-left: 4px solid #1877f2;
-}
-
-.notification i {
-    margin-right: 12px;
-    font-size: 18px;
-    color: #1877f2;
-}
-
-.notification.success i {
-    color: #43a047;
-}
-
-.notification.error i {
-    color: #e53935;
-}
-
-@media (max-width: 992px) {
-    .left-sidebar, .right-sidebar {
-        position: static;
-        max-height: none;
-        overflow-y: visible;
-    }
-    
-    .notification {
-        left: 20px;
-        right: 20px;
-        max-width: none;
-    }
-}
-.detection-results-area {
-    margin-top: 12px;
-    border-radius: 8px;
-    background-color: #f8f9fa;
-    padding: 12px;
-    animation: fadeIn 0.3s ease;
-}
-
-.detection-process {
-    color: #1877f2;
-    text-align: center;
-    padding: 10px 0;
-}
-
-.detection-results .suggestion-content {
-    background-color: #fff;
-    padding: 12px;
-    border-radius: 6px;
-    margin-bottom: 12px;
-    border-left: 4px solid #1877f2;
-}
-
-.detection-results .suggestion-text {
-    margin-bottom: 10px;
-}
-
-.detection-results .original-text {
-    margin-bottom: 0;
-    color: #666;
-    font-size: 0.9em;
-    border-top: 1px solid #ddd;
-    padding-top: 10px;
-    margin-top: 10px;
-}
-
-.detection-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-}
-
-
-.btn-meme {
-    background-color: #e7f3ff;
-    color: #1877f2;
-}
-
-.btn-meme:hover {
-    background-color: #d6e9fc;
-}
-
-
-.meme-selection-area {
-    margin-top: 12px;
-    border-radius: 8px;
-    background-color: #f8f9fa;
-    padding: 12px;
-    animation: fadeIn 0.3s ease;
-}
-
-.meme-selection-area h4 {
-    color: #1877f2;
-    margin-bottom: 15px;
-    font-size: 15px;
-}
-
-.meme-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.meme-row {
-    display: flex;
-    gap: 8px;
-}
-
-.meme-item {
-    flex: 1;
-    max-width: calc(25% - 6px);
-    aspect-ratio: 1/1;
-    overflow: hidden;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    position: relative;
-}
-
-.meme-item:hover {
-    transform: scale(1.05);
-}
-
-.meme-item.selected {
-    border: 3px solid #1877f2;
-}
-
-.meme-item.selected:before {
-    content: "\f00c";
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    background-color: #1877f2;
-    color: white;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
-    z-index: 2;
-}
-
-.meme-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.meme-actions {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 15px;
-    gap: 10px;
-}
-
-.comment-with-meme {
-    display: flex;
-    flex-direction: column;
-}
-
-.comment-with-meme img {
-    max-width: 200px;
-    border-radius: 8px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
-
-.inline-notification-area {
-    margin-top: 12px;
-    padding: 10px 15px;
-    border-radius: 8px;
-    background-color: #f8f9fa;
-    animation: fadeIn 0.3s ease;
-}
-
-.inline-notification {
-    display: flex;
-    align-items: center;
-}
-
-.inline-notification.success {
-    color: #43a047;
-}
-
-.inline-notification.error {
-    color: #e53935;
-}
-
-.inline-notification.info {
-    color: #1877f2;
-}
-
-.notification-icon {
-    margin-right: 10px;
-    font-size: 16px;
-}
-
-.notification-message {
-    font-size: 14px;
-}
-
-
-.meme-selection-area[data-emotion="anger"] h4 {
-    color: #e53935;
-}
-
-.meme-selection-area[data-emotion="disgust"] h4 {
-    color: #8bc34a;
-}
-
-.meme-selection-area[data-emotion="contempt"] h4 {
-    color: #9c27b0;
-}
-
-
-.comment-toggle-container {
-    position: relative;
-    width: 100%;
-}
-
-.comment-toggle-container .meme-view,
-.comment-toggle-container .text-view {
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    visibility: hidden;
-    transform: translateY(10px);
-}
-
-.comment-toggle-container .meme-view.active,
-.comment-toggle-container .text-view.active {
-    opacity: 1;
-    position: relative;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.comment-toggle-container .meme-image {
-    width: 100%;
-    max-width: 300px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-}
-
-.comment-toggle-container .meme-image:hover {
-    transform: scale(1.03);
-}
-
-.toggle-view-btn {
-    margin-top: 8px;
-    padding: 6px 12px;
-    background-color: #f0f2f5;
-    border: none;
-    border-radius: 4px;
+    color: #1c1e21;
     font-size: 12px;
-    cursor: pointer;
-    color: #1877f2;
-    transition: background-color 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 5px;
 }
 
-.toggle-view-btn:hover {
-    background-color: #e4e6eb;
+.comment-time {
+    color: #65676b;
+    font-size: 11px;
 }
 
-.toggle-view-btn i {
-    font-size: 10px;
-}
-
-
-.comment-toggle-container {
-    min-height: 100px;
-}
-
-
-.attack-detection-alert {
-    margin: 10px 0;
-    background-color: #fff3cd;
-    border: 1px solid #ffecb5;
-    border-radius: 8px;
-    padding: 12px;
+.comment-section-left .meme-image {
     width: 100%;
-}
-
-.alert-content {
-    display: flex;
-    align-items: center;
-    color: #856404;
-    font-size: 14px;
-    font-weight: 500;
-}
-
-.alert-content i {
-    margin-right: 8px;
-    color: #ff9800;
-    flex-shrink: 0;
-}
-
-
-.meme-recommendation-section {
-    margin: 10px 0;
-    padding: 6px; 
-    background-color: #f8f9fa;
+    max-width: 160px;
+    max-height: 160px;
+    height: auto;
+    object-fit: contain;
     border-radius: 8px;
-    border: 1px solid #e3e3e3;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background: #e9ecef;
+}
+
+.comment-section-left .text-comment {
+    margin-top: 8px;
+    padding: 8px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    border-left: 3px solid #007bff;
+    font-size: 11px;
+    color: #6c757d;
+    line-height: 1.4;
+}
+
+.interaction-panel {
     width: 100%;
     max-width: 100%;
+    height: auto;
+    max-height: calc(100vh - 120px);
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 16px;
+    overflow-y: auto;
+    margin-bottom: 16px;
 }
 
-.meme-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 6px; 
-    width: 100%;
+.interaction-panel:not(.active) {
+    display: none;
+}
+
+.receiver-survey-section {
     margin: 0;
-}
-
-.meme-option {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-    padding: 6px; 
+    padding: 12px;
+    background-color: #f8f9fa;
     border-radius: 8px;
-    transition: all 0.2s ease;
-    border: 2px solid transparent;
-    background-color: white;
-}
-
-.meme-option:hover {
-    border-color: #1877f2;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.meme-option.selected {
-    border-color: #42b72a;
-    background-color: #e7f3ff;
-}
-
-.meme-option img {
-    width: 90px; 
-    height: 90px; 
-    object-fit: contain; 
-    background-color: #f8f9fa; 
-    border-radius: 6px;
-    margin-bottom: 5px;
-}
-
-.meme-name {
-    display: none; 
-    font-size: 11px;
-    color: #65676b;
-    text-align: center;
-    max-width: 90px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-
-@media (max-width: 768px) {
-    .meme-grid {
-        gap: 8px;
-        max-width: 100%;
-    }
-    
-    .meme-option img {
-        width: 60px;
-        height: 60px;
-    }
-    
-    .meme-name {
-        font-size: 10px;
-        max-width: 70px;
-    }
-    
-    .attack-detection-alert {
-        margin: 8px;
-        padding: 10px;
-    }
-    
-    .meme-recommendation-section {
-        margin: 10px;
-        padding: 10px;
-    }
-}
-
-
-.confirm-section {
-    text-align: center;
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px solid #e3e3e3;
-}
-
-.confirm-meme-btn {
-    background-color: #42b72a;
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.confirm-meme-btn:hover {
-    background-color: #369420;
-}
-
-.confirm-meme-btn:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-}
-
-
-.selected-meme-area {
-    margin-top: 15px;
-    padding: 15px;
-    background: #f8f9fa;
-    border-radius: 12px;
-    border: 2px solid #e3f2fd;
-}
-
-.selected-meme-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-}
-
-.selected-meme-image {
-    max-width: 280px; 
-    max-height: 280px;
-    border-radius: 8px;
-    object-fit: contain;
-    background-color: white;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.meme-actions {
-    display: flex;
-    gap: 10px;
-}
-
-.edit-meme-btn {
-    background: linear-gradient(135deg, #42a5f5, #2196f3);
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 6px rgba(66, 165, 245, 0.3);
-}
-
-.edit-meme-btn:hover {
-    background: linear-gradient(135deg, #2196f3, #1976d2);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 10px rgba(66, 165, 245, 0.4);
-}
-
-
-.survey-section {
-    margin: 10px 0;
-    padding: 15px;
-    background-color: #f0f2f5;
-    border-radius: 8px;
-    border: 1px solid #d0d0d0;
+    border: 1px solid #e3e6ea;
     width: 100%;
     max-width: 100%;
 }
 
 .survey-header {
     text-align: center;
-    margin-bottom: 15px;
-    padding-bottom: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
     border-bottom: 1px solid #d0d0d0;
 }
 
 .survey-header h4 {
     color: #1877f2;
     margin: 0;
-    font-size: 16px;
+    font-size: 14px;
 }
-
-.selected-meme-display {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-
-.selected-meme-img {
-    width: 60px;
-    height: 60px;
-    border-radius: 6px;
-    object-fit: cover;
-}
-
-.selected-meme-name {
-    font-weight: 600;
-    color: #333;
-}
-
 
 .question-group {
-    margin-bottom: 20px; 
-    padding: 12px; 
+    margin-bottom: 12px;
+    padding: 8px;
     background-color: white;
     border-radius: 6px;
     border: 1px solid #e3e3e3;
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 .question-text {
-    font-size: 14px; 
+    font-size: 14px;
     color: #333;
-    margin-bottom: 12px; 
+    margin-bottom: 8px;
     font-weight: 500;
-    line-height: 1.3; 
-    word-wrap: break-word; 
-    overflow-wrap: break-word; 
+    line-height: 1.3;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
     width: 100%;
     max-width: 100%;
 }
-
 
 .scale-container {
     display: flex;
@@ -1465,7 +1806,7 @@ main {
 .scale-controls {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 6px;
     width: 100%;
 }
 
@@ -1488,18 +1829,20 @@ main {
 
 .likert-scale {
     flex: 1;
-    height: 6px;
+    height: 5px;
     background: #ddd;
     border-radius: 3px;
     outline: none;
     appearance: none;
     cursor: pointer;
+    -webkit-appearance: none;
 }
 
 .likert-scale::-webkit-slider-thumb {
+    -webkit-appearance: none;
     appearance: none;
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
     background: #1877f2;
     cursor: pointer;
@@ -1508,8 +1851,8 @@ main {
 }
 
 .likert-scale::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
     background: #1877f2;
     cursor: pointer;
@@ -1518,341 +1861,84 @@ main {
 }
 
 .scale-value {
-    min-width: 30px;
+    min-width: 24px;
+    max-width: 30px;
     text-align: center;
     font-weight: 600;
     color: #1877f2;
-    font-size: 14px;
+    font-size: 12px;
+    background-color: #f0f2f5;
+    border-radius: 4px;
+    padding: 2px 4px;
+    margin-left: 6px;
 }
 
+.survey-questions {
+    margin-bottom: 15px;
+}
 
 .survey-submit {
     text-align: center;
-    margin-top: 25px;
-    padding-top: 20px;
+    margin-top: 18px;
+    padding-top: 15px;
     border-top: 1px solid #d0d0d0;
-    display: flex;
-    gap: 15px;
-    justify-content: center;
 }
 
-.submit-survey-btn, .skip-survey-btn {
-    padding: 10px 20px;
+.submit-receiver-survey-btn {
+    width: 100%;
+    background: #1877f2;
+    color: white;
     border: none;
+    padding: 10px;
     border-radius: 6px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     cursor: pointer;
+    margin-top: 18px;
     transition: all 0.2s ease;
 }
 
-.submit-survey-btn {
-    background-color: #1877f2;
-    color: white;
+.submit-receiver-survey-btn:hover {
+    background: #166fe5;
 }
-
-.submit-survey-btn:hover {
-    background-color: #166fe5;
-}
-
-.skip-survey-btn {
-    background-color: #e4e6eb;
-    color: #65676b;
-}
-
-.skip-survey-btn:hover {
-    background-color: #d8dadf;
-}
-
-
-@media (max-width: 768px) {
-    .scale-container {
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .scale-label {
-        text-align: center;
-        min-width: auto;
-    }
-    
-    .survey-submit {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .submit-survey-btn, .skip-survey-btn {
-        width: 100%;
-        max-width: 200px;
-    }
-}
-
-
-@media (max-width: 768px) {
-    .post {
-        transform: scale(0.98); 
-        margin-bottom: 25px !important;
-        margin-top: 15px !important;
-    }
-    
-    .meme-grid {
-        gap: 20px; 
-        margin: 25px 0; 
-        padding: 10px; 
-    }
-    
-    .meme-item {
-        transform: scale(1.05); 
-        margin: 6px; 
-    }
-    
-    .meme-item:hover {
-        transform: scale(1.15); 
-    }
-    
-    .meme-item.selected {
-        transform: scale(1.2); 
-    }
-    
-    .main-content {
-        padding: 0 12px !important;
-    }
-    
-    .selected-meme-image {
-        max-width: 220px; 
-    }
-}
-
-@media (max-width: 480px) {
-    .post {
-        transform: scale(0.95);
-        margin-bottom: 20px !important;
-        margin-top: 12px !important;
-    }
-    
-    .meme-grid {
-        grid-template-columns: repeat(2, 1fr); 
-        gap: 15px; 
-    }
-    
-    .meme-item {
-        transform: scale(1.0); 
-    }
-    
-    .selected-meme-image {
-        max-width: 200px; 
-    }
-}
-
-
-.horizontal-layout {
-    display: flex;
-    height: calc(100vh - 5.625rem); 
-    width: 100vw;
-    margin: 0;
-    padding: 0;
-    gap: 0;
-    align-items: stretch; 
-    overflow: hidden;
-}
-
-.left-content {
-    width: 70%; 
-    background: #ffffff;
-    padding: 10px;
-    display: flex;
-    justify-content: center; 
-    align-items: flex-start; 
-    overflow-y: auto;
-}
-
-.right-content {
-    width: 30%; 
-    background: white;
-    padding: 8px; 
-    overflow-y: auto;
-    display: flex;
-    justify-content: flex-start; 
-    align-items: flex-start; 
-}
-
-
-.post {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    padding: 0;
-    width: 100%;
-    max-width: 850px; 
-    max-height: 950px;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-}
-
-.post.news-post {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
-    width: 100%;
-    max-width: 850px;
-    max-height: 950px;
-    padding: 0;
-    
-}
-
-.post-image.compact {
-    max-width: 100%;
-    height: auto;
-    max-height: 400px; 
-    object-fit: contain;
-    border-radius: 8px;
-    margin: 8px 0;
-}
-
-
-.post.news-post .post-header {
-    padding: 8px 0; 
-    margin-bottom: 8px;
-}
-
-.post.news-post .post-header h3 {
-    font-size: 14px; 
-    margin: 0;
-}
-
-.post.news-post .user-avatar.small {
-    width: 32px; 
-    height: 32px;
-}
-
-.post.news-post .user-avatar.small img {
-    width: 32px;
-    height: 32px;
-}
-
-
-.post.news-post .post-actions {
-    padding: 8px 0; 
-    margin: 8px 0;
-    border-top: 1px solid #e4e6ea;
-    padding-top: 8px;
-}
-
-.post.news-post .post-actions .action {
-    font-size: 13px; 
-    padding: 6px 12px; 
-    border-radius: 4px;
-    transition: background-color 0.2s;
-}
-
-.post.news-post .post-actions .action:hover {
-    background-color: #f0f2f5;
-}
-
-
-.right-content .comments-section {
-    margin-bottom: 20px;
-    padding: 15px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.right-content .comment {
-    margin-bottom: 0;
-    padding: 12px;
-    background-color: #f0f2f5;
-    border-radius: 8px;
-}
-
-.right-content .comment-author {
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 6px;
-    color: #1877f2;
-}
-
-.right-content .comment-text {
-    font-size: 14px;
-    line-height: 1.4;
-    color: #050505;
-}
-
-.right-content .user-avatar.xsmall {
-    width: 32px;
-    height: 32px;
-}
-
-.right-content .user-avatar.xsmall img {
-    width: 32px;
-    height: 32px;
-}
-
-
-
-
-.interaction-panel {
-    width: 100%;
-    max-width: 100%;
-    height: auto; 
-    overflow-y: visible; 
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-}
-
-.interaction-panel:not(.active) {
-    display: none;
-}
-
-.post:not(.active) {
-    display: none;
-}
-
 
 .post-navigation {
     position: fixed;
-    bottom: clamp(1rem, 3vh, 1.25rem);
-    left: 50%;
-    transform: translateX(-50%);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: none;
     background: white;
-    padding: clamp(0.75rem, 3vw, 0.9375rem) clamp(1rem, 4vw, 1.5625rem);
-    border-radius: clamp(1rem, 4vw, 1.5625rem);
-    box-shadow: 0 0.25rem 1.25rem rgba(0, 0, 0, 0.15);
-    display: flex;
-    align-items: center;
-    gap: clamp(0.75rem, 3vw, 1.25rem);
+    padding: 8px 8px; /* 減少上下 padding 從 12px 到 8px */
+    box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
     z-index: 1000;
+    height: 66px; /* 對應減少高度從 70px 到 66px */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid #ddd;
+    border-radius: 0;
 }
 
 .nav-dots {
     display: flex;
-    gap: clamp(0.5rem, 2vw, 0.625rem);
-    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
 }
 
 .nav-dot {
-    width: clamp(2rem, 6vw, 2.5rem);
-    height: clamp(2rem, 6vw, 2.5rem);
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     background: #e4e6ea;
-    border: 0.125rem solid transparent;
-    
-    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
+    transition: all 0.3s;
 }
-
-
 
 .nav-dot.active {
     background: #1877f2;
-    border-color: #1877f2;
-    transform: scale(1.1);
 }
 
 .nav-dot.completed {
@@ -1861,8 +1947,8 @@ main {
 }
 
 .dot-number {
-    font-size: clamp(0.75rem, 2.5vw, 0.875rem);
-    font-weight: 600;
+    font-size: 13px;
+    font-weight: bold;
     color: #65676b;
 }
 
@@ -1872,18 +1958,151 @@ main {
 }
 
 .nav-dot.completed .dot-number::after {
-    font-size: 16px;
+    content: '✓';
+    font-size: 14px;
 }
 
 .nav-progress {
-    font-size: 14px;
-    font-weight: 500;
+    padding: 8px 12px;
+    font-weight: 600;
     color: #65676b;
-    padding-left: 15px;
-    border-left: 1px solid #e4e6ea;
 }
 
-.current-post {
+.meme-view {
+    margin-bottom: clamp(0.5rem, 2vw, 0.625rem);
+}
+
+.text-view {
+    background: #f0f2f5; /* 与留言泡泡相同的背景色 */
+    border: none; /* 移除边框 */
+    border-radius: 16px; /* 与留言泡泡相同的圆角 */
+    padding: 8px 12px; /* 与留言泡泡相同的内边距 */
+    font-size: 14px; /* 与留言文字相同的字体大小 */
+    line-height: 1.33; /* 与留言文字相同的行高 */
+    color: #1c1e21; /* 与留言文字相同的颜色 */
+    margin-top: 0; /* 移除上边距 */
+}
+
+.comment-actions {
+    margin-top: clamp(0.5rem, 2vw, 0.625rem);
+    text-align: left;
+}
+
+.action-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: clamp(0.4rem, 2vw, 0.5rem) clamp(0.8rem, 3vw, 1rem);
+    border-radius: 0.375rem;
+    cursor: pointer;
+    font-size: clamp(0.65rem, 2vw, 0.75rem);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 0.125rem 0.25rem rgba(0,123,255,0.2);
+}
+
+.action-btn:hover {
+    background: #0056b3;
+    transform: translateY(-0.0625rem);
+    box-shadow: 0 0.25rem 0.5rem rgba(0,123,255,0.3);
+}
+
+.action-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 0.125rem 0.25rem rgba(0,123,255,0.2);
+}
+
+.toggle-comment-btn[data-current-view="text"] {
+    background: #28a745;
+}
+
+.toggle-comment-btn[data-current-view="text"]:hover {
+    background: #218838;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ?��?義右?��???*/
+.custom-context-menu {
+    position: absolute;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 10000;
+    min-width: 180px;
+    overflow: hidden;
+    display: none;
+}
+
+.context-menu-item {
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 14px;
+    color: #333;
+}
+
+.context-menu-item:hover {
+    background-color: #f5f5f5;
+}
+
+.context-menu-item i {
+    width: 16px;
+    text-align: center;
     color: #1877f2;
-    font-weight: 600;
+}
+
+/* ?�覽模�?下�??�表?��?素�?�?? */
+.preview-mode input:disabled,
+.preview-mode button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ?�覽模�?下�?導航點樣�?*/
+.nav-dot[title*="?�覽"] {
+    cursor: pointer !important;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.nav-dot[title*="?�覽"]:hover {
+    transform: scale(1.1);
+    box-shadow: 0 2px 8px rgba(24, 119, 242, 0.3);
+}
+
+/* ?�畫?��? */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ?��??��?�?*/
+.number-key-hint {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-size: 12px;
+    z-index: 1000;
+    animation: fadeInOut 3s ease-in-out;
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0; }
+    20%, 80% { opacity: 1; }
 }
