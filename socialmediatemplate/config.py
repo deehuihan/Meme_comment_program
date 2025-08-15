@@ -1,26 +1,17 @@
 import os
 from dotenv import load_dotenv
 
-load_dotenv()  # 載入 .env 檔案內容到環境變數
+# 載入 .env 檔案內容到環境變數 (指定完整路徑)
+dotenv_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env')
+load_dotenv(dotenv_path)
 
 # 配置類別
 class Config:
     SECRET_KEY = 'your_secret_key'
-    FIREBASE_DATABASE_URL = 'https://socialmedia-7c038-default-rtdb.asia-southeast1.firebasedatabase.app/'
-    FIREBASE_CREDENTIALS_PATH = "C:/Users/deehu/Desktop/Program/socialmediatemplate/socialmedia-7c038-firebase-adminsdk-fbsvc-a3b30f46e1.json"
+    
+    # API Keys
     OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
     CLAUDE_API_KEY = os.getenv('CLAUDE_API_KEY')
-    
-    # Firebase Web Configuration
-    FIREBASE_CONFIG = {
-        "apiKey": "AIzaSyCMsa0rv-EJnMnFNwQ5X3F7hbjdGvwJ00E",
-        "authDomain": "socialmedia-7c038.firebaseapp.com",
-        "databaseURL": "https://socialmedia-7c038-default-rtdb.asia-southeast1.firebasedatabase.app",
-        "projectId": "socialmedia-7c038",
-        "storageBucket": "socialmedia-7c038.appspot.com",
-        "messagingSenderId": "851731795907",
-        "appId": "1:851731795907:web:c1db66a2f12857b8e2ba64"
-    }
     
     # Path configuration
     EMOTION_FOLDERS = ['contempt', 'anger', 'disgust']
